@@ -13,11 +13,13 @@ export const containerStyleLight = style({
   vars: assignVars(colorVars, lightColors),
   backgroundColor: colorVars.background.primary,
   color: colorVars.text.primary,
+  colorScheme: "light",
 });
 export const containerStyleDark = style({
   vars: assignVars(colorVars, darkColors),
   backgroundColor: colorVars.background.primary,
   color: colorVars.text.primary,
+  colorScheme: "dark",
 });
 
 export const headerAreaStyle = style({

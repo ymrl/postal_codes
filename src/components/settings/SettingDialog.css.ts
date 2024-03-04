@@ -23,3 +23,9 @@ export const dialogTitleStyle = style({
   fontSize: themeVars.font.largeSize,
   fontWeight: themeVars.font.strongWeight,
 });
+
+export const disclaimerStyle = style({
+  fontSize: themeVars.font.smallSize,
+  color: colorVars.text.secondary,
+  textAlign: "center",
+});

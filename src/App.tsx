@@ -25,23 +25,23 @@ function App() {
   );
   return (
     <SettingsProvider>
-      <Container>
-        <HeaderArea>
-          <Title>日本の郵便番号</Title>
-          <HeaderControls>
-            <Filter
-              condition={filterCondition}
-              onChangeCondition={setFilterCondition}
-            />
-            <Settings />
-          </HeaderControls>
-        </HeaderArea>
-        <MainArea>
-          <KenAllProvider filterCondition={filterCondition}>
+      <KenAllProvider filterCondition={filterCondition}>
+        <Container>
+          <HeaderArea>
+            <Title>日本の郵便番号</Title>
+            <HeaderControls>
+              <Filter
+                condition={filterCondition}
+                onChangeCondition={setFilterCondition}
+              />
+              <Settings />
+            </HeaderControls>
+          </HeaderArea>
+          <MainArea>
             <Table />
-          </KenAllProvider>
-        </MainArea>
-      </Container>
+          </MainArea>
+        </Container>
+      </KenAllProvider>
     </SettingsProvider>
   );
 }
