@@ -7,11 +7,14 @@ export const advancedSearchDetailsStyle = style({
   padding: 0,
   margin: 0,
 });
-export const advanceSearchSummaryStyle = style([buttonStyle, {
-  listStyle: "none",
-  userSelect: "none",
-  position: "relative",
-}]);
+export const advanceSearchSummaryStyle = style([
+  buttonStyle,
+  {
+    listStyle: "none",
+    userSelect: "none",
+    position: "relative",
+  },
+]);
 export const badgeStyle = style({
   backgroundColor: colorVars.accent.primary,
   color: colorVars.accent.textOnPrimary,

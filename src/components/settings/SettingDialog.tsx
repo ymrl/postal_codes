@@ -7,7 +7,13 @@ import {
   settingDialogStyle,
 } from "./SettingDialog.css";
 import { KenAllContext } from "../../KenAllContext";
-import { Button, Checkbox, Fields, Fieldset, Radiobutton } from "../fundamentals";
+import {
+  Button,
+  Checkbox,
+  Fields,
+  Fieldset,
+  Radiobutton,
+} from "../fundamentals";
 
 const SettingDialogRenderer: React.ForwardRefRenderFunction<
   HTMLDialogElement,
@@ -40,22 +46,25 @@ const SettingDialogRenderer: React.ForwardRefRenderFunction<
               name="theme"
               value="auto"
               checked={colorScheme === "auto"}
-              onChange={() => updateSettings({ colorScheme: "auto" })}>
-                自動
+              onChange={() => updateSettings({ colorScheme: "auto" })}
+            >
+              自動
             </Radiobutton>
             <Radiobutton
               name="theme"
               value="light"
               checked={colorScheme === "light"}
-              onChange={() => updateSettings({ colorScheme: "light" })}>
-                ライト
+              onChange={() => updateSettings({ colorScheme: "light" })}
+            >
+              ライト
             </Radiobutton>
             <Radiobutton
               name="theme"
               value="dark"
               checked={colorScheme === "dark"}
-              onChange={() => updateSettings({ colorScheme: "dark" })}>
-                ダーク
+              onChange={() => updateSettings({ colorScheme: "dark" })}
+            >
+              ダーク
             </Radiobutton>
           </Fields>
         </Fieldset>

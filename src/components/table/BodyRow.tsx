@@ -12,8 +12,7 @@ export const BodyRow = ({
   rowIndex: number;
   showRuby: boolean;
 }) => (
-  <Row 
-  rowIndex={rowIndex}>
+  <Row rowIndex={rowIndex}>
     {/*
       0: 全国地方公共団体コード（JIS X0401、X0402）………　半角数字
       1: （旧）郵便番号（5桁）………………………………………　半角数字

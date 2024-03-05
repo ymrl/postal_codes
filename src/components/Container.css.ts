@@ -5,8 +5,8 @@ export const containerStyle = style({
   display: "flex",
   flexDirection: "column",
   justifyContent: "flex-start",
-  width: "100vw",
-  height: "100vh",
+  width: "100dvw",
+  height: "100dvh",
 });
 
 export const containerStyleLight = style({

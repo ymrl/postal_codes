@@ -8,11 +8,16 @@ export const Checkbox = ({
 }: {
   children: React.ReactNode;
   checked: boolean;
-  value?: string
+  value?: string;
   onChange: React.ChangeEventHandler<HTMLInputElement>;
 }) => (
   <label className={checkBoxContainerStyle}>
-    <input type="checkbox" checked={checked} onChange={onChange} value={value} />
+    <input
+      type="checkbox"
+      checked={checked}
+      onChange={onChange}
+      value={value}
+    />
     <span>{children}</span>
   </label>
 );
