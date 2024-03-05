@@ -2,12 +2,11 @@ import {
   advanceSearchSummaryStyle,
   advancedSearchContentStyle,
   advancedSearchDetailsStyle,
-  advancedSearchItemStyle,
-  advancedSearchListStyle,
   badgeStyle,
 } from "./AdvancedSearch.css";
 import { FilterCondition } from "../../FilterCondition";
 import React from "react";
+import { Checkbox, Fields } from "../fundamentals";
 
 export const AdvancesSearch = ({
   onChangeCondition,
@@ -58,66 +57,50 @@ export const AdvancesSearch = ({
           }
         }}
       >
-        <ul className={advancedSearchListStyle}>
-          <li className={advancedSearchItemStyle}>
-            <label>
-              <input
-                type="checkbox"
-                checked={condition.partOfTown}
-                value="partOfTown"
-                onChange={(e) =>
-                  onChangeCondition({
-                    ...condition,
-                    partOfTown: e.target.checked,
-                  })
-                }
-              />
-              町域の一部を示す郵便番号
-            </label>
-          </li>
-          <li className={advancedSearchItemStyle}>
-            <label>
-              <input
-                type="checkbox"
-                checked={condition.spreadAcrossTowns}
-                value="spreadAcrossTowns"
-                onChange={(e) =>
-                  onChangeCondition({
-                    ...condition,
-                    spreadAcrossTowns: e.target.checked,
-                  })
-                }
-              />
-              複数の町域にまたがる郵便番号
-            </label>
-          </li>
-          <li className={advancedSearchItemStyle}>
-            <label>
-              <input
-                type="checkbox"
-                checked={condition.koaza}
-                value="koaza"
-                onChange={(e) =>
-                  onChangeCondition({ ...condition, koaza: e.target.checked })
-                }
-              />
-              小字毎に番地が起番されている町域
-            </label>
-          </li>
-          <li className={advancedSearchItemStyle}>
-            <label>
-              <input
-                type="checkbox"
-                checked={condition.choume}
-                value="choume"
-                onChange={(e) =>
-                  onChangeCondition({ ...condition, choume: e.target.checked })
-                }
-              />
-              丁目を有する町域
-            </label>
-          </li>
-        </ul>
+        <Fields>
+          <Checkbox
+            value="partOfTown"
+            checked={!!condition.partOfTown}
+            onChange={(e) =>
+              onChangeCondition({
+                ...condition,
+                partOfTown: e.target.checked,
+              })
+            }
+          >
+            町域の一部を示す郵便番号
+          </Checkbox>
+          <Checkbox
+            value="spreadAcrossTowns"
+            checked={!!condition.spreadAcrossTowns}
+            onChange={(e) =>
+              onChangeCondition({
+                ...condition,
+                spreadAcrossTowns: e.target.checked,
+              })
+            }
+          >
+            複数の町域にまたがる郵便番号
+          </Checkbox>
+          <Checkbox
+            value="koaza"
+            checked={!!condition.koaza}
+            onChange={(e) =>
+              onChangeCondition({ ...condition, koaza: e.target.checked })
+            }
+          >
+            小字毎に番地が起番されている町域
+          </Checkbox>
+          <Checkbox
+            value="choume"
+            checked={!!condition.choume}
+            onChange={(e) =>
+              onChangeCondition({ ...condition, choume: e.target.checked })
+            }
+          >
+            丁目を有する町域
+          </Checkbox>
+        </Fields>
       </div>
     </details>
   );

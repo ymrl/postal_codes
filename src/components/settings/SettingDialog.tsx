@@ -6,8 +6,8 @@ import {
   disclaimerStyle,
   settingDialogStyle,
 } from "./SettingDialog.css";
-import { buttonStyle } from "./Settings.css";
 import { KenAllContext } from "../../KenAllContext";
+import { Button, Checkbox, Fields, Fieldset, Radiobutton } from "../fundamentals";
 
 const SettingDialogRenderer: React.ForwardRefRenderFunction<
   HTMLDialogElement,
@@ -20,66 +20,45 @@ const SettingDialogRenderer: React.ForwardRefRenderFunction<
     <dialog className={settingDialogStyle} ref={ref}>
       <div className={dialogContentStyle}>
         <h2 className={dialogTitleStyle}>表示設定</h2>
-
-        <label>
-          <input
-            type="checkbox"
+        <Fields>
+          <Checkbox
             checked={showRuby}
             onChange={(e) => updateSettings({ showRuby: e.target.checked })}
-          />
-          ルビを表示
-        </label>
-        <label>
-          <input
-            type="checkbox"
+          >
+            ルビを表示
+          </Checkbox>
+          <Checkbox
             checked={shortcutKey}
             onChange={(e) => updateSettings({ shortcutKey: e.target.checked })}
-          />
-          Ctrl+F または Command+F で検索にフォーカス
-        </label>
-
-        <fieldset>
-          <legend>テーマ</legend>
-          <label>
-            <input
-              type="radio"
+          >
+            Ctrl+F または Command+F で検索にフォーカス
+          </Checkbox>
+        </Fields>
+        <Fieldset legend="テーマ">
+          <Fields>
+            <Radiobutton
               name="theme"
               value="auto"
               checked={colorScheme === "auto"}
-              onChange={() => {
-                console.log("auto");
-                updateSettings({ colorScheme: "auto" });
-              }}
-            />
-            自動
-          </label>
-          <label>
-            <input
-              type="radio"
+              onChange={() => updateSettings({ colorScheme: "auto" })}>
+                自動
+            </Radiobutton>
+            <Radiobutton
               name="theme"
               value="light"
               checked={colorScheme === "light"}
-              onChange={() => {
-                console.log("light");
-                updateSettings({ colorScheme: "light" });
-              }}
-            />
-            ライト
-          </label>
-          <label>
-            <input
-              type="radio"
+              onChange={() => updateSettings({ colorScheme: "light" })}>
+                ライト
+            </Radiobutton>
+            <Radiobutton
               name="theme"
               value="dark"
               checked={colorScheme === "dark"}
-              onChange={() => {
-                console.log("dark");
-                updateSettings({ colorScheme: "dark" });
-              }}
-            />
-            ダーク
-          </label>
-        </fieldset>
+              onChange={() => updateSettings({ colorScheme: "dark" })}>
+                ダーク
+            </Radiobutton>
+          </Fields>
+        </Fieldset>
         <div className={disclaimerStyle}>
           <p>
             このページの情報は
@@ -96,9 +75,7 @@ const SettingDialogRenderer: React.ForwardRefRenderFunction<
             当ページ製作者は、ページの利用やデータの正確性に関して一切の責任を負いかねます。
           </p>
         </div>
-        <button type="button" onClick={requestClose} className={buttonStyle}>
-          閉じる
-        </button>
+        <Button onClick={requestClose}>閉じる</Button>
       </div>
     </dialog>
   );

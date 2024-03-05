@@ -1,37 +1,17 @@
 import { style } from "@vanilla-extract/css";
 import { themeVars, colorVars } from "../../App.css";
+import { buttonStyle } from "../fundamentals/index.css";
 
 export const advancedSearchDetailsStyle = style({
   position: "relative",
   padding: 0,
   margin: 0,
 });
-export const advanceSearchSummaryStyle = style({
+export const advanceSearchSummaryStyle = style([buttonStyle, {
   listStyle: "none",
   userSelect: "none",
   position: "relative",
-  cursor: "pointer",
-  padding: `${themeVars.spacing.small} ${themeVars.spacing.normal}`,
-  borderRadius: themeVars.borderRadius.small,
-  border: themeVars.border.decoration,
-  height: themeVars.controls.normal,
-  display: "inline-flex",
-  alignItems: "center",
-  backgroundColor: colorVars.background.secondary,
-  fontSize: themeVars.font.normalSize,
-  transitionDuration: themeVars.transition.duration,
-  transitionProperty: "background-color",
-  selectors: {
-    "&:hover": {
-      backgroundColor: colorVars.background.secondaryHover,
-    },
-  },
-  "@media": {
-    "screen and (max-width: 48rem)": {
-      fontSize: themeVars.font.smallSize,
-    },
-  },
-});
+}]);
 export const badgeStyle = style({
   backgroundColor: colorVars.accent.primary,
   color: colorVars.accent.textOnPrimary,
@@ -56,6 +36,7 @@ export const advancedSearchContentStyle = style({
   zIndex: 1,
   padding: themeVars.spacing.small,
   borderRadius: themeVars.borderRadius.normal,
+  width: "19rem",
   boxShadow: `0 0.25rem 0.5rem rgba(0,0,0,0.2)`,
   "@media": {
     "screen and (max-width: 48rem)": {
@@ -64,14 +45,3 @@ export const advancedSearchContentStyle = style({
     },
   },
 });
-export const advancedSearchListStyle = style({
-  listStyle: "none",
-  padding: 0,
-  margin: 0,
-  width: "18rem",
-  maxWidth: "80vw",
-  display: "flex",
-  flexDirection: "column",
-  gap: themeVars.spacing.small,
-});
-export const advancedSearchItemStyle = style({});

@@ -1,6 +1,6 @@
 import React from "react";
-import { buttonStyle } from "./Settings.css";
 import { SettingDialog } from "./SettingDialog";
+import { Button } from "../fundamentals";
 
 type SettingsT = {
   showRuby: boolean;
@@ -56,9 +56,7 @@ export const Settings = () => {
   const dialogRef = React.useRef<HTMLDialogElement>(null);
   return (
     <>
-      <button
-        type="button"
-        className={buttonStyle}
+      <Button
         onClick={() => {
           if (dialogRef.current) {
             dialogRef.current.showModal();
@@ -66,7 +64,7 @@ export const Settings = () => {
         }}
       >
         表示設定
-      </button>
+      </Button>
       <SettingDialog
         ref={dialogRef}
         requestClose={() => {
