@@ -1,5 +1,5 @@
 import { style } from "@vanilla-extract/css";
-import { colorVars, themeVars } from "../../App.css";
+import { colorVars, semanticVars, themeVars } from "../../App.css";
 
 export const othersStyle = style({
   listStyle: "none",
@@ -13,6 +13,6 @@ export const othersStyle = style({
 });
 
 export const othersItemStyle = style({
-  fontSize: themeVars.font.smallSize,
+  fontSize: semanticVars.font.aside,
   color: colorVars.text.secondary,
 });

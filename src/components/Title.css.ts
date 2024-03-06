@@ -1,13 +1,8 @@
 import { style } from "@vanilla-extract/css";
-import { themeVars } from "../App.css";
+import { themeVars, semanticVars } from "../App.css";
 
 export const titleStyle = style({
-  fontSize: themeVars.font.xLargeSize,
+  fontSize: semanticVars.font.title,
   fontWeight: themeVars.font.strongWeight,
   margin: 0,
-  "@media": {
-    "screen and (max-width: 48rem)": {
-      fontSize: themeVars.font.largeSize,
-    },
-  },
 });

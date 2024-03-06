@@ -68,6 +68,7 @@ export const darkColors = {
   },
 };
 
+const mobileBreakpoint = '48rem';
 export const themeVars = createGlobalTheme(":root", {
   spacing: {
     xSmall: "0.125rem",
@@ -77,8 +78,9 @@ export const themeVars = createGlobalTheme(":root", {
     xLarge: "2rem",
   },
   font: {
-    xSmallSize: "0.625rem",
-    smallSize: "0.75rem",
+    xxSmallSize: "0.625rem",
+    xSmallSize: "0.75rem",
+    smallSize: "0.875rem",
     normalSize: "1rem",
     largeSize: "1.25rem",
     xLargeSize: "1.5rem",
@@ -103,7 +105,20 @@ export const themeVars = createGlobalTheme(":root", {
     duration: "0.3s",
   },
   breakpoint: {
-    mobile: "48rem",
+    mobile: mobileBreakpoint,
+  },
+});
+
+export const mediaQueries = {
+  mobile: `screen and (max-width: ${mobileBreakpoint})`,
+  dark: "(prefers-color-scheme: dark)"
+}
+
+export const semanticVars = createThemeContract({
+  font: {
+    title: null,
+    data: null,
+    aside: null,
   },
 });
 
@@ -116,6 +131,24 @@ globalStyle("body", {
   lineHeight: 1.5,
   fontWeight: 400,
   colorScheme: "light dark",
+  vars: assignVars(semanticVars, {
+    font: {
+      title: themeVars.font.xLargeSize,
+      data: themeVars.font.normalSize,
+      aside: themeVars.font.smallSize
+    },
+  }),
+  "@media": {
+    [mediaQueries.mobile]: {
+      vars: assignVars(semanticVars, {
+        font: {
+          title: themeVars.font.largeSize,
+          data: themeVars.font.smallSize,
+          aside: themeVars.font.xSmallSize
+        },
+      }),
+    }
+  },
 });
 
 globalStyle("*", {
@@ -125,7 +158,7 @@ globalStyle("*", {
 globalStyle(":root", {
   vars: assignVars(colorVars, lightColors),
   "@media": {
-    "(prefers-color-scheme: dark)": {
+    [mediaQueries.dark]: {
       vars: assignVars(colorVars, darkColors),
     },
   },

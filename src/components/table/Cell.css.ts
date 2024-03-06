@@ -1,5 +1,5 @@
 import { style, styleVariants } from "@vanilla-extract/css";
-import { themeVars } from "../../App.css";
+import { mediaQueries, themeVars } from "../../App.css";
 
 const base = style({
   padding: themeVars.spacing.small,
@@ -24,7 +24,7 @@ export const cellStyle = styleVariants({
     {
       wordBreak: "break-all",
       "@media": {
-        "screen and (max-width: 48rem)": {
+        [mediaQueries.mobile]: {
           gridRowStart: 2,
           gridRowEnd: 3,
           gridColumnStart: 1,
