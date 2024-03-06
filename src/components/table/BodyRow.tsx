@@ -31,11 +31,11 @@ export const BodyRow = ({
       14: 変更理由　（「0」は変更なし、「1」市政・区政・町政・分区・政令指定都市施行、「2」住居表示の実施、「3」区画整理、「4」郵便区調整等、「5」訂正、「6」廃止（廃止データのみ使用））
     */}
     {/* 郵便番号（7桁） */}
-    <Cell type="postalCode" colindex={1}>
+    <Cell type="default" colindex={1}>
       {row[2].slice(0, 3)}-{row[2].slice(3)}
     </Cell>
     {/* 都道府県名 */}
-    <Cell type="prefecture" colindex={2}>
+    <Cell type="default" colindex={2}>
       {showRuby ? (
         <ruby>
           {row[6]}
@@ -48,7 +48,7 @@ export const BodyRow = ({
       )}
     </Cell>
     {/* 市区町村名 */}
-    <Cell type="city" colindex={3}>
+    <Cell type="default" colindex={3}>
       {showRuby ? (
         <ruby>
           {row[7]}

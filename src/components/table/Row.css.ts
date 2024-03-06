@@ -9,8 +9,8 @@ const base = style({
   minHeight: "2rem",
   "@media": {
     "screen and (max-width: 48rem)": {
-      gridTemplateColumns: "6rem 5rem 1fr",
-      minHeight: "4rem",
+      gridTemplateColumns: "5rem 4.5rem 1fr 5rem",
+      minHeight: "3rem",
     },
   },
 });
