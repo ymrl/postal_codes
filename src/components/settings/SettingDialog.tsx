@@ -25,7 +25,7 @@ const SettingDialogRenderer: React.ForwardRefRenderFunction<
   return (
     <dialog className={settingDialogStyle} ref={ref}>
       <div className={dialogContentStyle}>
-        <h2 className={dialogTitleStyle}>表示設定</h2>
+        <h2 className={dialogTitleStyle} tabIndex={-1}>表示設定</h2>
         <Fields>
           <Checkbox
             checked={showRuby}
