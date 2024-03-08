@@ -1,4 +1,3 @@
-import React from "react";
 import { KenAllProvider } from "./KenAllContext";
 import { Table } from "./components/table";
 import "./App.css";
@@ -9,40 +8,33 @@ import {
   MainArea,
 } from "./components/Container";
 import { Title } from "./components/Title";
-import { FilterCondition } from "./FilterCondition";
 import { Filter } from "./components/filter";
 import { Settings, SettingsProvider } from "./components/settings";
+import { QueryProvider } from "./QueryProvider";
+import { FilterConditionProvider } from "./FilterConditionProvider";
 
 function App() {
-  const [filterCondition, setFilterCondition] = React.useState<FilterCondition>(
-    {
-      query: "",
-      choume: false,
-      koaza: false,
-      partOfTown: false,
-      spreadAcrossTowns: false,
-    },
-  );
   return (
-    <SettingsProvider>
-      <KenAllProvider filterCondition={filterCondition}>
-        <Container>
-          <HeaderArea>
-            <Title>日本の郵便番号</Title>
-            <HeaderControls>
-              <Filter
-                condition={filterCondition}
-                onChangeCondition={setFilterCondition}
-              />
-              <Settings />
-            </HeaderControls>
-          </HeaderArea>
-          <MainArea>
-            <Table />
-          </MainArea>
-        </Container>
-      </KenAllProvider>
-    </SettingsProvider>
+    <QueryProvider>
+      <SettingsProvider>
+        <FilterConditionProvider>
+          <KenAllProvider>
+            <Container>
+              <HeaderArea>
+                <Title>日本の郵便番号</Title>
+                <HeaderControls>
+                  <Filter />
+                  <Settings />
+                </HeaderControls>
+              </HeaderArea>
+              <MainArea>
+                <Table />
+              </MainArea>
+            </Container>
+          </KenAllProvider>
+        </FilterConditionProvider>
+      </SettingsProvider>
+    </QueryProvider>
   );
 }
 

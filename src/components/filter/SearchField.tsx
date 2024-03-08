@@ -1,16 +1,11 @@
 import { inputStyle, searchLabelStyle } from "./Search.css";
-import { FilterCondition } from "../../FilterCondition";
+import { FilterConditionContext } from "../../FilterConditionProvider";
 import React, { useEffect } from "react";
 import { SettingsContext } from "../settings";
 
-export const SearchField = ({
-  condition,
-  onChangeCondition,
-}: {
-  condition: FilterCondition;
-  onChangeCondition: (condition: FilterCondition) => void;
-}) => {
-  const { query } = condition;
+export const SearchField = () => {
+  const { filterCondition, updateFilterCondition } = React.useContext(FilterConditionContext);
+  const { query } = filterCondition;
   const { shortcutKey } = React.useContext(SettingsContext);
   const ref = React.useRef<HTMLInputElement>(null);
 
@@ -40,7 +35,7 @@ export const SearchField = ({
         type="text"
         value={query}
         onChange={(e) =>
-          onChangeCondition({ ...condition, query: e.target.value })
+          updateFilterCondition({ ...filterCondition, query: e.target.value })
         }
         ref={ref}
       />

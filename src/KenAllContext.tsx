@@ -1,5 +1,5 @@
 import React from "react";
-import { FilterCondition } from "./FilterCondition";
+import { FilterConditionContext } from "./FilterConditionProvider";
 export const KenAllContext = React.createContext<{
   kenAll: string[][];
   filteredKenAll: string[][];
@@ -8,13 +8,12 @@ export const KenAllContext = React.createContext<{
 
 export const KenAllProvider = ({
   children,
-  filterCondition,
 }: {
   children?: React.ReactNode;
-  filterCondition: FilterCondition;
 }) => {
   const [kenAll, setKenAll] = React.useState<string[][]>([]);
   const [downloadedAt, setDownloadedAt] = React.useState<Date | null>(null);
+  const {filterCondition} = React.useContext(FilterConditionContext);
   React.useEffect(() => {
     (async () => {
       const res = await fetch("./ken_all.json");
