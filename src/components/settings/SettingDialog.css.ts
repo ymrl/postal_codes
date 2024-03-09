@@ -7,6 +7,7 @@ export const settingDialogStyle = style({
   backgroundColor: colorVars.background.primary,
   color: colorVars.text.primary,
   padding: themeVars.spacing.normal,
+  width: "30rem",
   maxWidth: `calc(100vw - ${themeVars.spacing.large})`,
   selectors: {
     '&::backdrop': {
@@ -32,5 +33,5 @@ export const dialogTitleStyle = style({
 export const disclaimerStyle = style({
   fontSize: themeVars.font.smallSize,
   color: colorVars.text.secondary,
-  textAlign: "center",
+  textAlign: "left",
 });

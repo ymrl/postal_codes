@@ -15,6 +15,11 @@ export const lightColors = {
   text: {
     primary: "#333",
     secondary: "#707070",
+    dangerous: "#C7371C",
+    link: "#0000CC",
+    linkHover: "#0000BF",
+    linkVisited: "#6600CC",
+    linkVisitedHover: "#5F00BF",
   },
   accent: {
     primary: "#cc0000",
@@ -28,27 +33,31 @@ export const lightColors = {
 };
 
 export const darkColors: typeof lightColors = {
+  ...lightColors,
   background: {
+    ...lightColors.background,
     primary: "#1a1a1a",
     secondary: "#2f2f2f",
     primaryHover: "#2a2a2a",
     secondaryHover: "#3f3f3f",
   },
   text: {
+    ...lightColors.text,
     primary: "#f0f0f0",
     secondary: "#828282",
-  },
-  accent: {
-    primary: "#cc0000",
-    textOnPrimary: "#fff",
+    dangerous: "#F0715A",
+    link: "#9191F2",
+    linkHover: "#9999FF",
+    linkVisited: "#C191F2",
+    linkVisitedHover: "#CB98FF"
   },
   ui: {
+    ...lightColors.ui,
     distinguish: "#6b6b6b",
     decoration: "#404040",
-    backdrop: "rgba(0, 0, 0, 0.4)",
+    backdrop: "rgba(0, 0, 0, 0.7)",
   },
 };
-
 export const colorVars = createThemeContract(lightColors);
 
 const mobileBreakpoint = '48rem';

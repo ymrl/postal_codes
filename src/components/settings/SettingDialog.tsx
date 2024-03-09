@@ -11,6 +11,7 @@ import {
   Checkbox,
   Fields,
   Fieldset,
+  Link,
   Radiobutton,
 } from "../fundamentals";
 
@@ -74,9 +75,9 @@ const SettingDialogRenderer: React.ForwardRefRenderFunction<
               ? `${downloadedAt.getFullYear()}年${downloadedAt.getMonth() + 1}月${downloadedAt.getDate()}日にダウンロードした、`
               : ""}
             日本郵便株式会社の
-            <a href="https://www.post.japanpost.jp/zipcode/dl/utf-zip.html">
+            <Link href="https://www.post.japanpost.jp/zipcode/dl/utf-zip.html">
               住所の郵便番号（1レコード1行、UTF-8形式）（CSV形式）
-            </a>
+            </Link>
             を元にしています。
           </p>
           <p>
