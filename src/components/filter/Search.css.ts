@@ -21,10 +21,11 @@ export const inputStyle = style({
   color: colorVars.text.primary,
   borderRadius: themeVars.borderRadius.small,
   height: themeVars.controls.normal,
+  fontSize: themeVars.font.normalSize,
   width: "8rem",
   "@media": {
     "screen and (max-width: 48rem)": {
-      width: "5rem",
+      width: "7rem",
     },
   },
 });

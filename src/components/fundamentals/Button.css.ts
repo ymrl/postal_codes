@@ -3,7 +3,7 @@ import { themeVars, colorVars } from "../../App.css";
 
 export const buttonStyle = style({
   cursor: "pointer",
-  padding: `${themeVars.spacing.small} ${themeVars.spacing.normal}`,
+  padding: `${themeVars.spacing.small} ${themeVars.spacing.small}`,
   borderRadius: themeVars.borderRadius.small,
   border: themeVars.border.decoration,
   height: themeVars.controls.normal,
@@ -11,7 +11,7 @@ export const buttonStyle = style({
   alignItems: "center",
   backgroundColor: colorVars.background.secondary,
   color: colorVars.text.primary,
-  fontSize: themeVars.font.normalSize,
+  fontSize: themeVars.font.smallSize,
   lineHeight: themeVars.font.lineHeight,
   transitionDuration: themeVars.transition.duration,
   transitionProperty: "background-color",
