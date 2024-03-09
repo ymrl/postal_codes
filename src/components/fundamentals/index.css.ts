@@ -4,3 +4,6 @@ export * from "./Fieldset.css";
 export * from "./Radiobutton.css";
 export * from "./Fields.css";
 export * from "./Link.css";
+export * from "./IconFont.css";
+export * from "./TextWithIcon.css";
+export * from "./VisuallyHidden.css";

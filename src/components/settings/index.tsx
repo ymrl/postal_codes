@@ -1,6 +1,7 @@
 import React from "react";
 import { SettingDialog } from "./SettingDialog";
-import { Button } from "../fundamentals";
+import { Button, TextWithIcon } from "../fundamentals";
+import { SlSettings } from "react-icons/sl";
 
 export const Settings = () => {
   const dialogRef = React.useRef<HTMLDialogElement>(null);
@@ -13,7 +14,9 @@ export const Settings = () => {
           }
         }}
       >
-        表示設定
+        <TextWithIcon Icon={SlSettings} iconOnlyOnMobile>
+          設定
+        </TextWithIcon>
       </Button>
       <SettingDialog
         ref={dialogRef}

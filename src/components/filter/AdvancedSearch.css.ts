@@ -13,6 +13,11 @@ export const advanceSearchSummaryStyle = style([
     listStyle: "none",
     userSelect: "none",
     position: "relative",
+    selectors: {
+      "&::-webkit-details-marker": {
+        display: "none",
+      },
+    },
   },
 ]);
 export const badgeStyle = style({

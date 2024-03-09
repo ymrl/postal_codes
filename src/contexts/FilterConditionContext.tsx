@@ -27,30 +27,32 @@ export const FilterConditionProvider = ({
 }: {
   children: React.ReactNode;
 }) => {
-  const {updateQuery, query} = React.useContext(QueryContext);
+  const { updateQuery, query } = React.useContext(QueryContext);
 
   const [filterCondition, setFilterCondition] = React.useState<FilterCondition>(
     {
-      query: query.q || '',
+      query: query.q || "",
       choume: false,
       koaza: false,
       partOfTown: false,
       spreadAcrossTowns: false,
     },
   );
-  const updateFilterCondition = (partialCondition: Partial<FilterCondition>) => {
+  const updateFilterCondition = (
+    partialCondition: Partial<FilterCondition>,
+  ) => {
     if (partialCondition.query !== filterCondition.query) {
       updateQuery({ q: partialCondition.query });
     }
     const newCondition = { ...filterCondition, ...partialCondition };
     setFilterCondition(newCondition);
-  }
-
+  };
 
   return (
-    <FilterConditionContext.Provider value={{filterCondition, updateFilterCondition}}>
+    <FilterConditionContext.Provider
+      value={{ filterCondition, updateFilterCondition }}
+    >
       {children}
     </FilterConditionContext.Provider>
   );
 };
-

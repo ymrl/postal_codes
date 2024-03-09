@@ -14,7 +14,7 @@ const base = style({
       padding: `${themeVars.spacing.small} ${themeVars.spacing.xSmall}`,
     },
   },
-  fontSize: semanticVars.font.data
+  fontSize: semanticVars.font.data,
 });
 export const cellStyle = styleVariants({
   town: [

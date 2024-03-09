@@ -6,10 +6,13 @@ import {
 } from "./AdvancedSearch.css";
 import { FilterCondition, FilterConditionContext } from "../../contexts";
 import React from "react";
-import { Checkbox, Fields } from "../fundamentals";
+import { Checkbox, Fields, TextWithIcon } from "../fundamentals";
+import { SlEyeglass } from "react-icons/sl";
 
 export const AdvancesSearch = () => {
-  const { filterCondition, updateFilterCondition } = React.useContext(FilterConditionContext);
+  const { filterCondition, updateFilterCondition } = React.useContext(
+    FilterConditionContext,
+  );
   const ref = React.useRef<HTMLDetailsElement>(null);
   React.useEffect(() => {
     const listener = (e: MouseEvent) => {
@@ -43,8 +46,10 @@ export const AdvancesSearch = () => {
 
   return (
     <details className={advancedSearchDetailsStyle} ref={ref}>
-      <summary className={advanceSearchSummaryStyle}>
-        高度な条件
+      <summary className={advanceSearchSummaryStyle} tabIndex={0}>
+        <TextWithIcon Icon={SlEyeglass} iconOnlyOnMobile>
+          高度な条件
+        </TextWithIcon>
         {appliedConditionsCount > 0 && (
           <span className={badgeStyle}>{appliedConditionsCount}</span>
         )}
@@ -60,21 +65,21 @@ export const AdvancesSearch = () => {
         }}
       >
         <Fields>
-          {
-            (Object.keys(labels) as (keyof typeof labels)[]).map((key) => (
-              <Checkbox
-                key={key}
-                value={key}
-                checked={!!filterCondition[key as keyof FilterCondition]}
-                onChange={(e) =>
-                  updateFilterCondition({
-                    ...filterCondition,
-                    [key]: e.target.checked,
-                  })
-                }
-                >{labels[key]}</Checkbox>
-            ))
-          }
+          {(Object.keys(labels) as (keyof typeof labels)[]).map((key) => (
+            <Checkbox
+              key={key}
+              value={key}
+              checked={!!filterCondition[key as keyof FilterCondition]}
+              onChange={(e) =>
+                updateFilterCondition({
+                  ...filterCondition,
+                  [key]: e.target.checked,
+                })
+              }
+            >
+              {labels[key]}
+            </Checkbox>
+          ))}
         </Fields>
       </div>
     </details>

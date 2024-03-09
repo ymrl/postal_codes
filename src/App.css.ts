@@ -49,7 +49,7 @@ export const darkColors: typeof lightColors = {
     link: "#9191F2",
     linkHover: "#9999FF",
     linkVisited: "#C191F2",
-    linkVisitedHover: "#CB98FF"
+    linkVisitedHover: "#CB98FF",
   },
   ui: {
     ...lightColors.ui,
@@ -60,7 +60,7 @@ export const darkColors: typeof lightColors = {
 };
 export const colorVars = createThemeContract(lightColors);
 
-const mobileBreakpoint = '48rem';
+const mobileBreakpoint = "48rem";
 export const themeVars = createGlobalTheme(":root", {
   spacing: {
     xSmall: "0.125rem",
@@ -103,8 +103,8 @@ export const themeVars = createGlobalTheme(":root", {
 
 export const mediaQueries = {
   mobile: `screen and (max-width: ${mobileBreakpoint})`,
-  dark: "(prefers-color-scheme: dark)"
-}
+  dark: "(prefers-color-scheme: dark)",
+};
 
 export const semanticVars = createThemeContract({
   font: {
@@ -127,7 +127,7 @@ globalStyle("body", {
     font: {
       title: themeVars.font.xLargeSize,
       data: themeVars.font.normalSize,
-      aside: themeVars.font.smallSize
+      aside: themeVars.font.smallSize,
     },
   }),
   "@media": {
@@ -136,10 +136,10 @@ globalStyle("body", {
         font: {
           title: themeVars.font.largeSize,
           data: themeVars.font.smallSize,
-          aside: themeVars.font.xSmallSize
+          aside: themeVars.font.xSmallSize,
         },
       }),
-    }
+    },
   },
 });
 

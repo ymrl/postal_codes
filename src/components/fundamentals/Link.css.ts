@@ -3,17 +3,17 @@ import { colorVars } from "../../App.css";
 
 export const linkStyle = style({
   selectors: {
-    '&:link': {
+    "&:link": {
       color: colorVars.text.link,
     },
-    '&:link:hover': {
+    "&:link:hover": {
       color: colorVars.text.linkHover,
     },
-    '&:visited': {
+    "&:visited": {
       color: colorVars.text.linkVisited,
     },
-    '&:visited:hover': {
-      color: colorVars.text.linkVisitedHover
-    }
-  }
+    "&:visited:hover": {
+      color: colorVars.text.linkVisitedHover,
+    },
+  },
 });

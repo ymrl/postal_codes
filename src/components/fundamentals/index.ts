@@ -4,3 +4,6 @@ export * from "./Fieldset";
 export * from "./Radiobutton";
 export * from "./Fields";
 export * from "./Link";
+export * from "./IconFont";
+export * from "./TextWithIcon";
+export * from "./VisuallyHidden";

@@ -1,5 +1,5 @@
 import React from "react";
-import { KenAllContext,SettingsContext } from "../../contexts";
+import { KenAllContext, SettingsContext } from "../../contexts";
 import { useVirtualizer } from "@tanstack/react-virtual";
 import { Header } from "./Header";
 import { BodyRow } from "./BodyRow";

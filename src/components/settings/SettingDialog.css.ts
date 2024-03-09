@@ -10,10 +10,10 @@ export const settingDialogStyle = style({
   width: "30rem",
   maxWidth: `calc(100vw - ${themeVars.spacing.large})`,
   selectors: {
-    '&::backdrop': {
-      backgroundColor: colorVars.ui.backdrop
-    }
-  }
+    "&::backdrop": {
+      backgroundColor: colorVars.ui.backdrop,
+    },
+  },
 });
 export const dialogContentStyle = style({
   display: "flex",
