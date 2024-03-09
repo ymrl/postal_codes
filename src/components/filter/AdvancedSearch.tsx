@@ -4,7 +4,7 @@ import {
   advancedSearchDetailsStyle,
   badgeStyle,
 } from "./AdvancedSearch.css";
-import { FilterCondition, FilterConditionContext } from "../../FilterConditionProvider";
+import { FilterCondition, FilterConditionContext } from "../../contexts";
 import React from "react";
 import { Checkbox, Fields } from "../fundamentals";
 

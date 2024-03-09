@@ -1,12 +1,11 @@
 import React, { useContext } from "react";
-import { SettingsContext } from ".";
 import {
   dialogContentStyle,
   dialogTitleStyle,
   disclaimerStyle,
   settingDialogStyle,
 } from "./SettingDialog.css";
-import { KenAllContext } from "../../KenAllContext";
+import { KenAllContext, SettingsContext } from "../../contexts";
 import {
   Button,
   Checkbox,

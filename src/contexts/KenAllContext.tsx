@@ -1,5 +1,5 @@
 import React from "react";
-import { FilterConditionContext } from "./FilterConditionProvider";
+import { FilterConditionContext } from "./FilterConditionContext";
 export const KenAllContext = React.createContext<{
   kenAll: string[][];
   filteredKenAll: string[][];

@@ -1,7 +1,6 @@
 import { inputStyle, searchLabelStyle } from "./Search.css";
-import { FilterConditionContext } from "../../FilterConditionProvider";
+import { FilterConditionContext, SettingsContext } from "../../contexts";
 import React, { useEffect } from "react";
-import { SettingsContext } from "../settings";
 
 export const SearchField = () => {
   const { filterCondition, updateFilterCondition } = React.useContext(FilterConditionContext);

@@ -1,10 +1,9 @@
 import React from "react";
-import { KenAllContext } from "../../KenAllContext";
+import { KenAllContext,SettingsContext } from "../../contexts";
 import { useVirtualizer } from "@tanstack/react-virtual";
 import { Header } from "./Header";
 import { BodyRow } from "./BodyRow";
 import { tableBodyStyle, tableStyle } from "./Table.css";
-import { SettingsContext } from "../settings";
 
 export const Table = () => {
   const { filteredKenAll } = React.useContext(KenAllContext);

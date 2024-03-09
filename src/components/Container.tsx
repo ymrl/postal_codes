@@ -7,7 +7,7 @@ import {
   headerControlsStyle,
   mainAreaStyle,
 } from "./Container.css";
-import { SettingsContext } from "./settings";
+import { SettingsContext } from "./../contexts";
 
 export const Container = ({ children }: { children: React.ReactNode }) => {
   const { colorScheme } = React.useContext(SettingsContext);

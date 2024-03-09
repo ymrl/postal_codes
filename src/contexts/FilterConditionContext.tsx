@@ -1,5 +1,5 @@
 import React from "react";
-import { QueryContext } from "./QueryProvider";
+import { QueryContext } from "./QueryContext";
 export type FilterCondition = {
   query: string;
   partOfTown: boolean;

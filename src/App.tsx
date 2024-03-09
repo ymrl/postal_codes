@@ -1,4 +1,3 @@
-import { KenAllProvider } from "./KenAllContext";
 import { Table } from "./components/table";
 import "./App.css";
 import {
@@ -9,32 +8,25 @@ import {
 } from "./components/Container";
 import { Title } from "./components/Title";
 import { Filter } from "./components/filter";
-import { Settings, SettingsProvider } from "./components/settings";
-import { QueryProvider } from "./QueryProvider";
-import { FilterConditionProvider } from "./FilterConditionProvider";
+import { Settings } from "./components/settings";
+import { Provider } from "./contexts";
 
 function App() {
   return (
-    <QueryProvider>
-      <SettingsProvider>
-        <FilterConditionProvider>
-          <KenAllProvider>
-            <Container>
-              <HeaderArea>
-                <Title>日本の郵便番号</Title>
-                <HeaderControls>
-                  <Filter />
-                  <Settings />
-                </HeaderControls>
-              </HeaderArea>
-              <MainArea>
-                <Table />
-              </MainArea>
-            </Container>
-          </KenAllProvider>
-        </FilterConditionProvider>
-      </SettingsProvider>
-    </QueryProvider>
+    <Provider>
+      <Container>
+        <HeaderArea>
+          <Title>日本の郵便番号</Title>
+          <HeaderControls>
+            <Filter />
+            <Settings />
+          </HeaderControls>
+        </HeaderArea>
+        <MainArea>
+          <Table />
+        </MainArea>
+      </Container>
+    </Provider>
   );
 }
 
