@@ -5,27 +5,6 @@ import {
   createThemeContract,
 } from "@vanilla-extract/css";
 
-export const colorVars = createThemeContract({
-  background: {
-    primary: null,
-    secondary: null,
-    primaryHover: null,
-    secondaryHover: null,
-  },
-  text: {
-    primary: null,
-    secondary: null,
-  },
-  accent: {
-    primary: null,
-    textOnPrimary: null,
-  },
-  ui: {
-    distinguish: null,
-    decoration: null,
-  },
-});
-
 export const lightColors = {
   background: {
     primary: "#fff",
@@ -44,10 +23,11 @@ export const lightColors = {
   ui: {
     distinguish: "#949494",
     decoration: "#d2d2d2",
+    backdrop: "rgba(0, 0, 0, 0.4)",
   },
 };
 
-export const darkColors = {
+export const darkColors: typeof lightColors = {
   background: {
     primary: "#1a1a1a",
     secondary: "#2f2f2f",
@@ -65,8 +45,11 @@ export const darkColors = {
   ui: {
     distinguish: "#6b6b6b",
     decoration: "#404040",
+    backdrop: "rgba(0, 0, 0, 0.4)",
   },
 };
+
+export const colorVars = createThemeContract(lightColors);
 
 const mobileBreakpoint = '48rem';
 export const themeVars = createGlobalTheme(":root", {

@@ -8,6 +8,11 @@ export const settingDialogStyle = style({
   color: colorVars.text.primary,
   padding: themeVars.spacing.normal,
   maxWidth: `calc(100vw - ${themeVars.spacing.large})`,
+  selectors: {
+    '&::backdrop': {
+      backgroundColor: colorVars.ui.backdrop
+    }
+  }
 });
 export const dialogContentStyle = style({
   display: "flex",
