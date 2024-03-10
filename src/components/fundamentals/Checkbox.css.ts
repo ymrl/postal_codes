@@ -8,6 +8,7 @@ export const checkBoxContainerStyle = style({
 });
 
 export const checkBoxVisualStyle = style({
+  flexShrink: 0,
   display: 'inline-block',
   width: semanticVars.ui.check,
   height: semanticVars.ui.check,
@@ -25,8 +26,8 @@ export const checkBoxVisualStyle = style({
       transform: 'translate(-50%, -50%)',
       border: `2px solid ${colorVars.ui.distinguish}`,
       background: colorVars.background.primary,
-      width: '60%',
-      height: '60%',
+      width: '50%',
+      height: '50%',
       borderRadius: themeVars.borderRadius.small,
       transitionProperty: 'background-color',
       transitionDuration: themeVars.transition.duration
@@ -37,7 +38,7 @@ export const checkBoxVisualStyle = style({
       top: '42%',
       left: '50%',
       transform: 'translate(-50%, -50%) rotate(-50deg)',
-      width: '42%',
+      width: '40%',
       height: '20%',
       borderLeft: `2px solid ${colorVars.background.primary}`,
       borderBottom: `2px solid ${colorVars.background.primary}`,

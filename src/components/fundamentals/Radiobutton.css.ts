@@ -5,6 +5,7 @@ import { colorVars, semanticVars, themeVars } from "../../App.css";
 export const radioButtonContainerStyle = style([checkBoxContainerStyle]);
 
 export const radioButtonVisualStyle = style({
+  flexShrink: 0,
   display: 'inline-block',
   width: semanticVars.ui.check,
   height: semanticVars.ui.check,
