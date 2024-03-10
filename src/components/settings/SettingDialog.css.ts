@@ -2,7 +2,7 @@ import { style } from "@vanilla-extract/css";
 import { colorVars, themeVars, semanticVars } from "../../App.css";
 
 export const settingDialogStyle = style({
-  border: 0,
+  border: semanticVars.border.decoration,
   borderRadius: themeVars.borderRadius.large,
   backgroundColor: colorVars.background.primary,
   color: colorVars.text.primary,
@@ -12,7 +12,7 @@ export const settingDialogStyle = style({
   position: "relative",
   selectors: {
     "&::backdrop": {
-      backgroundColor: colorVars.ui.backdrop,
+      backgroundColor: "rgba(0, 0, 0, 0.4)",
     },
   },
 });
@@ -22,8 +22,6 @@ export const dialogInnerStyle = style({
   gap: 0,
   alignItems: "stretch",
   justifyContent: "stretch",
-  height: "100%",
-  maxHeight: "100%",
 });
 export const dialogHeaderStyle = style({
   position: "sticky",
@@ -36,7 +34,6 @@ export const dialogHeaderStyle = style({
 
 export const dialogBodyStyle = style({
   padding: themeVars.spacing.large,
-  overflow: "auto",
 });
 export const dialogContentStyle = style({
   display: "flex",

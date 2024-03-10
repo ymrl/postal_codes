@@ -29,7 +29,6 @@ export const lightColors = {
   ui: {
     distinguish: "#949494",
     decoration: "#d2d2d2",
-    backdrop: "rgba(0, 0, 0, 0.4)",
   },
 };
 
@@ -62,7 +61,6 @@ export const darkColors: typeof lightColors = {
     ...lightColors.ui,
     distinguish: "#6b6b6b",
     decoration: "#404040",
-    backdrop: "rgba(0, 0, 0, 0.7)",
   },
 };
 export const colorVars = createThemeContract(lightColors);
