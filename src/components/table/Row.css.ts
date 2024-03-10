@@ -6,11 +6,11 @@ const base = style({
   gridTemplateColumns: "6rem 5rem 8rem 1fr 8rem",
   padding: `0 ${themeVars.spacing.small}`,
   width: "100%",
-  minHeight: "2rem",
+  minHeight: "2.5rem",
   "@media": {
     [mediaQueries.small]: {
       gridTemplateColumns: "5rem 4.5rem 1fr 5rem",
-      minHeight: "3rem",
+      minHeight: "3.25rem",
     },
   },
 });
