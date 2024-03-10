@@ -35,6 +35,7 @@ export const backdropCSSVarStyle = style({
 
 export const dialogHeaderStyle = style({
   position: "sticky",
+  zIndex: 1,
   top: 0,
   padding: semanticVars.spacing.areaPadding,
   backgroundColor: colorVars.background.secondary,

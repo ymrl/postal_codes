@@ -5,6 +5,7 @@ type DeveloperSettingsT = {
   useFlexForDialog: boolean;
   useDetailsPopupForMobileSafari: boolean;
   displayDetailsChildrenClosed: boolean;
+  disableVirtualScroll: boolean;
 };
 
 export const DeveloperSettingsContext = React.createContext<
@@ -16,6 +17,7 @@ export const DeveloperSettingsContext = React.createContext<
   useFlexForDialog: false,
   useDetailsPopupForMobileSafari: false,
   displayDetailsChildrenClosed: false,
+  disableVirtualScroll: false,
   updateDeveloperSettings: () => {},
 });
 
@@ -29,6 +31,7 @@ export const DeveloperSettingsProvider = ({
     useFlexForDialog: false,
     useDetailsPopupForMobileSafari: false,
     displayDetailsChildrenClosed: false,
+    disableVirtualScroll: false,
   });
   const updateDeveloperSettings = (settings: Partial<DeveloperSettingsT>) => {
     setSettings((prev) => ({ ...prev, ...settings }));

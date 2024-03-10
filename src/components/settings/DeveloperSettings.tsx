@@ -10,6 +10,7 @@ export const DeveloperSettings = () => {
     useFlexForDialog,
     useDetailsPopupForMobileSafari,
     displayDetailsChildrenClosed,
+    disableVirtualScroll,
   } = React.useContext(DeveloperSettingsContext);
 
   return (
@@ -48,7 +49,7 @@ export const DeveloperSettings = () => {
         >
           モバイルSafariでもポップアップにdetails要素を使う
           <p className={dangerousNoticeStyle}>
-            VoiceOverで開閉できなくなる可能性があります
+            VoiceOverの挙動が不安定になる可能性があります
           </p>
         </Checkbox>
         <Checkbox
@@ -61,7 +62,18 @@ export const DeveloperSettings = () => {
         >
           details要素が閉じているとき、summary以外の子要素をdisplay:noneにしない
           <p className={dangerousNoticeStyle}>
-            Safariで不可視な要素にフォーカスできるようになります
+            Safariで不可視な要素にフォーカスしてしまうようになります
+          </p>
+        </Checkbox>
+        <Checkbox
+          checked={disableVirtualScroll}
+          onChange={(e) =>
+            updateDeveloperSettings({ disableVirtualScroll: e.target.checked })
+          }
+        >
+          仮想スクロールを無効にする
+          <p className={dangerousNoticeStyle}>
+            絞り込みの件数によってはブラウザがフリーズする可能性があります
           </p>
         </Checkbox>
       </Fields>

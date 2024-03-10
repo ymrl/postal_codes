@@ -1,5 +1,9 @@
 import React from "react";
-import { KenAllContext, SettingsContext } from "../../contexts";
+import {
+  DeveloperSettingsContext,
+  KenAllContext,
+  SettingsContext,
+} from "../../contexts";
 import { useVirtualizer } from "@tanstack/react-virtual";
 import { Header } from "./Header";
 import { BodyRow } from "./BodyRow";
@@ -19,6 +23,7 @@ export const Table = () => {
   });
 
   const { showRuby } = React.useContext(SettingsContext);
+  const { disableVirtualScroll } = React.useContext(DeveloperSettingsContext);
   const items = rowVirtualizer.getVirtualItems();
   return (
     <div
@@ -30,32 +35,38 @@ export const Table = () => {
     >
       <Header />
       <div className={tableBodyStyle} ref={parentRef}>
-        <div
-          style={{
-            height: `${rowVirtualizer.getTotalSize()}px`,
-            width: "100%",
-            position: "relative",
-          }}
-        >
+        {disableVirtualScroll ? (
+          filteredKenAll.map((row, i) => (
+            <BodyRow showRuby={showRuby} rowIndex={i + 2} row={row} key={i} />
+          ))
+        ) : (
           <div
             style={{
-              position: "absolute",
-              top: 0,
-              left: 0,
+              height: `${rowVirtualizer.getTotalSize()}px`,
               width: "100%",
-              transform: `translateY(${items[0]?.start ?? 0}px)`,
+              position: "relative",
             }}
           >
-            {items.map((virtualItem, i) => (
-              <BodyRow
-                showRuby={showRuby}
-                rowIndex={i + 2}
-                row={filteredKenAll[virtualItem.index]}
-                key={virtualItem.key}
-              />
-            ))}
+            <div
+              style={{
+                position: "absolute",
+                top: 0,
+                left: 0,
+                width: "100%",
+                transform: `translateY(${items[0]?.start ?? 0}px)`,
+              }}
+            >
+              {items.map((virtualItem, i) => (
+                <BodyRow
+                  showRuby={showRuby}
+                  rowIndex={i + 2}
+                  row={filteredKenAll[virtualItem.index]}
+                  key={virtualItem.key}
+                />
+              ))}
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </div>
   );
