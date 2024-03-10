@@ -1,11 +1,11 @@
 import { style } from "@vanilla-extract/css";
-import { themeVars, colorVars } from "../../App.css";
+import { themeVars, colorVars, semanticVars } from "../../App.css";
 
 export const buttonStyle = style({
   cursor: "pointer",
   padding: `${themeVars.spacing.small} ${themeVars.spacing.small}`,
   borderRadius: themeVars.borderRadius.small,
-  border: themeVars.border.decoration,
+  border: semanticVars.border.decoration,
   height: themeVars.controls.normal,
   display: "inline-flex",
   alignItems: "center",
@@ -18,6 +18,9 @@ export const buttonStyle = style({
   selectors: {
     "&:hover": {
       backgroundColor: colorVars.background.secondaryHover,
+    },
+    "&:focus-visible": {
+      outline: semanticVars.focus.outline,
     },
   },
   "@media": {

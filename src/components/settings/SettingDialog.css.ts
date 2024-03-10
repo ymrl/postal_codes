@@ -1,8 +1,8 @@
 import { style } from "@vanilla-extract/css";
-import { colorVars, themeVars } from "../../App.css";
+import { colorVars, themeVars, semanticVars } from "../../App.css";
 
 export const settingDialogStyle = style({
-  border: themeVars.border.distinguish,
+  border: 0,
   borderRadius: themeVars.borderRadius.large,
   backgroundColor: colorVars.background.primary,
   color: colorVars.text.primary,
@@ -74,6 +74,9 @@ export const dialogCloseButtonStyle = style({
   selectors: {
     "&:hover": {
       backgroundColor: colorVars.background.secondaryHover,
+    },
+    "&:focus-visible": {
+      outline: semanticVars.focus.outline,
     },
   },
 });

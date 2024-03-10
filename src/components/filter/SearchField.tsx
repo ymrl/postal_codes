@@ -2,7 +2,7 @@ import { inputStyle, searchLabelStyle } from "./Search.css";
 import { FilterConditionContext, SettingsContext } from "../../contexts";
 import React, { useEffect } from "react";
 import { SlMagnifier } from "react-icons/sl";
-import { TextWithIcon } from "../fundamentals";
+import { IconLabeledInput, TextWithIcon } from "../fundamentals";
 
 export const SearchField = () => {
   const { filterCondition, updateFilterCondition } = React.useContext(
@@ -31,19 +31,14 @@ export const SearchField = () => {
   }, [shortcutKey]);
 
   return (
-    <label className={searchLabelStyle}>
-      <TextWithIcon Icon={SlMagnifier} iconOnlyOnMobile>
-        検索
-      </TextWithIcon>
-      <input
-        className={inputStyle}
-        type="text"
-        value={query}
-        onChange={(e) =>
-          updateFilterCondition({ ...filterCondition, query: e.target.value })
-        }
-        ref={ref}
-      />
-    </label>
+    <IconLabeledInput
+      labelText="検索"
+      Icon={SlMagnifier}
+      value={query}
+      onChange={(e) =>
+        updateFilterCondition({ ...filterCondition, query: e.target.value })
+      }
+      ref={ref}
+    />
   );
 };

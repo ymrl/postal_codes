@@ -1,5 +1,14 @@
 import { style, assignVars } from "@vanilla-extract/css";
-import { themeVars, colorVars, lightColors, darkColors } from "../App.css";
+import {
+  themeVars,
+  colorVars,
+  lightColors,
+  darkColors,
+  mediaQueries,
+  desktopSemanticVars,
+  mobileSemanticVars,
+  semanticVars,
+} from "../App.css";
 
 export const containerStyle = style({
   display: "flex",
@@ -7,6 +16,12 @@ export const containerStyle = style({
   justifyContent: "flex-start",
   width: "100dvw",
   height: "100dvh",
+  vars: assignVars(semanticVars, desktopSemanticVars),
+  "@media": {
+    [mediaQueries.mobile]: {
+      vars: assignVars(semanticVars, mobileSemanticVars),
+    },
+  },
 });
 
 export const containerStyleLight = style({

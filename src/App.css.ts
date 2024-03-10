@@ -24,6 +24,7 @@ export const lightColors = {
   accent: {
     primary: "#cc0000",
     textOnPrimary: "#fff",
+    primaryTranslucent: "rgba(204, 0, 0, 0.65)",
   },
   ui: {
     distinguish: "#949494",
@@ -50,6 +51,12 @@ export const darkColors: typeof lightColors = {
     linkHover: "#9999FF",
     linkVisited: "#C191F2",
     linkVisitedHover: "#CB98FF",
+  },
+  accent: {
+    ...lightColors.accent,
+    primary: "#E67375",
+    textOnPrimary: "#2E2E2E",
+    primaryTranslucent: "rgba(230, 115, 117, 0.9)",
   },
   ui: {
     ...lightColors.ui,
@@ -85,10 +92,6 @@ export const themeVars = createGlobalTheme(":root", {
     normal: "0.5rem",
     large: "1rem",
   },
-  border: {
-    distinguish: `1px solid ${colorVars.ui.distinguish}`,
-    decoration: `1px solid ${colorVars.ui.decoration}`,
-  },
   controls: {
     small: "1.5rem",
     normal: "2rem",
@@ -101,18 +104,35 @@ export const themeVars = createGlobalTheme(":root", {
   },
 });
 
+export const desktopSemanticVars = {
+  font: {
+    title: themeVars.font.xLargeSize,
+    data: themeVars.font.normalSize,
+    aside: themeVars.font.smallSize,
+  },
+  border: {
+    distinguish: `1px solid ${colorVars.ui.distinguish}`,
+    decoration: `1px solid ${colorVars.ui.decoration}`,
+  },
+  focus: {
+    outline: `2px solid ${colorVars.accent.primaryTranslucent}`,
+  },
+};
+export const mobileSemanticVars = {
+  ...desktopSemanticVars,
+  font: {
+    ...desktopSemanticVars.font,
+    title: themeVars.font.normalSize,
+    data: themeVars.font.smallSize,
+    aside: themeVars.font.xSmallSize,
+  },
+};
+export const semanticVars = createThemeContract(desktopSemanticVars);
+
 export const mediaQueries = {
   mobile: `screen and (max-width: ${mobileBreakpoint})`,
   dark: "(prefers-color-scheme: dark)",
 };
-
-export const semanticVars = createThemeContract({
-  font: {
-    title: null,
-    data: null,
-    aside: null,
-  },
-});
 
 globalStyle("body", {
   margin: 0,
@@ -123,22 +143,10 @@ globalStyle("body", {
   lineHeight: 1.5,
   fontWeight: 400,
   colorScheme: "light dark",
-  vars: assignVars(semanticVars, {
-    font: {
-      title: themeVars.font.xLargeSize,
-      data: themeVars.font.normalSize,
-      aside: themeVars.font.smallSize,
-    },
-  }),
+  vars: assignVars(semanticVars, desktopSemanticVars),
   "@media": {
     [mediaQueries.mobile]: {
-      vars: assignVars(semanticVars, {
-        font: {
-          title: themeVars.font.largeSize,
-          data: themeVars.font.smallSize,
-          aside: themeVars.font.xSmallSize,
-        },
-      }),
+      vars: assignVars(semanticVars, mobileSemanticVars),
     },
   },
 });

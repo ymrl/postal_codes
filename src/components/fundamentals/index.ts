@@ -7,3 +7,4 @@ export * from "./Link";
 export * from "./IconFont";
 export * from "./TextWithIcon";
 export * from "./VisuallyHidden";
+export * from "./IconLabeledInput";
