@@ -1,10 +1,9 @@
-import { inputStyle, searchLabelStyle } from "./Search.css";
-import { FilterConditionContext, SettingsContext } from "../../contexts";
 import React, { useEffect } from "react";
+import { FilterConditionContext, SettingsContext } from "../../contexts";
 import { SlMagnifier } from "react-icons/sl";
-import { IconLabeledInput, TextWithIcon } from "../fundamentals";
+import { IconLabeledInput } from "../fundamentals";
 
-export const SearchField = () => {
+export const SearchField = ({ fieldId }: { fieldId: string }) => {
   const { filterCondition, updateFilterCondition } = React.useContext(
     FilterConditionContext,
   );
@@ -34,6 +33,7 @@ export const SearchField = () => {
     <IconLabeledInput
       labelText="検索"
       Icon={SlMagnifier}
+      id={fieldId}
       value={query}
       onChange={(e) =>
         updateFilterCondition({ ...filterCondition, query: e.target.value })

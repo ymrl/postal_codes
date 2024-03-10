@@ -3,9 +3,12 @@ import { SlEyeglass } from "react-icons/sl";
 import { Button, TextWithIcon } from "../fundamentals";
 import { Badge } from "./Badge";
 import { advancedSearchPopupButtonContainerStyle } from "./AdvancedSearchPopupButton.css";
-import { AdvancedSearchFields } from "./AdvancedSearchContent";
 
-export const AdvancedSearchPopupButton = () => {
+export const AdvancedSearchPopupButton = ({
+  children,
+}: {
+  children: React.ReactNode;
+}) => {
   const [popupOpen, setPopupOpen] = React.useState(false);
   const buttonRef = React.useRef<HTMLButtonElement>(null);
   const contentRef = React.useRef<HTMLDivElement>(null);
@@ -67,7 +70,7 @@ export const AdvancedSearchPopupButton = () => {
         hidden={!popupOpen}
         id={`${id}-popup`}
       >
-        <AdvancedSearchFields />
+        {children}
       </div>
     </div>
   );

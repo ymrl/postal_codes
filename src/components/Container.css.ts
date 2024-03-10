@@ -47,6 +47,7 @@ export const headerAreaStyle = style({
   "@media": {
     "screen and (max-width: 48rem)": {
       flexDirection: "column",
+      alignItems: "stretch",
       gap: themeVars.spacing.normal,
     },
   },
@@ -54,8 +55,9 @@ export const headerAreaStyle = style({
 export const headerControlsStyle = style({
   display: "flex",
   flexDirection: "row",
-  justifyContent: "flex-start",
+  justifyContent: "space-between",
   alignItems: "center",
+  flexGrow: 1,
   gap: themeVars.spacing.normal,
   "@media": {
     "screen and (max-width: 48rem)": {

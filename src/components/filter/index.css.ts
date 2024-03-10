@@ -6,3 +6,9 @@ export const searchStyle = style({
   gap: themeVars.spacing.normal,
   alignItems: "center",
 });
+
+export const searchFormStyle = style({
+  display: "flex",
+  gap: themeVars.spacing.normal,
+  alignItems: "center",
+});

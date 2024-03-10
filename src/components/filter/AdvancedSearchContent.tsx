@@ -10,7 +10,7 @@ const labels = {
   choume: "丁目を有する町域",
 } as const;
 
-export const AdvancedSearchFields = () => {
+export const AdvancedSearchContent = ({ ids }: { ids: string[] }) => {
   const { filterCondition, updateFilterCondition } = React.useContext(
     FilterConditionContext,
   );
@@ -18,8 +18,9 @@ export const AdvancedSearchFields = () => {
   return (
     <div className={advancedSearchContentStyle}>
       <Fields>
-        {(Object.keys(labels) as (keyof typeof labels)[]).map((key) => (
+        {(Object.keys(labels) as (keyof typeof labels)[]).map((key, i) => (
           <Checkbox
+            id={ids[i]}
             key={key}
             value={key}
             checked={!!filterCondition[key as keyof FilterCondition]}

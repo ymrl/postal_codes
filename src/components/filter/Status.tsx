@@ -1,15 +1,14 @@
 import React from "react";
-import { KenAllContext } from "../contexts";
+import { KenAllContext } from "../../contexts";
 import { statusStyle } from "./Status.css";
 
-export const Status = () => {
+export const Status = ({ ids }: { ids: string[] }) => {
   const { filteredKenAll } = React.useContext(KenAllContext);
   const count = filteredKenAll.length;
   return (
-    <div
+    <output
       className={statusStyle}
-      aria-live="polite"
-      aria-atomic="true"
-    >{`${count}件`}</div>
+      htmlFor={ids.join(" ")}
+    >{`${count}件`}</output>
   );
 };

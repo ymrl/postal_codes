@@ -1,11 +1,5 @@
 import { style } from "@vanilla-extract/css";
-import {
-  colorVars,
-  mediaQueries,
-  semanticVars,
-  themeVars,
-} from "../../App.css";
-import { visuallyHiddenStyleRule } from "./VisuallyHidden.css";
+import { colorVars, semanticVars, themeVars } from "../../App.css";
 
 export const iconLabeledInputStyle = style({
   padding: themeVars.spacing.small,
@@ -44,9 +38,6 @@ export const iconLabeledInputLabelTextStyle = style({
   transitionDuration: themeVars.transition.duration,
   opacity: 1,
   whiteSpace: "nowrap",
-  "@media": {
-    [mediaQueries.mobile]: visuallyHiddenStyleRule,
-  },
 });
 export const iconLabeledInputLabelTextHiddenStyle = style({
   overflow: "hidden",

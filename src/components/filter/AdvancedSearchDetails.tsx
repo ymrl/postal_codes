@@ -5,10 +5,13 @@ import {
 import React from "react";
 import { TextWithIcon } from "../fundamentals";
 import { SlEyeglass } from "react-icons/sl";
-import { AdvancedSearchFields } from "./AdvancedSearchContent";
 import { Badge } from "./Badge";
 
-export const AdvancedSearchDetails = () => {
+export const AdvancedSearchDetails = ({
+  children,
+}: {
+  children: React.ReactNode;
+}) => {
   const ref = React.useRef<HTMLDetailsElement>(null);
   React.useEffect(() => {
     const listener = (e: MouseEvent) => {
@@ -43,7 +46,7 @@ export const AdvancedSearchDetails = () => {
           }
         }}
       >
-        <AdvancedSearchFields />
+        {children}
       </div>
     </details>
   );

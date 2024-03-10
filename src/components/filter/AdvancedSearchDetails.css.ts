@@ -1,4 +1,4 @@
-import { style } from "@vanilla-extract/css";
+import { globalStyle, style } from "@vanilla-extract/css";
 import { buttonStyle } from "../fundamentals/index.css";
 
 export const advancedSearchDetailsStyle = style({
@@ -6,6 +6,12 @@ export const advancedSearchDetailsStyle = style({
   padding: 0,
   margin: 0,
 });
+
+// Safariのみ、details要素がopenでないときでも、子要素にフォーカスしようとしてしまう
+globalStyle(`${advancedSearchDetailsStyle}:not([open]) > *:not(summary)`, {
+  display: "none",
+});
+
 export const advancedSearchSummaryStyle = style([
   buttonStyle,
   {
