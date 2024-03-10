@@ -1,19 +1,15 @@
 import { style, styleVariants } from "@vanilla-extract/css";
-import { mediaQueries, semanticVars, themeVars } from "../../App.css";
+import { mediaQueries, semanticVars } from "../../App.css";
 
 const base = style({
-  padding: themeVars.spacing.small,
+  padding: semanticVars.spacing.inlinePadding,
   flex: "0 0 auto",
   overflow: "hidden",
   textOverflow: "ellipsis",
   display: "flex",
   alignItems: "center",
   justifyContent: "flex-start",
-  "@media": {
-    "screen and (max-width: 48rem)": {
-      padding: `${themeVars.spacing.small} ${themeVars.spacing.xSmall}`,
-    },
-  },
+  minWidth: "2.75rem",
   fontSize: semanticVars.font.data,
 });
 export const cellStyle = styleVariants({
@@ -22,7 +18,7 @@ export const cellStyle = styleVariants({
     {
       wordBreak: "break-all",
       "@media": {
-        [mediaQueries.mobile]: {
+        [mediaQueries.small]: {
           gridRowStart: 2,
           gridRowEnd: 3,
           gridColumnStart: 1,
@@ -36,7 +32,7 @@ export const cellStyle = styleVariants({
     {
       justifyContent: "flex-end",
       "@media": {
-        "screen and (max-width: 48rem)": {
+        [mediaQueries.small]: {
           gridRowStart: 1,
           gridRowEnd: 3,
           gridColumnStart: 4,

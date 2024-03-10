@@ -12,6 +12,6 @@ export const textWithIconStyle = style({
 
 export const mobileVisuallyHiddenStyle = style({
   "@media": {
-    [mediaQueries.mobile]: visuallyHiddenStyleRule,
+    [mediaQueries.small]: visuallyHiddenStyleRule,
   },
 });

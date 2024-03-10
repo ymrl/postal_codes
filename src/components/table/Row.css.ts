@@ -1,5 +1,5 @@
 import { style, styleVariants } from "@vanilla-extract/css";
-import { themeVars, colorVars } from "../../App.css";
+import { themeVars, colorVars, mediaQueries } from "../../App.css";
 
 const base = style({
   display: "grid",
@@ -8,7 +8,7 @@ const base = style({
   width: "100%",
   minHeight: "2rem",
   "@media": {
-    "screen and (max-width: 48rem)": {
+    [mediaQueries.small]: {
       gridTemplateColumns: "5rem 4.5rem 1fr 5rem",
       minHeight: "3rem",
     },

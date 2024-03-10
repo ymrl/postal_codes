@@ -1,6 +1,6 @@
 import React from "react";
 import { AdvancedSearchDetails } from "./AdvancedSearchDetails";
-import { searchFormStyle } from "./index.css";
+import { searchFormStyle, searchStyle } from "./index.css";
 import { SearchField } from "./SearchField";
 import { AdvancedSearchPopupButton } from "./AdvancedSearchPopupButton";
 import { AdvancedSearchContent } from "./AdvancedSearchContent";
@@ -22,7 +22,7 @@ export const Filter = () => {
     `${id}__choume`,
   ];
   return (
-    <search>
+    <search className={searchStyle}>
       <form
         className={searchFormStyle}
         id={id}

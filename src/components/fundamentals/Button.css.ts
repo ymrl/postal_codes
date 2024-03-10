@@ -1,17 +1,23 @@
 import { style } from "@vanilla-extract/css";
-import { themeVars, colorVars, semanticVars } from "../../App.css";
+import {
+  themeVars,
+  colorVars,
+  semanticVars,
+} from "../../App.css";
 
 export const buttonStyle = style({
   cursor: "pointer",
   padding: `${themeVars.spacing.small} ${themeVars.spacing.small}`,
-  borderRadius: themeVars.borderRadius.small,
+  borderRadius: semanticVars.borderRadius.control,
   border: semanticVars.border.decoration,
-  height: themeVars.controls.normal,
+  height: semanticVars.ui.control,
+  minWidth: semanticVars.ui.control,
   display: "inline-flex",
   alignItems: "center",
+  justifyContent: "center",
   backgroundColor: colorVars.background.secondary,
   color: colorVars.text.primary,
-  fontSize: themeVars.font.smallSize,
+  fontSize: semanticVars.font.button,
   lineHeight: themeVars.font.lineHeight,
   transitionDuration: themeVars.transition.duration,
   transitionProperty: "background-color",
@@ -21,11 +27,6 @@ export const buttonStyle = style({
     },
     "&:focus-visible": {
       outline: semanticVars.focus.outline,
-    },
-  },
-  "@media": {
-    "screen and (max-width: 48rem)": {
-      fontSize: themeVars.font.smallSize,
     },
   },
 });

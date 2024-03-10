@@ -5,8 +5,8 @@ import {
   lightColors,
   darkColors,
   mediaQueries,
-  desktopSemanticVars,
-  mobileSemanticVars,
+  largeSemanticVars,
+  smallSemanticVars,
   semanticVars,
 } from "../App.css";
 
@@ -16,10 +16,10 @@ export const containerStyle = style({
   justifyContent: "flex-start",
   width: "100dvw",
   height: "100dvh",
-  vars: assignVars(semanticVars, desktopSemanticVars),
+  vars: assignVars(semanticVars, largeSemanticVars),
   "@media": {
-    [mediaQueries.mobile]: {
-      vars: assignVars(semanticVars, mobileSemanticVars),
+    [mediaQueries.small]: {
+      vars: assignVars(semanticVars, smallSemanticVars),
     },
   },
 });
@@ -38,17 +38,16 @@ export const containerStyleDark = style({
 });
 
 export const headerAreaStyle = style({
-  padding: themeVars.spacing.normal,
+  padding: semanticVars.spacing.areaPadding,
   display: "flex",
   flexDirection: "row",
   justifyContent: "flex-start",
   alignItems: "center",
-  gap: themeVars.spacing.large,
+  gap: semanticVars.spacing.areaInner,
   "@media": {
-    "screen and (max-width: 48rem)": {
+    [mediaQueries.small]: {
       flexDirection: "column",
       alignItems: "stretch",
-      gap: themeVars.spacing.normal,
     },
   },
 });
@@ -60,7 +59,7 @@ export const headerControlsStyle = style({
   flexGrow: 1,
   gap: themeVars.spacing.normal,
   "@media": {
-    "screen and (max-width: 48rem)": {
+    [mediaQueries.small]: {
       gap: themeVars.spacing.normal,
     },
   },

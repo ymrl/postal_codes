@@ -14,9 +14,29 @@ export const AdvancedSearchContent = ({ ids }: { ids: string[] }) => {
   const { filterCondition, updateFilterCondition } = React.useContext(
     FilterConditionContext,
   );
+  const ref = React.useRef<HTMLDivElement>(null);
+  const adjustPosition = () => {
+    if (!ref.current) {
+      return;
+    }
+    const rect = ref.current.getBoundingClientRect();
+    if (rect.right > window.outerWidth) {
+      ref.current.style.left = `${window.outerWidth - rect.right}px`;
+    }
+  };
+  React.useEffect(() => {
+    if (ref.current) {
+      const observer = new ResizeObserver(() => {
+        adjustPosition();
+      });
+      observer.observe(ref.current);
+      observer.observe(window.document.body);
+      return () => observer.disconnect();
+    }
+  }, []);
 
   return (
-    <div className={advancedSearchContentStyle}>
+    <div className={advancedSearchContentStyle} ref={ref}>
       <Fields>
         {(Object.keys(labels) as (keyof typeof labels)[]).map((key, i) => (
           <Checkbox

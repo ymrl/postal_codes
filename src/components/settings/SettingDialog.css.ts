@@ -3,7 +3,7 @@ import { colorVars, themeVars, semanticVars } from "../../App.css";
 
 export const settingDialogStyle = style({
   border: semanticVars.border.decoration,
-  borderRadius: themeVars.borderRadius.large,
+  borderRadius: semanticVars.borderRadius.dialog,
   backgroundColor: colorVars.background.primary,
   color: colorVars.text.primary,
   padding: 0,
@@ -16,31 +16,24 @@ export const settingDialogStyle = style({
     },
   },
 });
-export const dialogInnerStyle = style({
-  display: "flex",
-  flexDirection: "column",
-  gap: 0,
-  alignItems: "stretch",
-  justifyContent: "stretch",
-});
 export const dialogHeaderStyle = style({
   position: "sticky",
   top: 0,
-  padding: themeVars.spacing.large,
+  padding: semanticVars.spacing.areaPadding,
   backgroundColor: colorVars.background.secondary,
   display: "flex",
   justifyContent: "space-between",
 });
 
 export const dialogBodyStyle = style({
-  padding: themeVars.spacing.large,
+  padding: semanticVars.spacing.areaPadding,
 });
 export const dialogContentStyle = style({
   display: "flex",
   alignItems: "flex-start",
   justifyContent: "flex-start",
   flexDirection: "column",
-  gap: themeVars.spacing.normal,
+  gap: semanticVars.spacing.areaInner,
 });
 
 export const dialogTitleStyle = style({

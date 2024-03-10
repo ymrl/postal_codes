@@ -65,7 +65,7 @@ export const darkColors: typeof lightColors = {
 };
 export const colorVars = createThemeContract(lightColors);
 
-const mobileBreakpoint = "48rem";
+const smallBreakpoint = "40rem";
 export const themeVars = createGlobalTheme(":root", {
   spacing: {
     xSmall: "0.125rem",
@@ -98,15 +98,18 @@ export const themeVars = createGlobalTheme(":root", {
     duration: "0.3s",
   },
   breakpoint: {
-    mobile: mobileBreakpoint,
+    small: smallBreakpoint,
   },
 });
 
-export const desktopSemanticVars = {
+export const largeSemanticVars = {
   font: {
     title: themeVars.font.xLargeSize,
     data: themeVars.font.normalSize,
+    dataHeading: themeVars.font.smallSize,
     aside: themeVars.font.smallSize,
+    button: themeVars.font.smallSize,
+    input: themeVars.font.normalSize,
   },
   border: {
     distinguish: `1px solid ${colorVars.ui.distinguish}`,
@@ -115,20 +118,46 @@ export const desktopSemanticVars = {
   focus: {
     outline: `2px solid ${colorVars.accent.primaryTranslucent}`,
   },
-};
-export const mobileSemanticVars = {
-  ...desktopSemanticVars,
-  font: {
-    ...desktopSemanticVars.font,
-    title: themeVars.font.normalSize,
-    data: themeVars.font.smallSize,
-    aside: themeVars.font.xSmallSize,
+  spacing: {
+    areaPadding: themeVars.spacing.normal,
+    areaInner: themeVars.spacing.large,
+    inlinePadding: themeVars.spacing.small,
+    inlineInner: themeVars.spacing.normal,
+  },
+  borderRadius: {
+    dialog: themeVars.borderRadius.normal,
+    control: themeVars.borderRadius.normal,
+  },
+  ui: {
+    control: "2rem",
   },
 };
-export const semanticVars = createThemeContract(desktopSemanticVars);
+export const smallSemanticVars: typeof largeSemanticVars = {
+  ...largeSemanticVars,
+  font: {
+    ...largeSemanticVars.font,
+    title: themeVars.font.normalSize,
+    data: themeVars.font.smallSize,
+    dataHeading: themeVars.font.xxSmallSize,
+    aside: themeVars.font.xSmallSize,
+    button: themeVars.font.largeSize,
+  },
+  spacing: {
+    ...largeSemanticVars.spacing,
+    areaPadding: themeVars.spacing.small,
+    areaInner: themeVars.spacing.small,
+    inlinePadding: themeVars.spacing.xSmall,
+    inlineInner: themeVars.spacing.small,
+  },
+  ui: {
+    ...largeSemanticVars.ui,
+    control: "2.75rem",
+  },
+};
+export const semanticVars = createThemeContract(largeSemanticVars);
 
 export const mediaQueries = {
-  mobile: `screen and (max-width: ${mobileBreakpoint})`,
+  small: `screen and (max-width: ${smallBreakpoint})`,
   dark: "(prefers-color-scheme: dark)",
 };
 
@@ -141,10 +170,10 @@ globalStyle("body", {
   lineHeight: 1.5,
   fontWeight: 400,
   colorScheme: "light dark",
-  vars: assignVars(semanticVars, desktopSemanticVars),
+  vars: assignVars(semanticVars, largeSemanticVars),
   "@media": {
-    [mediaQueries.mobile]: {
-      vars: assignVars(semanticVars, mobileSemanticVars),
+    [mediaQueries.small]: {
+      vars: assignVars(semanticVars, largeSemanticVars),
     },
   },
 });
