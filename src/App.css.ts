@@ -131,6 +131,7 @@ export const largeSemanticVars = {
   },
   ui: {
     control: "2rem",
+    check: "1.5rem",
   },
 };
 export const smallSemanticVars: typeof largeSemanticVars = {

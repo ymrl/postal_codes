@@ -1,4 +1,5 @@
-import { checkBoxContainerStyle } from "./Checkbox.css";
+import { checkBoxContainerStyle, checkBoxVisualStyle } from "./Checkbox.css";
+import { visuallyHiddenStyle } from "./VisuallyHidden.css";
 
 export const Checkbox = ({
   children,
@@ -17,12 +18,14 @@ export const Checkbox = ({
 >) => (
   <label className={checkBoxContainerStyle}>
     <input
+      className={visuallyHiddenStyle}
       type="checkbox"
       checked={checked}
       onChange={onChange}
       value={value}
       {...rest}
     />
+    <span className={checkBoxVisualStyle} aria-hidden="true" />
     <span>{children}</span>
   </label>
 );
