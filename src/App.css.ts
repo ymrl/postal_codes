@@ -29,6 +29,7 @@ export const lightColors = {
   ui: {
     distinguish: "#949494",
     decoration: "#d2d2d2",
+    backdrop: "rgba(0, 0, 0, 0.4)",
   },
 };
 

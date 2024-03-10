@@ -1,9 +1,5 @@
 import { style } from "@vanilla-extract/css";
-import {
-  themeVars,
-  colorVars,
-  semanticVars,
-} from "../../App.css";
+import { themeVars, colorVars, semanticVars } from "../../App.css";
 
 export const buttonStyle = style({
   cursor: "pointer",

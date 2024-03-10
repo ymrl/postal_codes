@@ -1,8 +1,14 @@
 import React from "react";
-import { fieldsStyle } from "./Fields.css";
+import { fieldsStyle, fieldsStyleHorizontal } from "./Fields.css";
 
-export const Fields = ({ children }: { children: React.ReactNode[] }) => (
-  <ul className={fieldsStyle}>
+export const Fields = ({
+  children,
+  horizontal,
+}: {
+  children: React.ReactNode[];
+  horizontal?: boolean;
+}) => (
+  <ul className={`${fieldsStyle} ${horizontal ? fieldsStyleHorizontal : ""}`}>
     {children.map((child, index) => (
       <li key={index}>{child}</li>
     ))}

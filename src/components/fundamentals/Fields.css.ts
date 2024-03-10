@@ -10,3 +10,11 @@ export const fieldsStyle = style({
   padding: 0,
   margin: 0,
 });
+
+export const fieldsStyleHorizontal = style([
+  fieldsStyle,
+  {
+    flexDirection: "row",
+    gap: themeVars.spacing.normal,
+  },
+]);

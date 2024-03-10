@@ -5,9 +5,13 @@ import { SearchField } from "./SearchField";
 import { AdvancedSearchPopupButton } from "./AdvancedSearchPopupButton";
 import { AdvancedSearchContent } from "./AdvancedSearchContent";
 import { Status } from "./Status";
+import { DeveloperSettingsContext } from "../../contexts";
 
 export const Filter = () => {
   const [isMobileSafari, setIsMobileSafari] = React.useState(false);
+  const { useDetailsPopupForMobileSafari } = React.useContext(
+    DeveloperSettingsContext,
+  );
   React.useEffect(() => {
     setIsMobileSafari(
       /iP(ad|hone|od).+Version\/[\d.]+.*Safari/i.test(navigator.userAgent),
@@ -29,7 +33,7 @@ export const Filter = () => {
         onSubmit={(e) => e.preventDefault()}
       >
         <SearchField fieldId={fieldId} />
-        {isMobileSafari ? (
+        {!useDetailsPopupForMobileSafari && isMobileSafari ? (
           <AdvancedSearchPopupButton>
             <AdvancedSearchContent ids={advancedIds} />
           </AdvancedSearchPopupButton>

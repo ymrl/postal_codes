@@ -1,4 +1,4 @@
-import { style, assignVars } from "@vanilla-extract/css";
+import { style, assignVars, globalStyle } from "@vanilla-extract/css";
 import {
   themeVars,
   colorVars,
@@ -70,3 +70,11 @@ export const mainAreaStyle = style({
   flexGrow: 1,
   flexShrink: 1,
 });
+
+// Safariのみ、details要素がopenでないときでも、子要素にフォーカスしようとしてしまう
+globalStyle(
+  `${containerStyle}:not(${containerStyle}--details-children-closed) details:not([open]) > *:not(summary)`,
+  {
+    display: "none",
+  },
+);

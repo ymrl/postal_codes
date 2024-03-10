@@ -1,14 +1,20 @@
 import React, { useContext } from "react";
 import {
+  backdropCSSVarStyle,
   dialogBodyStyle,
   dialogCloseButtonStyle,
   dialogContentStyle,
+  dialogFlexStyle,
   dialogHeaderStyle,
   dialogTitleStyle,
   disclaimerStyle,
   settingDialogStyle,
 } from "./SettingDialog.css";
-import { KenAllContext, SettingsContext } from "../../contexts";
+import {
+  DeveloperSettingsContext,
+  KenAllContext,
+  SettingsContext,
+} from "../../contexts";
 import {
   Checkbox,
   Fields,
@@ -18,6 +24,7 @@ import {
   Radiobutton,
 } from "../fundamentals";
 import { SlClose } from "react-icons/sl";
+import { DeveloperSettings } from "./DeveloperSettings";
 
 const SettingDialogRenderer: React.ForwardRefRenderFunction<
   HTMLDialogElement,
@@ -26,8 +33,16 @@ const SettingDialogRenderer: React.ForwardRefRenderFunction<
   const { showRuby, shortcutKey, colorScheme, updateSettings } =
     React.useContext(SettingsContext);
   const downloadedAt = useContext(KenAllContext).downloadedAt;
+  const { useFlexForDialog, useCSSVarForBackdrop } = useContext(
+    DeveloperSettingsContext,
+  );
   return (
-    <dialog className={settingDialogStyle} ref={ref}>
+    <dialog
+      className={`${settingDialogStyle} ${
+        useCSSVarForBackdrop ? backdropCSSVarStyle : ""
+      } ${useFlexForDialog ? dialogFlexStyle : ""}`}
+      ref={ref}
+    >
       <div className={dialogHeaderStyle}>
         <h2 className={dialogTitleStyle} tabIndex={-1}>
           表示設定
@@ -55,7 +70,7 @@ const SettingDialogRenderer: React.ForwardRefRenderFunction<
             </Checkbox>
           </Fields>
           <Fieldset legend="テーマ">
-            <Fields>
+            <Fields horizontal>
               <Radiobutton
                 name="theme"
                 value="auto"
@@ -82,6 +97,7 @@ const SettingDialogRenderer: React.ForwardRefRenderFunction<
               </Radiobutton>
             </Fields>
           </Fieldset>
+          <DeveloperSettings />
           <div className={disclaimerStyle}>
             <p>
               このページの情報は

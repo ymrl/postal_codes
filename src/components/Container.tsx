@@ -7,10 +7,13 @@ import {
   headerControlsStyle,
   mainAreaStyle,
 } from "./Container.css";
-import { SettingsContext } from "./../contexts";
+import { DeveloperSettingsContext, SettingsContext } from "./../contexts";
 
 export const Container = ({ children }: { children: React.ReactNode }) => {
   const { colorScheme } = React.useContext(SettingsContext);
+  const { displayDetailsChildrenClosed } = React.useContext(
+    DeveloperSettingsContext,
+  );
 
   return (
     <div
@@ -20,6 +23,10 @@ export const Container = ({ children }: { children: React.ReactNode }) => {
           : colorScheme === "dark"
             ? containerStyleDark
             : ""
+      } ${
+        displayDetailsChildrenClosed
+          ? `${containerStyle}--details-children-closed`
+          : ""
       }`}
     >
       {children}

@@ -16,6 +16,23 @@ export const settingDialogStyle = style({
     },
   },
 });
+
+export const dialogFlexStyle = style({
+  display: "flex",
+  flexDirection: "column",
+  gap: semanticVars.spacing.areaInner,
+  justifyContent: "stretch",
+  alignItems: "stretch",
+});
+
+export const backdropCSSVarStyle = style({
+  selectors: {
+    "&::backdrop": {
+      backgroundColor: colorVars.ui.backdrop,
+    },
+  },
+});
+
 export const dialogHeaderStyle = style({
   position: "sticky",
   top: 0,
