@@ -4,7 +4,6 @@ import {
   dialogCloseButtonStyle,
   dialogContentStyle,
   dialogHeaderStyle,
-  dialogInnerStyle,
   dialogTitleStyle,
   disclaimerStyle,
   settingDialogStyle,
