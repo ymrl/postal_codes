@@ -2,6 +2,7 @@ import { style } from "@vanilla-extract/css";
 import { colorVars, themeVars, semanticVars } from "../../App.css";
 
 export const settingDialogStyle = style({
+  display: "none",
   border: semanticVars.border.decoration,
   borderRadius: semanticVars.borderRadius.dialog,
   backgroundColor: colorVars.background.primary,
@@ -10,19 +11,18 @@ export const settingDialogStyle = style({
   width: "30rem",
   maxWidth: `calc(100vw - ${themeVars.spacing.large})`,
   position: "relative",
+  flexDirection: "column",
+  gap: 0,
+  justifyContent: "stretch",
+  alignItems: "stretch",
   selectors: {
     "&::backdrop": {
       backgroundColor: "rgba(0, 0, 0, 0.4)",
     },
+    "&[open]": {
+      display: "flex",
+    },
   },
-});
-
-export const dialogFlexStyle = style({
-  display: "flex",
-  flexDirection: "column",
-  gap: semanticVars.spacing.areaInner,
-  justifyContent: "stretch",
-  alignItems: "stretch",
 });
 
 export const backdropCSSVarStyle = style({
@@ -34,9 +34,6 @@ export const backdropCSSVarStyle = style({
 });
 
 export const dialogHeaderStyle = style({
-  position: "sticky",
-  zIndex: 1,
-  top: 0,
   padding: semanticVars.spacing.areaPadding,
   backgroundColor: colorVars.background.secondary,
   display: "flex",
@@ -44,9 +41,12 @@ export const dialogHeaderStyle = style({
 });
 
 export const dialogBodyStyle = style({
-  padding: semanticVars.spacing.areaPadding,
+  flexShrink: 1,
+  overflow: "auto",
 });
+
 export const dialogContentStyle = style({
+  padding: semanticVars.spacing.areaPadding,
   display: "flex",
   alignItems: "flex-start",
   justifyContent: "flex-start",

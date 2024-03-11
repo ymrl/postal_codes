@@ -4,7 +4,6 @@ import {
   dialogBodyStyle,
   dialogCloseButtonStyle,
   dialogContentStyle,
-  dialogFlexStyle,
   dialogHeaderStyle,
   dialogTitleStyle,
   disclaimerStyle,
@@ -33,14 +32,12 @@ const SettingDialogRenderer: React.ForwardRefRenderFunction<
   const { showRuby, shortcutKey, colorScheme, updateSettings } =
     React.useContext(SettingsContext);
   const downloadedAt = useContext(KenAllContext).downloadedAt;
-  const { useFlexForDialog, useCSSVarForBackdrop } = useContext(
-    DeveloperSettingsContext,
-  );
+  const { useCSSVarForBackdrop } = useContext(DeveloperSettingsContext);
   return (
     <dialog
       className={`${settingDialogStyle} ${
         useCSSVarForBackdrop ? backdropCSSVarStyle : ""
-      } ${useFlexForDialog ? dialogFlexStyle : ""}`}
+      }`}
       ref={ref}
     >
       <div className={dialogHeaderStyle}>

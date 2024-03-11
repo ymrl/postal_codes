@@ -2,7 +2,6 @@ import React from "react";
 
 type DeveloperSettingsT = {
   useCSSVarForBackdrop: boolean;
-  useFlexForDialog: boolean;
   useDetailsPopupForMobileSafari: boolean;
   displayDetailsChildrenClosed: boolean;
   disableVirtualScroll: boolean;
@@ -14,7 +13,6 @@ export const DeveloperSettingsContext = React.createContext<
   }
 >({
   useCSSVarForBackdrop: false,
-  useFlexForDialog: false,
   useDetailsPopupForMobileSafari: false,
   displayDetailsChildrenClosed: false,
   disableVirtualScroll: false,
@@ -28,7 +26,6 @@ export const DeveloperSettingsProvider = ({
 }) => {
   const [settings, setSettings] = React.useState<DeveloperSettingsT>({
     useCSSVarForBackdrop: false,
-    useFlexForDialog: false,
     useDetailsPopupForMobileSafari: false,
     displayDetailsChildrenClosed: false,
     disableVirtualScroll: false,

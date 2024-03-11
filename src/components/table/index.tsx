@@ -18,7 +18,7 @@ export const Table = () => {
   const rowVirtualizer = useVirtualizer({
     count: filteredKenAll.length,
     getScrollElement: () => parentRef.current,
-    estimateSize: () => window.outerWidth >= 640 ? 40 : 52,
+    estimateSize: () => (window.outerWidth >= 640 ? 40 : 52),
     overscan: 100,
   });
 

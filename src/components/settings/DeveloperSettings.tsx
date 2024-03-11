@@ -7,7 +7,6 @@ export const DeveloperSettings = () => {
   const {
     updateDeveloperSettings,
     useCSSVarForBackdrop,
-    useFlexForDialog,
     useDetailsPopupForMobileSafari,
     displayDetailsChildrenClosed,
     disableVirtualScroll,
@@ -26,17 +25,6 @@ export const DeveloperSettings = () => {
           dialog要素の::backdropにCSS変数を使う
           <p className={dangerousNoticeStyle}>
             Safariでdialog要素の::backdropが表示されなくなります
-          </p>
-        </Checkbox>
-        <Checkbox
-          checked={useFlexForDialog}
-          onChange={(e) =>
-            updateDeveloperSettings({ useFlexForDialog: e.target.checked })
-          }
-        >
-          dialog要素にflexboxを使う
-          <p className={dangerousNoticeStyle}>
-            Firefoxでダイアログを閉じても変な位置に表示されつづけます
           </p>
         </Checkbox>
         <Checkbox
