@@ -34,7 +34,12 @@ export const Table = () => {
       aria-rowcount={filteredKenAll.length + 1}
     >
       <Header />
-      <div className={tableBodyStyle} ref={parentRef}>
+      <div
+        className={tableBodyStyle}
+        ref={parentRef}
+        tabIndex={0}
+        role="rowgroup"
+      >
         {disableVirtualScroll ? (
           filteredKenAll.map((row, i) => (
             <BodyRow showRuby={showRuby} rowIndex={i + 2} row={row} key={i} />
