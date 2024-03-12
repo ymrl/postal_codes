@@ -1,9 +1,5 @@
 import React from "react";
-import {
-  DeveloperSettingsContext,
-  KenAllContext,
-  SettingsContext,
-} from "../../contexts";
+import { DeveloperSettingsContext, KenAllContext } from "../../contexts";
 import { useVirtualizer } from "@tanstack/react-virtual";
 import { Header } from "./Header";
 import { BodyRow } from "./BodyRow";
@@ -19,10 +15,11 @@ export const Table = () => {
     count: filteredKenAll.length,
     getScrollElement: () => parentRef.current,
     estimateSize: () => (window.outerWidth >= 640 ? 40 : 52),
-    overscan: 100,
+    // 3画面ぶんぐらい多めにレンダリングする
+    overscan:
+      3 * Math.floor(window.outerHeight / (window.outerWidth >= 640 ? 40 : 52)),
   });
 
-  const { showRuby } = React.useContext(SettingsContext);
   const { disableVirtualScroll } = React.useContext(DeveloperSettingsContext);
   const items = rowVirtualizer.getVirtualItems();
   return (
@@ -42,7 +39,7 @@ export const Table = () => {
       >
         {disableVirtualScroll ? (
           filteredKenAll.map((row, i) => (
-            <BodyRow showRuby={showRuby} rowIndex={i + 2} row={row} key={i} />
+            <BodyRow rowIndex={i + 2} row={row} key={i} />
           ))
         ) : (
           <div
@@ -63,7 +60,6 @@ export const Table = () => {
             >
               {items.map((virtualItem, i) => (
                 <BodyRow
-                  showRuby={showRuby}
                   rowIndex={i + 2}
                   row={filteredKenAll[virtualItem.index]}
                   key={virtualItem.key}

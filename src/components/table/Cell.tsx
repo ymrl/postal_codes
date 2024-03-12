@@ -15,7 +15,7 @@ export const Cell = ({
   return (
     <div
       className={cellStyle[type]}
-      role={header ? "columnheader" : "cell"}
+      role={header ? "columnheader" : type === "number" ? "rowheader" : "cell"}
       aria-colindex={colindex}
     >
       {children}

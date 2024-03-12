@@ -1,5 +1,5 @@
 import { style, styleVariants } from "@vanilla-extract/css";
-import { mediaQueries, semanticVars } from "../../App.css";
+import { mediaQueries, semanticVars, themeVars } from "../../App.css";
 
 const base = style({
   padding: semanticVars.spacing.inlinePadding,
@@ -13,6 +13,7 @@ const base = style({
   fontSize: semanticVars.font.data,
 });
 export const cellStyle = styleVariants({
+  number: [base, { fontWeight: themeVars.font.strongWeight }],
   town: [
     base,
     {
