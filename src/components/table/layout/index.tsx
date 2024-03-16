@@ -139,6 +139,9 @@ export const Cell = ({
             : undefined;
   return (
     <TagName
+      scope={
+        tableElement === "table" && columnType === "number" ? "row" : undefined
+      }
       role={role}
       aria-colindex={colIndex}
       className={cellStyle[columnType]}
