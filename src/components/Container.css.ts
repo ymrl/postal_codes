@@ -69,6 +69,8 @@ export const mainAreaStyle = style({
   position: "relative",
   flexGrow: 1,
   flexShrink: 1,
+  display: "flex",
+  flexDirection: "column",
 });
 
 // Safariのみ、details要素がopenでないときでも、子要素にフォーカスしようとしてしまう

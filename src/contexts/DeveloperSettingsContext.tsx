@@ -5,6 +5,9 @@ type DeveloperSettingsT = {
   useDetailsPopupForMobileSafari: boolean;
   displayDetailsChildrenClosed: boolean;
   disableVirtualScroll: boolean;
+  tableElement: "div" | "table";
+  tableRole: "table" | "grid" | undefined;
+  tableOverscanScreens: number;
 };
 
 export const DeveloperSettingsContext = React.createContext<
@@ -16,6 +19,9 @@ export const DeveloperSettingsContext = React.createContext<
   useDetailsPopupForMobileSafari: false,
   displayDetailsChildrenClosed: false,
   disableVirtualScroll: false,
+  tableElement: "div",
+  tableRole: "table",
+  tableOverscanScreens: 3,
   updateDeveloperSettings: () => {},
 });
 
@@ -29,6 +35,9 @@ export const DeveloperSettingsProvider = ({
     useDetailsPopupForMobileSafari: false,
     displayDetailsChildrenClosed: false,
     disableVirtualScroll: false,
+    tableElement: "div",
+    tableRole: "table",
+    tableOverscanScreens: 3,
   });
   const updateDeveloperSettings = (settings: Partial<DeveloperSettingsT>) => {
     setSettings((prev) => ({ ...prev, ...settings }));

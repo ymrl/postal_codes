@@ -1,27 +1,6 @@
 import { style } from "@vanilla-extract/css";
-import { colorVars, semanticVars, themeVars } from "../../App.css";
+import { themeVars } from "../../App.css";
 
-export const iconLabeledInputStyle = style({
-  padding: themeVars.spacing.small,
-  border: semanticVars.border.distinguish,
-  background: colorVars.background.primary,
-  color: colorVars.text.primary,
-  borderRadius: semanticVars.borderRadius.control,
-  height: semanticVars.ui.control,
-  width: "10rem",
-  overflow: "hidden",
-  display: "inline-flex",
-  flexDirection: "row",
-  alignItems: "stretch",
-  justifyContent: "stretch",
-  flexWrap: "nowrap",
-  gap: themeVars.spacing.small,
-  selectors: {
-    "&:focus-within": {
-      outline: semanticVars.focus.outline,
-    },
-  },
-});
 export const iconLabeledInputLabelStyle = style({
   flexGrow: 0,
   flexShrink: 0,
@@ -45,16 +24,4 @@ export const iconLabeledInputLabelTextHiddenStyle = style({
   width: "1px",
   maxWidth: "1px",
   opacity: 0,
-});
-
-export const iconLabeledInputInputStyle = style({
-  fontSize: themeVars.font.normalSize,
-  background: colorVars.background.primary,
-  color: colorVars.text.primary,
-  padding: 0,
-  border: 0,
-  flexGrow: 1,
-  flexShrink: 1,
-  outline: "none",
-  width: "1px",
 });

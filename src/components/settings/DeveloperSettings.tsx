@@ -1,5 +1,11 @@
 import React from "react";
-import { Checkbox, Fields } from "../fundamentals";
+import {
+  Checkbox,
+  Fields,
+  Fieldset,
+  LabeledInput,
+  Radiobutton,
+} from "../fundamentals";
 import { DeveloperSettingsContext } from "../../contexts";
 import { dangerousNoticeStyle } from "./DeveloperSettings.css";
 
@@ -10,12 +16,71 @@ export const DeveloperSettings = () => {
     useDetailsPopupForMobileSafari,
     displayDetailsChildrenClosed,
     disableVirtualScroll,
+    tableElement,
+    tableRole,
+    tableOverscanScreens,
   } = React.useContext(DeveloperSettingsContext);
 
   return (
     <details>
       <summary>開発者設定</summary>
       <Fields>
+        <Fieldset legend="表の描画に使う要素">
+          <Fields horizontal>
+            <Radiobutton
+              name="tableElement"
+              checked={tableElement === "div"}
+              onChange={() => updateDeveloperSettings({ tableElement: "div" })}
+            >
+              div
+            </Radiobutton>
+            <Radiobutton
+              name="tableElement"
+              checked={tableElement === "table"}
+              onChange={() =>
+                updateDeveloperSettings({ tableElement: "table" })
+              }
+            >
+              table
+            </Radiobutton>
+          </Fields>
+        </Fieldset>
+        <Fieldset legend="表のロール">
+          <Fields horizontal>
+            <Radiobutton
+              name="tableRole"
+              checked={tableRole === "table"}
+              onChange={() => updateDeveloperSettings({ tableRole: "table" })}
+            >
+              table
+            </Radiobutton>
+            <Radiobutton
+              name="tableRole"
+              checked={tableRole === "grid"}
+              onChange={() => updateDeveloperSettings({ tableRole: "grid" })}
+            >
+              grid
+            </Radiobutton>
+            <Radiobutton
+              name="tableRole"
+              checked={tableRole === undefined}
+              onChange={() => updateDeveloperSettings({ tableRole: undefined })}
+            >
+              なし
+            </Radiobutton>
+          </Fields>
+        </Fieldset>
+        <LabeledInput
+          width="full"
+          labelText="仮想スクロールのオーバースキャン"
+          type="number"
+          value={tableOverscanScreens}
+          onChange={(e) =>
+            updateDeveloperSettings({
+              tableOverscanScreens: Number(e.target.value),
+            })
+          }
+        />
         <Checkbox
           checked={useCSSVarForBackdrop}
           onChange={(e) =>

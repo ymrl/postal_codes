@@ -3,72 +3,71 @@ import { DeveloperSettingsContext, KenAllContext } from "../../contexts";
 import { useVirtualizer } from "@tanstack/react-virtual";
 import { Header } from "./Header";
 import { BodyRow } from "./BodyRow";
-import { tableBodyStyle, tableStyle } from "./Table.css";
+import { tableStyle } from "./index.css";
+import { ContentTop, Scrollable, ScrollableInner } from "./layout";
 
 export const Table = () => {
   const { filteredKenAll } = React.useContext(KenAllContext);
-
-  const parentRef = React.useRef<HTMLDivElement>(null);
+  const { disableVirtualScroll, tableOverscanScreens } = React.useContext(
+    DeveloperSettingsContext,
+  );
+  const parentRef = React.useRef<HTMLTableElement>(null);
 
   // The virtualizer
   const rowVirtualizer = useVirtualizer({
     count: filteredKenAll.length,
     getScrollElement: () => parentRef.current,
-    estimateSize: () => (window.outerWidth >= 640 ? 40 : 52),
+    estimateSize: () => (window.outerWidth >= 640 ? 48 : 72),
     // 3画面ぶんぐらい多めにレンダリングする
-    overscan:
-      3 * Math.floor(window.outerHeight / (window.outerWidth >= 640 ? 40 : 52)),
+    overscan: Math.min(
+      1000,
+      Math.max(
+        10,
+        Math.floor(
+          tableOverscanScreens *
+            (window.outerHeight / (window.outerWidth >= 640 ? 40 : 52)),
+        ),
+      ),
+    ),
   });
+  const id = React.useId();
 
-  const { disableVirtualScroll } = React.useContext(DeveloperSettingsContext);
   const items = rowVirtualizer.getVirtualItems();
+
   return (
-    <div
-      className={tableStyle}
-      role="table"
-      aria-label="日本の郵便番号"
-      aria-colcount={5}
-      aria-rowcount={filteredKenAll.length + 1}
-    >
-      <Header />
-      <div
-        className={tableBodyStyle}
+    <div className={tableStyle} id={id}>
+      <Scrollable
         ref={parentRef}
-        tabIndex={0}
-        role="rowgroup"
+        ariaLabel="日本の郵便番号"
+        ariaColCount={5}
+        ariaRowCount={filteredKenAll.length + 1}
       >
+        <Header
+          columns={[
+            { type: "number", label: "郵便番号", id: `${id}__postalCode` },
+            { type: "pref", label: "都道府県", id: `${id}__prefecture` },
+            { type: "city", label: "市区町村", id: `${id}__city` },
+            { type: "town", label: "町域", id: `${id}__town` },
+            { type: "others", label: "その他の情報", id: `${id}__others` },
+          ]}
+        />
         {disableVirtualScroll ? (
           filteredKenAll.map((row, i) => (
             <BodyRow rowIndex={i + 2} row={row} key={i} />
           ))
         ) : (
-          <div
-            style={{
-              height: `${rowVirtualizer.getTotalSize()}px`,
-              width: "100%",
-              position: "relative",
-            }}
-          >
-            <div
-              style={{
-                position: "absolute",
-                top: 0,
-                left: 0,
-                width: "100%",
-                transform: `translateY(${items[0]?.start ?? 0}px)`,
-              }}
-            >
-              {items.map((virtualItem, i) => (
-                <BodyRow
-                  rowIndex={i + 2}
-                  row={filteredKenAll[virtualItem.index]}
-                  key={virtualItem.key}
-                />
-              ))}
-            </div>
-          </div>
+          <ScrollableInner height={rowVirtualizer.getTotalSize()}>
+            <ContentTop height={items[0]?.start ?? 0} />
+            {items.map((virtualItem) => (
+              <BodyRow
+                rowIndex={virtualItem.index + 1}
+                row={filteredKenAll[virtualItem.index]}
+                key={virtualItem.key}
+              />
+            ))}
+          </ScrollableInner>
         )}
-      </div>
+      </Scrollable>
     </div>
   );
 };

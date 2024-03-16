@@ -1,23 +1,23 @@
 import React from "react";
 import { IconFont } from ".";
 import {
-  iconLabeledInputInputStyle,
   iconLabeledInputLabelStyle,
-  iconLabeledInputStyle,
   iconLabeledInputLabelTextHiddenStyle,
   iconLabeledInputLabelTextStyle,
 } from "./IconLabeledInput.css";
+import { labeledInputStyle, labeledInputInputStyle } from "./LabeledInput.css";
 
 type IconLabeledInputProps = {
   labelText: string;
   Icon: React.ElementType;
+  width?: keyof typeof labeledInputStyle;
 } & Omit<React.InputHTMLAttributes<HTMLInputElement>, "className">;
 const IconLabeledInputRenderer: React.ForwardRefRenderFunction<
   HTMLInputElement,
   IconLabeledInputProps
-> = ({ labelText, Icon, value, ...props }, ref) => {
+> = ({ labelText, Icon, value, width = "default", ...props }, ref) => {
   return (
-    <label className={iconLabeledInputStyle}>
+    <label className={labeledInputStyle[width]}>
       <span className={iconLabeledInputLabelStyle}>
         <IconFont Icon={Icon} />
         <span
@@ -27,7 +27,7 @@ const IconLabeledInputRenderer: React.ForwardRefRenderFunction<
         </span>
       </span>
       <input
-        className={iconLabeledInputInputStyle}
+        className={labeledInputInputStyle}
         value={value}
         {...props}
         ref={ref}

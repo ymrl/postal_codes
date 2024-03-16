@@ -1,14 +1,12 @@
 import { style } from "@vanilla-extract/css";
+import { colorVars } from "../../App.css";
 
 export const tableStyle = style({
   display: "flex",
   flexDirection: "column",
   justifyContent: "flex-start",
   flexShrink: 1,
-  position: "absolute",
-  inset: 0,
-});
-export const tableBodyStyle = style({
-  flexShrink: 1,
-  overflow: "auto",
+  flexGrow: 1,
+  height: "1px",
+  borderTop: `0.125rem solid ${colorVars.accent.primary}`,
 });
