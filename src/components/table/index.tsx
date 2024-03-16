@@ -18,7 +18,6 @@ export const Table = () => {
     count: filteredKenAll.length,
     getScrollElement: () => parentRef.current,
     estimateSize: () => (window.outerWidth >= 640 ? 48 : 72),
-    // 3画面ぶんぐらい多めにレンダリングする
     overscan: Math.min(
       1000,
       Math.max(

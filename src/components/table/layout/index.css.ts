@@ -11,7 +11,6 @@ export const scrollableStyle = style({
   overflow: "auto",
   tableLayout: "fixed",
   borderCollapse: "collapse",
-  display: "block",
   selectors: {
     "&:focus-visible": {
       outline: semanticVars.focus.outline,
@@ -21,7 +20,6 @@ export const scrollableStyle = style({
 });
 
 export const scrollableInnerStyle = style({
-  flexShrink: 1,
   width: "100%",
   position: "relative",
   display: "block",
@@ -40,7 +38,12 @@ const rowStyleBase = style({
   },
 });
 export const rowStyle = styleVariants({
-  header: [rowStyleBase],
+  header: [
+    rowStyleBase,
+    {
+      height: "2rem",
+    },
+  ],
   body: [
     rowStyleBase,
     {

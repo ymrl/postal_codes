@@ -61,7 +61,7 @@ export const ScrollableInner = ({
     <TagName
       className={scrollableInnerStyle}
       role={role}
-      style={{ height: `max(100%, ${height})` }}
+      style={{ height: `max(${height}px, 100% - 2rem)` }}
     >
       {children}
     </TagName>
