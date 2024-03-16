@@ -12,7 +12,9 @@ export const Header = ({ columns }: { columns: Column[] }) => {
             header
             key={column.id}
           >
-            <div className={headerContentStyle}>{column.label}</div>
+            <div className={headerContentStyle[column.type]}>
+              {column.label}
+            </div>
           </Cell>
         ))}
       </Row>

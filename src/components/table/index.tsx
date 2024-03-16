@@ -4,14 +4,19 @@ import { useVirtualizer } from "@tanstack/react-virtual";
 import { Header } from "./Header";
 import { BodyRow } from "./BodyRow";
 import { tableStyle } from "./index.css";
-import { ContentTop, Scrollable, ScrollableInner } from "./layout";
+import {
+  ContentBottom,
+  ContentTop,
+  Scrollable,
+  ScrollableInner,
+} from "./layout";
 
 export const Table = () => {
   const { filteredKenAll } = React.useContext(KenAllContext);
   const { disableVirtualScroll, tableOverscanScreens } = React.useContext(
     DeveloperSettingsContext,
   );
-  const parentRef = React.useRef<HTMLTableElement>(null);
+  const parentRef = React.useRef<HTMLDivElement>(null);
 
   // The virtualizer
   const rowVirtualizer = useVirtualizer({
@@ -32,6 +37,7 @@ export const Table = () => {
   const id = React.useId();
 
   const items = rowVirtualizer.getVirtualItems();
+  const totalSize = rowVirtualizer.getTotalSize();
 
   return (
     <div className={tableStyle} id={id}>
@@ -55,7 +61,7 @@ export const Table = () => {
             <BodyRow rowIndex={i + 2} row={row} key={i} />
           ))
         ) : (
-          <ScrollableInner height={rowVirtualizer.getTotalSize()}>
+          <ScrollableInner height={totalSize}>
             <ContentTop height={items[0]?.start ?? 0} />
             {items.map((virtualItem) => (
               <BodyRow
@@ -64,6 +70,10 @@ export const Table = () => {
                 key={virtualItem.key}
               />
             ))}
+            <ContentBottom
+              totalHeight={rowVirtualizer.getTotalSize()}
+              endPosition={items[items.length - 1]?.end ?? 0}
+            />
           </ScrollableInner>
         )}
       </Scrollable>

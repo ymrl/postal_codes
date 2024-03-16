@@ -6,8 +6,51 @@ import {
   rowStyle,
   cellStyle,
   headerRowGroupStyle,
+  scorllableInnerDisplayTableStyle,
+  rowDisplayTableRowStyle,
+  headerRowGroupDisplayTableStyle,
+  cellDisplayTableCellStyle,
+  tablePlayerDisplayTableStyle,
+  tablePlayerStyle,
 } from "./index.css";
 import { ColumnType } from "../types";
+
+const TablePlayer = ({
+  children,
+  ariaLabel,
+  ariaColCount,
+  ariaRowCount,
+}: {
+  children: React.ReactNode;
+  ariaLabel: string;
+  ariaRowCount: number;
+  ariaColCount: number;
+}) => {
+  const {
+    tableElement,
+    tableRole,
+    noAriaColCount,
+    noAriaRowCount,
+    cssDisplayMode,
+  } = React.useContext(DeveloperSettingsContext);
+  const TagName = tableElement;
+  const role = tableRole;
+  return (
+    <TagName
+      className={
+        cssDisplayMode === "table"
+          ? tablePlayerDisplayTableStyle
+          : tablePlayerStyle
+      }
+      role={role}
+      aria-label={ariaLabel}
+      aria-colcount={noAriaColCount ? undefined : ariaColCount}
+      aria-rowcount={noAriaRowCount ? undefined : ariaRowCount}
+    >
+      {children}
+    </TagName>
+  );
+};
 
 const ScrollableRenderer = (
   {
@@ -21,27 +64,18 @@ const ScrollableRenderer = (
     ariaRowCount: number;
     ariaColCount: number;
   },
-  ref: React.Ref<HTMLTableElement>,
-) => {
-  const { tableElement, tableRole, noAriaColCount, noAriaRowCount } =
-    React.useContext(DeveloperSettingsContext);
-  const TagName = tableElement;
-  const role = tableRole;
-
-  return (
-    <TagName
-      className={scrollableStyle}
-      role={role}
-      aria-label={ariaLabel}
-      aria-colcount={noAriaColCount ? undefined : ariaColCount}
-      aria-rowcount={noAriaRowCount ? undefined : ariaRowCount}
-      tabIndex={0}
-      ref={ref}
+  ref: React.Ref<HTMLDivElement>,
+) => (
+  <div className={scrollableStyle} tabIndex={0} ref={ref}>
+    <TablePlayer
+      ariaLabel={ariaLabel}
+      ariaColCount={ariaColCount}
+      ariaRowCount={ariaRowCount}
     >
       {children}
-    </TagName>
-  );
-};
+    </TablePlayer>
+  </div>
+);
 export const Scrollable = React.forwardRef(ScrollableRenderer);
 
 export const ScrollableInner = ({
@@ -51,16 +85,20 @@ export const ScrollableInner = ({
   children: React.ReactNode;
   height: number;
 }) => {
-  const { tableElement, tableRole } = React.useContext(
+  const { tableElement, tableRole, cssDisplayMode } = React.useContext(
     DeveloperSettingsContext,
   );
   const TagName = tableElement === "table" ? "tbody" : "div";
   const role = tableRole === "table" ? "rowgroup" : undefined;
   return (
     <TagName
-      className={scrollableInnerStyle}
+      className={
+        cssDisplayMode === "table"
+          ? scorllableInnerDisplayTableStyle
+          : scrollableInnerStyle
+      }
       role={role}
-      style={{ height: `max(${height}px, 100% - 2rem)` }}
+      style={{ height: `${height}px` }}
     >
       {children}
     </TagName>
@@ -68,13 +106,49 @@ export const ScrollableInner = ({
 };
 
 export const ContentTop = ({ height }: { height: number }) => {
-  const { tableElement, tableRole } = React.useContext(
+  const { tableElement, tableRole, cssDisplayMode } = React.useContext(
     DeveloperSettingsContext,
   );
   const TagName = tableElement === "table" ? "tr" : "div";
   const role = tableRole ? "presentation" : undefined;
 
-  return <TagName style={{ height }} role={role} aria-hidden="true"></TagName>;
+  return (
+    <TagName
+      style={{
+        height,
+        display: cssDisplayMode === "table" ? "table-row" : "block",
+      }}
+      role={role}
+      aria-hidden="true"
+    ></TagName>
+  );
+};
+export const ContentBottom = ({
+  totalHeight,
+  endPosition,
+}: {
+  totalHeight: number;
+  endPosition: number;
+}) => {
+  const { tableElement, tableRole, cssDisplayMode } = React.useContext(
+    DeveloperSettingsContext,
+  );
+  if (cssDisplayMode === "table") {
+    const TagName = tableElement === "table" ? "tr" : "div";
+    const role = tableRole ? "presentation" : undefined;
+    return (
+      <TagName
+        style={{
+          height: totalHeight - endPosition,
+          display: cssDisplayMode === "table" ? "table-row" : "block",
+        }}
+        role={role}
+        aria-hidden="true"
+      ></TagName>
+    );
+  } else {
+    return null;
+  }
 };
 
 export const Row = ({
@@ -86,16 +160,19 @@ export const Row = ({
   rowIndex: number;
   type?: "header" | "body";
 }) => {
-  const { tableElement, tableRole, noAriaRowIndex } = React.useContext(
-    DeveloperSettingsContext,
-  );
+  const { tableElement, tableRole, noAriaRowIndex, cssDisplayMode } =
+    React.useContext(DeveloperSettingsContext);
   const TagName = tableElement === "table" ? "tr" : "div";
   const role = tableRole ? "row" : undefined;
   return (
     <TagName
       role={role}
       aria-rowindex={noAriaRowIndex ? undefined : rowIndex}
-      className={rowStyle[type]}
+      className={
+        cssDisplayMode === "table"
+          ? rowDisplayTableRowStyle[type]
+          : rowStyle[type]
+      }
     >
       {children}
     </TagName>
@@ -103,13 +180,20 @@ export const Row = ({
 };
 
 export const HeaderRowGroup = ({ children }: { children: React.ReactNode }) => {
-  const { tableElement, tableRole } = React.useContext(
+  const { tableElement, tableRole, cssDisplayMode } = React.useContext(
     DeveloperSettingsContext,
   );
   const TagName = tableElement === "table" ? "thead" : "div";
   const role = tableRole === "table" ? "rowgroup" : undefined;
   return (
-    <TagName role={role} className={headerRowGroupStyle}>
+    <TagName
+      role={role}
+      className={
+        cssDisplayMode === "table"
+          ? headerRowGroupDisplayTableStyle
+          : headerRowGroupStyle
+      }
+    >
       {children}
     </TagName>
   );
@@ -126,9 +210,8 @@ export const Cell = ({
   columnType: ColumnType;
   header?: boolean;
 }) => {
-  const { tableElement, tableRole, noAriaColIndex } = React.useContext(
-    DeveloperSettingsContext,
-  );
+  const { tableElement, tableRole, noAriaColIndex, cssDisplayMode } =
+    React.useContext(DeveloperSettingsContext);
   const TagName = tableElement === "table" ? (header ? "th" : "td") : "div";
   const role =
     tableRole && header
@@ -147,7 +230,11 @@ export const Cell = ({
       }
       role={role}
       aria-colindex={noAriaColIndex ? undefined : colIndex}
-      className={cellStyle[columnType]}
+      className={
+        cssDisplayMode === "table"
+          ? cellDisplayTableCellStyle[columnType]
+          : cellStyle[columnType]
+      }
     >
       {children}
     </TagName>

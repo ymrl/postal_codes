@@ -8,9 +8,9 @@ import {
 import { ColumnType } from "../types";
 
 export const scrollableStyle = style({
+  display: "block",
   overflow: "auto",
-  tableLayout: "fixed",
-  borderCollapse: "collapse",
+  flexGrow: 1,
   selectors: {
     "&:focus-visible": {
       outline: semanticVars.focus.outline,
@@ -19,11 +19,32 @@ export const scrollableStyle = style({
   },
 });
 
+export const tablePlayerStyle = style({
+  display: "flex",
+  flexDirection: "column",
+  tableLayout: "fixed",
+  borderCollapse: "collapse",
+});
+export const tablePlayerDisplayTableStyle = style([
+  tablePlayerStyle,
+  {
+    display: "table",
+    width: "100%",
+  },
+]);
+
 export const scrollableInnerStyle = style({
   width: "100%",
   position: "relative",
   display: "block",
+  flexGrow: 1,
 });
+export const scorllableInnerDisplayTableStyle = style([
+  scrollableInnerStyle,
+  {
+    display: "table-row-group",
+  },
+]);
 
 const rowStyleBase = style({
   display: "grid",
@@ -56,6 +77,28 @@ export const rowStyle = styleVariants({
     },
   ],
 });
+export const rowDisplayTableRowStyle = styleVariants({
+  header: [
+    rowStyle.header,
+    {
+      display: "table-row",
+      padding: 0,
+    },
+  ],
+  body: [
+    rowStyle.body,
+    {
+      display: "table-row",
+      height: "3rem",
+      padding: 0,
+      "@media": {
+        [mediaQueries.small]: {
+          height: "4.5rem",
+        },
+      },
+    },
+  ],
+});
 
 const base = style({
   padding: semanticVars.spacing.inlinePadding,
@@ -80,6 +123,12 @@ export const headerRowGroupStyle = style({
   top: 0,
   zIndex: 1,
 });
+export const headerRowGroupDisplayTableStyle = style([
+  headerRowGroupStyle,
+  {
+    display: "table-header-group",
+  },
+]);
 
 export const cellStyle = styleVariants<{
   [key in ColumnType]: ComplexStyleRule;
@@ -122,6 +171,66 @@ export const cellStyle = styleVariants<{
           gridRowEnd: 3,
           gridColumnStart: 4,
           gridColumnEnd: 5,
+        },
+      },
+    },
+  ],
+});
+
+export const cellDisplayTableCellStyle = styleVariants({
+  number: [
+    cellStyle.number,
+    {
+      display: "table-cell",
+      width: `calc(6rem + ${themeVars.spacing.small})`,
+      paddingLeft: `calc(${semanticVars.spacing.inlinePadding} + ${themeVars.spacing.small})`,
+      "@media": {
+        [mediaQueries.small]: {
+          width: `calc(5rem + ${themeVars.spacing.small})`,
+        },
+      },
+    },
+  ],
+  pref: [
+    cellStyle.pref,
+    {
+      display: "table-cell",
+      width: "5rem",
+      "@media": {
+        [mediaQueries.small]: {
+          width: "4.5rem",
+        },
+      },
+    },
+  ],
+  city: [
+    cellStyle.city,
+    {
+      display: "table-cell",
+      width: "8rem",
+      "@media": {
+        [mediaQueries.small]: {
+          width: "4.5rem",
+        },
+      },
+    },
+  ],
+  town: [
+    cellStyle.town,
+    {
+      display: "table-cell",
+      width: "auto",
+    },
+  ],
+  others: [
+    cellStyle.others,
+    {
+      display: "table-cell",
+      width: `calc(8rem + ${themeVars.spacing.small})`,
+      paddingRight: `calc(${semanticVars.spacing.inlinePadding} + ${themeVars.spacing.small})`,
+      "@media": {
+        [mediaQueries.small]: {
+          width: "4rem",
         },
       },
     },

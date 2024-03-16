@@ -23,6 +23,7 @@ export const DeveloperSettings = () => {
     noAriaColIndex,
     noAriaRowCount,
     noAriaRowIndex,
+    cssDisplayMode,
   } = React.useContext(DeveloperSettingsContext);
 
   return (
@@ -71,6 +72,28 @@ export const DeveloperSettings = () => {
               onChange={() => updateDeveloperSettings({ tableRole: undefined })}
             >
               なし
+            </Radiobutton>
+          </Fields>
+        </Fieldset>
+        <Fieldset legend="表のCSS display">
+          <Fields horizontal>
+            <Radiobutton
+              name="cssDisplayMode"
+              checked={cssDisplayMode === "row-grid"}
+              onChange={() =>
+                updateDeveloperSettings({ cssDisplayMode: "row-grid" })
+              }
+            >
+              row-grid
+            </Radiobutton>
+            <Radiobutton
+              name="cssDisplayMode"
+              checked={cssDisplayMode === "table"}
+              onChange={() =>
+                updateDeveloperSettings({ cssDisplayMode: "table" })
+              }
+            >
+              table
             </Radiobutton>
           </Fields>
         </Fieldset>

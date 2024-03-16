@@ -12,6 +12,7 @@ type DeveloperSettingsT = {
   noAriaRowIndex: boolean;
   noAriaColCount: boolean;
   noAriaRowCount: boolean;
+  cssDisplayMode: "row-grid" | "table";
 };
 
 export const DeveloperSettingsContext = React.createContext<
@@ -30,6 +31,7 @@ export const DeveloperSettingsContext = React.createContext<
   noAriaRowIndex: false,
   noAriaColCount: false,
   noAriaRowCount: false,
+  cssDisplayMode: "row-grid",
   updateDeveloperSettings: () => {},
 });
 
@@ -50,6 +52,7 @@ export const DeveloperSettingsProvider = ({
     noAriaRowIndex: false,
     noAriaColCount: false,
     noAriaRowCount: false,
+    cssDisplayMode: "row-grid",
   });
   const updateDeveloperSettings = (settings: Partial<DeveloperSettingsT>) => {
     setSettings((prev) => ({ ...prev, ...settings }));
