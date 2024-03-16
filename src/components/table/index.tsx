@@ -25,12 +25,9 @@ export const Table = () => {
     estimateSize: () => (window.outerWidth >= 640 ? 48 : 72),
     overscan: Math.min(
       1000,
-      Math.max(
-        10,
-        Math.floor(
-          tableOverscanScreens *
-            (window.outerHeight / (window.outerWidth >= 640 ? 40 : 52)),
-        ),
+      Math.floor(
+        tableOverscanScreens *
+          (window.outerHeight / (window.outerWidth >= 640 ? 40 : 52)),
       ),
     ),
   });

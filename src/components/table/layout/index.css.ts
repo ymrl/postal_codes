@@ -184,6 +184,7 @@ export const cellDisplayTableCellStyle = styleVariants({
     cellStyle.number,
     {
       display: "table-cell",
+      verticalAlign: "middle",
       width: `calc(6rem + ${themeVars.spacing.small})`,
       paddingLeft: `calc(${semanticVars.spacing.inlinePadding} + ${themeVars.spacing.small})`,
       "@media": {
@@ -197,6 +198,7 @@ export const cellDisplayTableCellStyle = styleVariants({
     cellStyle.pref,
     {
       display: "table-cell",
+      verticalAlign: "middle",
       width: "5rem",
       "@media": {
         [mediaQueries.small]: {
@@ -209,6 +211,7 @@ export const cellDisplayTableCellStyle = styleVariants({
     cellStyle.city,
     {
       display: "table-cell",
+      verticalAlign: "middle",
       width: "8rem",
       "@media": {
         [mediaQueries.small]: {
@@ -221,6 +224,7 @@ export const cellDisplayTableCellStyle = styleVariants({
     cellStyle.town,
     {
       display: "table-cell",
+      verticalAlign: "middle",
       width: "auto",
     },
   ],
@@ -228,6 +232,7 @@ export const cellDisplayTableCellStyle = styleVariants({
     cellStyle.others,
     {
       display: "table-cell",
+      verticalAlign: "bottom",
       width: `calc(8rem + ${themeVars.spacing.small})`,
       paddingRight: `calc(${semanticVars.spacing.inlinePadding} + ${themeVars.spacing.small})`,
       "@media": {
