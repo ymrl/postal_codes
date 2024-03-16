@@ -1,15 +1,22 @@
 import React from "react";
 import {
   Checkbox,
+  Dialog,
   Fields,
   Fieldset,
   LabeledInput,
   Radiobutton,
 } from "../fundamentals";
 import { DeveloperSettingsContext } from "../../contexts";
-import { dangerousNoticeStyle } from "./DeveloperSettings.css";
+import { dangerousNoticeStyle } from "./DeveloperSettingDialog.css";
 
-export const DeveloperSettings = () => {
+export const DeveloperSettingDialogRenderer: React.ForwardRefRenderFunction<
+  HTMLDialogElement,
+  Pick<
+    React.ComponentPropsWithoutRef<typeof Dialog>,
+    "onRequestClose" | "isOpen"
+  >
+> = (props) => {
   const {
     updateDeveloperSettings,
     useCSSVarForBackdrop,
@@ -27,8 +34,7 @@ export const DeveloperSettings = () => {
   } = React.useContext(DeveloperSettingsContext);
 
   return (
-    <details>
-      <summary>開発者設定</summary>
+    <Dialog dialogTitle="開発者設定" {...props}>
       <Fields>
         <Fieldset legend="表の描画に使う要素">
           <Fields horizontal>
@@ -189,6 +195,10 @@ export const DeveloperSettings = () => {
           </p>
         </Checkbox>
       </Fields>
-    </details>
+    </Dialog>
   );
 };
+
+export const DeveloperSettingDialog = React.forwardRef(
+  DeveloperSettingDialogRenderer,
+);

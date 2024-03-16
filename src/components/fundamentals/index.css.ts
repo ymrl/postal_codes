@@ -9,3 +9,4 @@ export * from "./TextWithIcon.css";
 export * from "./VisuallyHidden.css";
 export * from "./IconLabeledInput.css";
 export * from "./LabeledInput.css";
+export * from "./Dialog.css";

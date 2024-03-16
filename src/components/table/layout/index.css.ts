@@ -30,6 +30,7 @@ export const tablePlayerDisplayTableStyle = style([
   {
     display: "table",
     width: "100%",
+    minWidth: "30rem",
   },
 ]);
 
@@ -54,7 +55,7 @@ const rowStyleBase = style({
   borderBottom: semanticVars.border.decoration,
   "@media": {
     [mediaQueries.small]: {
-      gridTemplateColumns: "5rem 4.5rem 1fr 8rem",
+      gridTemplateColumns: "5rem 4.5rem 1fr 5rem",
     },
   },
 });
@@ -165,9 +166,10 @@ export const cellStyle = styleVariants<{
     base,
     {
       justifyContent: "flex-end",
+      alignItems: "flex-end",
       "@media": {
         [mediaQueries.small]: {
-          gridRowStart: 2,
+          gridRowStart: 1,
           gridRowEnd: 3,
           gridColumnStart: 4,
           gridColumnEnd: 5,

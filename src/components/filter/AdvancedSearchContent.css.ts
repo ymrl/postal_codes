@@ -7,7 +7,7 @@ export const advancedSearchContentStyle = style({
   left: 0,
   backgroundColor: colorVars.background.primary,
   border: `1px solid ${colorVars.ui.decoration}`,
-  zIndex: 1,
+  zIndex: 2,
   padding: semanticVars.spacing.areaPadding,
   borderRadius: themeVars.borderRadius.normal,
   width: "19rem",

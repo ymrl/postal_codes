@@ -1,31 +1,46 @@
 import React from "react";
-import { SettingDialog } from "./SettingDialog";
 import { Button, TextWithIcon } from "../fundamentals";
-import { SlSettings } from "react-icons/sl";
+import { SlSettings, SlWrench } from "react-icons/sl";
+import { SettingDialog } from "./SettingDialog";
+import { DeveloperSettingDialog } from "./DeveloperSettingDialog";
+import { settingStyle } from "./index.css";
 
 export const Settings = () => {
-  const dialogRef = React.useRef<HTMLDialogElement>(null);
+  const [settingDialogOpen, setSettingDialogOpen] = React.useState(false);
+  const [developperSettingDialogOpen, setDeveloperSettingDialogOpen] =
+    React.useState(false);
   return (
-    <>
+    <div className={settingStyle}>
       <Button
         onClick={() => {
-          if (dialogRef.current) {
-            dialogRef.current.showModal();
-          }
+          setSettingDialogOpen(true);
         }}
       >
         <TextWithIcon Icon={SlSettings} iconOnlyOnMobile>
           設定
         </TextWithIcon>
       </Button>
+      <Button
+        onClick={() => {
+          setDeveloperSettingDialogOpen(true);
+        }}
+      >
+        <TextWithIcon Icon={SlWrench} iconOnlyOnMobile>
+          開発者設定
+        </TextWithIcon>
+      </Button>
       <SettingDialog
-        ref={dialogRef}
-        requestClose={() => {
-          if (dialogRef.current) {
-            dialogRef.current.close();
-          }
+        isOpen={settingDialogOpen}
+        onRequestClose={() => {
+          setSettingDialogOpen(false);
         }}
       />
-    </>
+      <DeveloperSettingDialog
+        isOpen={developperSettingDialogOpen}
+        onRequestClose={() => {
+          setDeveloperSettingDialogOpen(false);
+        }}
+      />
+    </div>
   );
 };

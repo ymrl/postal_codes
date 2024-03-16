@@ -8,6 +8,7 @@ export const othersStyle = style({
   gap: themeVars.spacing.small,
   flexWrap: "wrap",
   justifyContent: "flex-end",
+  alignItems: "flex-end",
   margin: 0,
   padding: 0,
 });
