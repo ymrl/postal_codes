@@ -19,6 +19,10 @@ export const DeveloperSettings = () => {
     tableElement,
     tableRole,
     tableOverscanScreens,
+    noAriaColCount,
+    noAriaColIndex,
+    noAriaRowCount,
+    noAriaRowIndex,
   } = React.useContext(DeveloperSettingsContext);
 
   return (
@@ -81,6 +85,38 @@ export const DeveloperSettings = () => {
             })
           }
         />
+        <Checkbox
+          checked={noAriaColIndex}
+          onChange={(e) =>
+            updateDeveloperSettings({ noAriaColIndex: e.target.checked })
+          }
+        >
+          aria-colindex を使用しない
+        </Checkbox>
+        <Checkbox
+          checked={noAriaRowIndex}
+          onChange={(e) =>
+            updateDeveloperSettings({ noAriaRowIndex: e.target.checked })
+          }
+        >
+          aria-rowindex を使用しない
+        </Checkbox>
+        <Checkbox
+          checked={noAriaColCount}
+          onChange={(e) =>
+            updateDeveloperSettings({ noAriaColCount: e.target.checked })
+          }
+        >
+          aria-colcount を使用しない
+        </Checkbox>
+        <Checkbox
+          checked={noAriaRowCount}
+          onChange={(e) =>
+            updateDeveloperSettings({ noAriaRowCount: e.target.checked })
+          }
+        >
+          aria-rowcount を使用しない{" "}
+        </Checkbox>
         <Checkbox
           checked={useCSSVarForBackdrop}
           onChange={(e) =>

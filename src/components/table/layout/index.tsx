@@ -23,9 +23,8 @@ const ScrollableRenderer = (
   },
   ref: React.Ref<HTMLTableElement>,
 ) => {
-  const { tableElement, tableRole } = React.useContext(
-    DeveloperSettingsContext,
-  );
+  const { tableElement, tableRole, noAriaColCount, noAriaRowCount } =
+    React.useContext(DeveloperSettingsContext);
   const TagName = tableElement;
   const role = tableRole;
 
@@ -34,8 +33,8 @@ const ScrollableRenderer = (
       className={scrollableStyle}
       role={role}
       aria-label={ariaLabel}
-      aria-colcount={ariaColCount}
-      aria-rowcount={ariaRowCount}
+      aria-colcount={noAriaColCount ? undefined : ariaColCount}
+      aria-rowcount={noAriaRowCount ? undefined : ariaRowCount}
       tabIndex={0}
       ref={ref}
     >
@@ -87,13 +86,17 @@ export const Row = ({
   rowIndex: number;
   type?: "header" | "body";
 }) => {
-  const { tableElement, tableRole } = React.useContext(
+  const { tableElement, tableRole, noAriaRowIndex } = React.useContext(
     DeveloperSettingsContext,
   );
   const TagName = tableElement === "table" ? "tr" : "div";
   const role = tableRole ? "row" : undefined;
   return (
-    <TagName role={role} aria-rowindex={rowIndex} className={rowStyle[type]}>
+    <TagName
+      role={role}
+      aria-rowindex={noAriaRowIndex ? undefined : rowIndex}
+      className={rowStyle[type]}
+    >
       {children}
     </TagName>
   );
@@ -123,7 +126,7 @@ export const Cell = ({
   columnType: ColumnType;
   header?: boolean;
 }) => {
-  const { tableElement, tableRole } = React.useContext(
+  const { tableElement, tableRole, noAriaColIndex } = React.useContext(
     DeveloperSettingsContext,
   );
   const TagName = tableElement === "table" ? (header ? "th" : "td") : "div";
@@ -143,7 +146,7 @@ export const Cell = ({
         tableElement === "table" && columnType === "number" ? "row" : undefined
       }
       role={role}
-      aria-colindex={colIndex}
+      aria-colindex={noAriaColIndex ? undefined : colIndex}
       className={cellStyle[columnType]}
     >
       {children}

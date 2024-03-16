@@ -8,6 +8,10 @@ type DeveloperSettingsT = {
   tableElement: "div" | "table";
   tableRole: "table" | "grid" | undefined;
   tableOverscanScreens: number;
+  noAriaColIndex: boolean;
+  noAriaRowIndex: boolean;
+  noAriaColCount: boolean;
+  noAriaRowCount: boolean;
 };
 
 export const DeveloperSettingsContext = React.createContext<
@@ -22,6 +26,10 @@ export const DeveloperSettingsContext = React.createContext<
   tableElement: "div",
   tableRole: "table",
   tableOverscanScreens: 3,
+  noAriaColIndex: false,
+  noAriaRowIndex: false,
+  noAriaColCount: false,
+  noAriaRowCount: false,
   updateDeveloperSettings: () => {},
 });
 
@@ -38,6 +46,10 @@ export const DeveloperSettingsProvider = ({
     tableElement: "div",
     tableRole: "table",
     tableOverscanScreens: 3,
+    noAriaColIndex: false,
+    noAriaRowIndex: false,
+    noAriaColCount: false,
+    noAriaRowCount: false,
   });
   const updateDeveloperSettings = (settings: Partial<DeveloperSettingsT>) => {
     setSettings((prev) => ({ ...prev, ...settings }));
