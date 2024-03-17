@@ -173,6 +173,7 @@ globalStyle("body", {
   fontWeight: 400,
   colorScheme: "light dark",
   vars: assignVars(semanticVars, largeSemanticVars),
+  overflow: "hidden",
   "@media": {
     [mediaQueries.small]: {
       vars: assignVars(semanticVars, largeSemanticVars),
