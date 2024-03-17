@@ -16,8 +16,13 @@ type Props = Pick<
 >;
 
 export const SettingDialog = ({ isOpen, onRequestClose }: Props) => {
-  const { showRuby, shortcutKey, colorScheme, updateSettings } =
-    React.useContext(SettingsContext);
+  const {
+    showRuby,
+    shortcutKey,
+    colorScheme,
+    tableKeyboardControl,
+    updateSettings,
+  } = React.useContext(SettingsContext);
   const downloadedAt = useContext(KenAllContext).downloadedAt;
   return (
     <Dialog
@@ -38,6 +43,14 @@ export const SettingDialog = ({ isOpen, onRequestClose }: Props) => {
             onChange={(e) => updateSettings({ shortcutKey: e.target.checked })}
           >
             Ctrl+F または Command+F で検索にフォーカス
+          </Checkbox>
+          <Checkbox
+            checked={tableKeyboardControl}
+            onChange={(e) =>
+              updateSettings({ tableKeyboardControl: e.target.checked })
+            }
+          >
+            テーブル内のキーボードで操作を有効にする
           </Checkbox>
         </Fields>
         <Fieldset legend="テーマ">

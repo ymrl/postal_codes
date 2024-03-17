@@ -1,5 +1,5 @@
 import React from "react";
-import { DeveloperSettingsContext } from "../../../contexts";
+import { DeveloperSettingsContext, SettingsContext } from "../../../contexts";
 import {
   scrollableInnerStyle,
   scrollableStyle,
@@ -65,17 +65,24 @@ const ScrollableRenderer = (
     ariaColCount: number;
   },
   ref: React.Ref<HTMLDivElement>,
-) => (
-  <div className={scrollableStyle} tabIndex={0} ref={ref}>
-    <TablePlayer
-      ariaLabel={ariaLabel}
-      ariaColCount={ariaColCount}
-      ariaRowCount={ariaRowCount}
+) => {
+  const { tableKeyboardControl } = React.useContext(SettingsContext);
+  return (
+    <div
+      className={scrollableStyle}
+      tabIndex={tableKeyboardControl ? undefined : 0}
+      ref={ref}
     >
-      {children}
-    </TablePlayer>
-  </div>
-);
+      <TablePlayer
+        ariaLabel={ariaLabel}
+        ariaColCount={ariaColCount}
+        ariaRowCount={ariaRowCount}
+      >
+        {children}
+      </TablePlayer>
+    </div>
+  );
+};
 export const Scrollable = React.forwardRef(ScrollableRenderer);
 
 export const ScrollableInner = ({
@@ -210,6 +217,7 @@ export const Cell = ({
   columnType: ColumnType;
   header?: boolean;
 }) => {
+  const { tableKeyboardControl } = React.useContext(SettingsContext);
   const { tableElement, tableRole, noAriaColIndex, cssDisplayMode } =
     React.useContext(DeveloperSettingsContext);
   const TagName = tableElement === "table" ? (header ? "th" : "td") : "div";
@@ -235,6 +243,33 @@ export const Cell = ({
           ? cellDisplayTableCellStyle[columnType]
           : cellStyle[columnType]
       }
+      tabIndex={tableKeyboardControl && !header ? 0 : undefined}
+      data-colindex={colIndex}
+      onKeyDown={(e) => {
+        const next = e.currentTarget.nextElementSibling;
+        const prev = e.currentTarget.previousElementSibling;
+        const nextRowCell =
+          e.currentTarget.parentElement?.nextElementSibling?.querySelector(
+            `[data-colindex="${colIndex}"]`,
+          );
+        const prevRowCell =
+          e.currentTarget.parentElement?.previousElementSibling?.querySelector(
+            `[data-colindex="${colIndex}"]`,
+          );
+        if (e.key === "ArrowRight" && next) {
+          e.preventDefault();
+          (next as HTMLElement).focus();
+        } else if (e.key === "ArrowLeft" && prev) {
+          e.preventDefault();
+          (prev as HTMLElement).focus();
+        } else if (e.key === "ArrowDown" && nextRowCell) {
+          e.preventDefault();
+          (nextRowCell as HTMLElement).focus();
+        } else if (e.key === "ArrowUp" && prevRowCell) {
+          e.preventDefault();
+          (prevRowCell as HTMLElement).focus();
+        }
+      }}
     >
       {children}
     </TagName>

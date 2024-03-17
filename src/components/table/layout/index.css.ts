@@ -9,7 +9,7 @@ export const scrollableStyle = style({
   selectors: {
     "&:focus-visible": {
       outline: semanticVars.focus.outline,
-      outlineOffset: "-2px",
+      outlineOffset: `calc(-1 * ${semanticVars.focus.outlineWidth})`,
     },
   },
 });
@@ -108,6 +108,12 @@ const base = style({
   alignItems: "center",
   justifyContent: "stretch",
   minWidth: "2.75rem",
+  selectors: {
+    "&:focus-visible": {
+      outline: semanticVars.focus.outline,
+      outlineOffset: `calc(-1 * ${semanticVars.focus.outlineWidth})`,
+    },
+  },
 });
 
 export const headerRowGroupStyle = style({

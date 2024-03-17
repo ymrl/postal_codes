@@ -121,7 +121,8 @@ export const largeSemanticVars = {
     decoration: `1px solid ${colorVars.ui.decoration}`,
   },
   focus: {
-    outline: `2px solid ${colorVars.accent.primaryTranslucent}`,
+    outline: `0.125rem solid ${colorVars.accent.primaryTranslucent}`,
+    outlineWidth: "0.125rem",
   },
   spacing: {
     containerPadding: themeVars.spacing.large,

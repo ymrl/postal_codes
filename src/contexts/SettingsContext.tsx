@@ -3,6 +3,7 @@ import React from "react";
 type SettingsT = {
   showRuby: boolean;
   shortcutKey: boolean;
+  tableKeyboardControl: boolean;
   colorScheme: "auto" | "light" | "dark";
 };
 
@@ -13,6 +14,7 @@ export const SettingsContext = React.createContext<
 >({
   showRuby: false,
   shortcutKey: false,
+  tableKeyboardControl: false,
   colorScheme: "auto",
   updateSettings: () => {},
 });
@@ -25,6 +27,7 @@ export const SettingsProvider = ({
   const [settings, setSettings] = React.useState<SettingsT>({
     showRuby: false,
     shortcutKey: true,
+    tableKeyboardControl: true,
     colorScheme: "auto",
   });
 
