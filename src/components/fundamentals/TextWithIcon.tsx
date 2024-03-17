@@ -1,22 +1,20 @@
 import { IconFont } from ".";
 import {
-  mobileVisuallyHiddenStyle,
   textWithIconStyle,
+  visuallyHidableTextStyle,
 } from "./TextWithIcon.css";
 
 export const TextWithIcon = ({
   Icon,
   children,
-  iconOnlyOnMobile = false,
+  hideText = "never",
 }: {
   Icon: React.ElementType;
   children: React.ReactNode;
-  iconOnlyOnMobile?: boolean;
+  hideText?: "small" | "medium" | "always" | "never";
 }) => (
   <span className={textWithIconStyle}>
     <IconFont Icon={Icon} />
-    <span className={iconOnlyOnMobile ? mobileVisuallyHiddenStyle : undefined}>
-      {children}
-    </span>
+    <span className={visuallyHidableTextStyle[hideText]}>{children}</span>
   </span>
 );

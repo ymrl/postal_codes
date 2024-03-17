@@ -2,44 +2,47 @@ import { style, globalStyle } from "@vanilla-extract/css";
 import { colorVars, semanticVars, themeVars } from "../../App.css";
 
 export const checkBoxContainerStyle = style({
-  display: "inline-flex",
-  alignItems: "baseline",
-  fontSize: themeVars.font.normalSize,
+  display: "flex",
+  flexDirection: "row",
+  alignItems: "stretch",
+  fontSize: semanticVars.font.normal,
 });
 
 export const checkBoxVisualStyle = style({
   flexShrink: 0,
-  display: "inline-block",
   width: semanticVars.ui.check,
-  height: semanticVars.ui.check,
+  minHeight: semanticVars.ui.check,
   borderRadius: themeVars.borderRadius.small,
   position: "relative",
   left: 0,
-  top: `calc(0.5 * ${semanticVars.ui.check} - 0.4 * 1em)`,
-  outlineOffset: "-2px",
+  top: 0,
   selectors: {
     "&::before": {
       content: '""',
       position: "absolute",
-      top: "50%",
-      left: "50%",
-      transform: "translate(-50%, -50%)",
+      margin: "auto",
+      width: `calc(${semanticVars.ui.check} * 0.5)`,
+      height: `calc(${semanticVars.ui.check} * 0.5)`,
+      left: 0,
+      right: 0,
+      top: `calc((${semanticVars.ui.check} - ${semanticVars.font.normal}) * 0.6)`,
       border: `2px solid ${colorVars.ui.distinguish}`,
       background: colorVars.background.primary,
-      width: "50%",
-      height: "50%",
       borderRadius: themeVars.borderRadius.small,
       transitionProperty: "background-color",
       transitionDuration: themeVars.transition.duration,
+      outlineOffset: "0.125rem",
     },
     "&::after": {
       content: '""',
       position: "absolute",
-      top: "42%",
-      left: "50%",
-      transform: "translate(-50%, -50%) rotate(-50deg)",
-      width: "40%",
-      height: "20%",
+      margin: "auto",
+      top: `calc((${semanticVars.ui.check} - ${semanticVars.font.normal}) * 0.6 + 0.125rem)`,
+      left: 0,
+      right: 0,
+      transform: "rotate(-50deg)",
+      width: `calc(${semanticVars.ui.check} * 0.4)`,
+      height: `calc(${semanticVars.ui.check} * 0.2)`,
       borderLeft: `2px solid ${colorVars.background.primary}`,
       borderBottom: `2px solid ${colorVars.background.primary}`,
     },
@@ -55,7 +58,7 @@ globalStyle(
 );
 
 globalStyle(
-  `${checkBoxContainerStyle} input:focus-visible + ${checkBoxVisualStyle}`,
+  `${checkBoxContainerStyle} input:focus-visible + ${checkBoxVisualStyle}::before`,
   {
     outline: semanticVars.focus.outline,
   },

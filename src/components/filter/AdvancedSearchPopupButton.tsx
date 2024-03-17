@@ -53,7 +53,7 @@ export const AdvancedSearchPopupButton = ({
         ref={buttonRef}
         id={`${id}-button`}
       >
-        <TextWithIcon iconOnlyOnMobile Icon={SlEyeglass}>
+        <TextWithIcon hideText="medium" Icon={SlEyeglass}>
           高度な条件
         </TextWithIcon>
         <Badge />

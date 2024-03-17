@@ -2,9 +2,10 @@ import React from "react";
 import {
   Checkbox,
   Dialog,
+  Field,
   Fields,
   Fieldset,
-  LabeledInput,
+  Input,
   Radiobutton,
 } from "../fundamentals";
 import { DeveloperSettingsContext } from "../../contexts";
@@ -32,6 +33,7 @@ export const DeveloperSettingDialogRenderer: React.ForwardRefRenderFunction<
     noAriaRowIndex,
     cssDisplayMode,
   } = React.useContext(DeveloperSettingsContext);
+  const id = React.useId();
 
   return (
     <Dialog dialogTitle="開発者設定" {...props}>
@@ -56,33 +58,33 @@ export const DeveloperSettingDialogRenderer: React.ForwardRefRenderFunction<
             </Radiobutton>
           </Fields>
         </Fieldset>
-        <Fieldset legend="表のロール">
-          <Fields horizontal>
+        <Fieldset legend="表のrole属性">
+          <Fields gap="small">
             <Radiobutton
               name="tableRole"
               checked={tableRole === "table"}
               onChange={() => updateDeveloperSettings({ tableRole: "table" })}
             >
-              table
+              table &gt; rowgroup &gt; row &gt; cell, columnheader, rowheader
             </Radiobutton>
             <Radiobutton
               name="tableRole"
               checked={tableRole === "grid"}
               onChange={() => updateDeveloperSettings({ tableRole: "grid" })}
             >
-              grid
+              grid &gt; rowgroup &gt; row &gt; gridcell, columnheader, rowheader
             </Radiobutton>
             <Radiobutton
               name="tableRole"
               checked={tableRole === undefined}
               onChange={() => updateDeveloperSettings({ tableRole: undefined })}
             >
-              なし
+              role属性を指定しない
             </Radiobutton>
           </Fields>
         </Fieldset>
-        <Fieldset legend="表のCSS display">
-          <Fields horizontal>
+        <Fieldset legend="表のCSS指定方法">
+          <Fields gap="small">
             <Radiobutton
               name="cssDisplayMode"
               checked={cssDisplayMode === "row-grid"}
@@ -90,7 +92,7 @@ export const DeveloperSettingDialogRenderer: React.ForwardRefRenderFunction<
                 updateDeveloperSettings({ cssDisplayMode: "row-grid" })
               }
             >
-              row-grid
+              行ごとに display: grid; を指定する
             </Radiobutton>
             <Radiobutton
               name="cssDisplayMode"
@@ -99,101 +101,119 @@ export const DeveloperSettingDialogRenderer: React.ForwardRefRenderFunction<
                 updateDeveloperSettings({ cssDisplayMode: "table" })
               }
             >
-              table
+              表すべてに display: table; を指定する
             </Radiobutton>
           </Fields>
         </Fieldset>
-        <LabeledInput
-          width="full"
-          labelText="仮想スクロールのオーバースキャン"
-          type="number"
-          value={tableOverscanScreens}
-          onChange={(e) =>
-            updateDeveloperSettings({
-              tableOverscanScreens: Number(e.target.value),
-            })
-          }
-        />
-        <Checkbox
-          checked={noAriaColIndex}
-          onChange={(e) =>
-            updateDeveloperSettings({ noAriaColIndex: e.target.checked })
-          }
-        >
-          aria-colindex を使用しない
-        </Checkbox>
-        <Checkbox
-          checked={noAriaRowIndex}
-          onChange={(e) =>
-            updateDeveloperSettings({ noAriaRowIndex: e.target.checked })
-          }
-        >
-          aria-rowindex を使用しない
-        </Checkbox>
-        <Checkbox
-          checked={noAriaColCount}
-          onChange={(e) =>
-            updateDeveloperSettings({ noAriaColCount: e.target.checked })
-          }
-        >
-          aria-colcount を使用しない
-        </Checkbox>
-        <Checkbox
-          checked={noAriaRowCount}
-          onChange={(e) =>
-            updateDeveloperSettings({ noAriaRowCount: e.target.checked })
-          }
-        >
-          aria-rowcount を使用しない{" "}
-        </Checkbox>
-        <Checkbox
-          checked={useCSSVarForBackdrop}
-          onChange={(e) =>
-            updateDeveloperSettings({ useCSSVarForBackdrop: e.target.checked })
-          }
-        >
-          dialog要素の::backdropにCSS変数を使う
-          <p className={dangerousNoticeStyle}>
-            Safariでdialog要素の::backdropが表示されなくなります
-          </p>
-        </Checkbox>
-        <Checkbox
-          checked={useDetailsPopupForMobileSafari}
-          onChange={(e) =>
-            updateDeveloperSettings({
-              useDetailsPopupForMobileSafari: e.target.checked,
-            })
-          }
-        >
-          モバイルSafariでもポップアップにdetails要素を使う
-          <p className={dangerousNoticeStyle}>
-            VoiceOverの挙動が不安定になる可能性があります
-          </p>
-        </Checkbox>
-        <Checkbox
-          checked={displayDetailsChildrenClosed}
-          onChange={(e) =>
-            updateDeveloperSettings({
-              displayDetailsChildrenClosed: e.target.checked,
-            })
-          }
-        >
-          details要素が閉じているとき、summary以外の子要素をdisplay:noneにしない
-          <p className={dangerousNoticeStyle}>
-            Safariで不可視な要素にフォーカスしてしまうようになります
-          </p>
-        </Checkbox>
-        <Checkbox
-          checked={disableVirtualScroll}
-          onChange={(e) =>
-            updateDeveloperSettings({ disableVirtualScroll: e.target.checked })
-          }
-        >
-          仮想スクロールを無効にする
-          <p className={dangerousNoticeStyle}>
-            絞り込みの件数によってはブラウザがフリーズする可能性があります
-          </p>
-        </Checkbox>
+        <Fieldset legend="仮想スクロールの設定">
+          <Field
+            labelText="オーバースキャンの画面数"
+            htmlFor={`${id}-tableOverscanScreens`}
+          >
+            <Input
+              id={`${id}-tableOverscanScreens`}
+              type="number"
+              value={tableOverscanScreens}
+              onChange={(e) =>
+                updateDeveloperSettings({
+                  tableOverscanScreens: Number(e.target.value),
+                })
+              }
+            />
+          </Field>
+        </Fieldset>
+        <Fieldset legend="WAI-ARIA属性の設定">
+          <Fields gap="small">
+            <Checkbox
+              checked={noAriaColIndex}
+              onChange={(e) =>
+                updateDeveloperSettings({ noAriaColIndex: e.target.checked })
+              }
+            >
+              aria-colindex を使用しない
+            </Checkbox>
+            <Checkbox
+              checked={noAriaRowIndex}
+              onChange={(e) =>
+                updateDeveloperSettings({ noAriaRowIndex: e.target.checked })
+              }
+            >
+              aria-rowindex を使用しない
+            </Checkbox>
+            <Checkbox
+              checked={noAriaColCount}
+              onChange={(e) =>
+                updateDeveloperSettings({ noAriaColCount: e.target.checked })
+              }
+            >
+              aria-colcount を使用しない
+            </Checkbox>
+            <Checkbox
+              checked={noAriaRowCount}
+              onChange={(e) =>
+                updateDeveloperSettings({ noAriaRowCount: e.target.checked })
+              }
+            >
+              aria-rowcount を使用しない
+            </Checkbox>
+          </Fields>
+        </Fieldset>
+        <Fieldset legend="その他の設定">
+          <Fields gap="small">
+            <Checkbox
+              checked={useCSSVarForBackdrop}
+              onChange={(e) =>
+                updateDeveloperSettings({
+                  useCSSVarForBackdrop: e.target.checked,
+                })
+              }
+            >
+              dialog要素の::backdropにCSS変数を使う
+              <p className={dangerousNoticeStyle}>
+                Safariでdialog要素の::backdropが表示されなくなります
+              </p>
+            </Checkbox>
+            <Checkbox
+              checked={useDetailsPopupForMobileSafari}
+              onChange={(e) =>
+                updateDeveloperSettings({
+                  useDetailsPopupForMobileSafari: e.target.checked,
+                })
+              }
+            >
+              モバイルSafariでもポップアップにdetails要素を使う
+              <p className={dangerousNoticeStyle}>
+                VoiceOverの挙動が不安定になる可能性があります
+              </p>
+            </Checkbox>
+            <Checkbox
+              checked={displayDetailsChildrenClosed}
+              onChange={(e) =>
+                updateDeveloperSettings({
+                  displayDetailsChildrenClosed: e.target.checked,
+                })
+              }
+            >
+              details要素が閉じているとき、summary以外の子要素をdisplay:noneにしない
+              <p className={dangerousNoticeStyle}>
+                Safariで不可視な要素にフォーカスしてしまうようになります
+              </p>
+            </Checkbox>
+            <Checkbox
+              checked={disableVirtualScroll}
+              onChange={(e) =>
+                updateDeveloperSettings({
+                  disableVirtualScroll: e.target.checked,
+                })
+              }
+            >
+              仮想スクロールを無効にする
+              <p className={dangerousNoticeStyle}>
+                絞り込みの件数によってはブラウザがフリーズする可能性があります
+              </p>
+            </Checkbox>
+          </Fields>
+        </Fieldset>
       </Fields>
     </Dialog>
   );

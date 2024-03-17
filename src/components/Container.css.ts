@@ -1,6 +1,5 @@
 import { style, assignVars, globalStyle } from "@vanilla-extract/css";
 import {
-  themeVars,
   colorVars,
   lightColors,
   darkColors,
@@ -8,6 +7,7 @@ import {
   largeSemanticVars,
   smallSemanticVars,
   semanticVars,
+  mediumSemanticVars,
 } from "../App.css";
 
 export const containerStyle = style({
@@ -18,6 +18,9 @@ export const containerStyle = style({
   height: "100dvh",
   vars: assignVars(semanticVars, largeSemanticVars),
   "@media": {
+    [mediaQueries.medium]: {
+      vars: assignVars(semanticVars, mediumSemanticVars),
+    },
     [mediaQueries.small]: {
       vars: assignVars(semanticVars, smallSemanticVars),
     },
@@ -57,12 +60,7 @@ export const headerControlsStyle = style({
   justifyContent: "space-between",
   alignItems: "center",
   flexGrow: 1,
-  gap: themeVars.spacing.normal,
-  "@media": {
-    [mediaQueries.small]: {
-      gap: themeVars.spacing.normal,
-    },
-  },
+  gap: semanticVars.spacing.inlineInner,
 });
 
 export const mainAreaStyle = style({

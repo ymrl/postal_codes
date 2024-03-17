@@ -2,7 +2,6 @@ import { style } from "@vanilla-extract/css";
 import { colorVars, themeVars, semanticVars } from "../../App.css";
 
 export const dialogContentStyle = style({
-  padding: semanticVars.spacing.areaPadding,
   display: "flex",
   alignItems: "flex-start",
   justifyContent: "flex-start",

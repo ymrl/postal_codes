@@ -32,7 +32,7 @@ export const AdvancedSearchDetails = ({
   return (
     <details className={advancedSearchDetailsStyle} ref={ref}>
       <summary className={advancedSearchSummaryStyle} tabIndex={0}>
-        <TextWithIcon Icon={SlEyeglass} iconOnlyOnMobile>
+        <TextWithIcon Icon={SlEyeglass} hideText="medium">
           高度な条件
         </TextWithIcon>
         <Badge />

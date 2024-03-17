@@ -9,12 +9,13 @@ export const dialogStyle = style({
   color: colorVars.text.primary,
   padding: 0,
   width: "30rem",
-  maxWidth: `calc(100vw - ${themeVars.spacing.large})`,
+  maxWidth: `calc(100vw - ${semanticVars.spacing.containerPadding} * 2)`,
   position: "relative",
   flexDirection: "column",
   gap: 0,
   justifyContent: "stretch",
   alignItems: "stretch",
+  overflow: "hidden",
   selectors: {
     "&::backdrop": {
       backgroundColor: "rgba(0, 0, 0, 0.4)",
@@ -34,7 +35,7 @@ export const backdropCSSVarStyle = style({
 });
 
 export const dialogHeaderStyle = style({
-  padding: semanticVars.spacing.areaPadding,
+  padding: `${semanticVars.spacing.containerPadding} ${semanticVars.spacing.containerPadding} ${semanticVars.spacing.containerInner}`,
   backgroundColor: colorVars.background.secondary,
   display: "flex",
   justifyContent: "space-between",
@@ -43,12 +44,13 @@ export const dialogHeaderStyle = style({
 export const dialogBodyStyle = style({
   flexShrink: 1,
   overflow: "auto",
+  padding: `${semanticVars.spacing.containerInner} ${semanticVars.spacing.containerPadding} ${semanticVars.spacing.containerPadding}`,
 });
 
 export const dialogTitleStyle = style({
   margin: 0,
   padding: 0,
-  fontSize: themeVars.font.largeSize,
+  fontSize: semanticVars.font.subTitle,
   fontWeight: themeVars.font.strongWeight,
 });
 

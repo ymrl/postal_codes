@@ -16,7 +16,7 @@ export const Settings = () => {
           setSettingDialogOpen(true);
         }}
       >
-        <TextWithIcon Icon={SlSettings} iconOnlyOnMobile>
+        <TextWithIcon Icon={SlSettings} hideText="medium">
           設定
         </TextWithIcon>
       </Button>
@@ -25,7 +25,7 @@ export const Settings = () => {
           setDeveloperSettingDialogOpen(true);
         }}
       >
-        <TextWithIcon Icon={SlWrench} iconOnlyOnMobile>
+        <TextWithIcon Icon={SlWrench} hideText="medium">
           開発者設定
         </TextWithIcon>
       </Button>

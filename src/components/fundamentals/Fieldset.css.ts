@@ -10,5 +10,4 @@ export const legendStyle = style({
   fontSize: themeVars.font.normalSize,
   fontWeight: "bold",
   color: colorVars.text.primary,
-  marginBottom: themeVars.spacing.small,
 });

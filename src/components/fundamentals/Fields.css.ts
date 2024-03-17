@@ -1,20 +1,30 @@
-import { style } from "@vanilla-extract/css";
-import { themeVars } from "../../App.css";
+import { style, styleVariants } from "@vanilla-extract/css";
+import { semanticVars } from "../../App.css";
 
-export const fieldsStyle = style({
+const fieldsStyleBase = style({
   display: "flex",
   flexDirection: "column",
-  gap: themeVars.spacing.small,
   alignItems: "stretch",
   listStyle: "none",
   padding: 0,
   margin: 0,
 });
+export const fieldsStyle = styleVariants({
+  normal: [
+    fieldsStyleBase,
+    {
+      gap: semanticVars.spacing.areaInner,
+    },
+  ],
+  small: [
+    fieldsStyleBase,
+    {
+      gap: semanticVars.spacing.inlineInner,
+    },
+  ],
+  none: [fieldsStyleBase, { gap: 0 }],
+});
 
-export const fieldsStyleHorizontal = style([
-  fieldsStyle,
-  {
-    flexDirection: "row",
-    gap: themeVars.spacing.normal,
-  },
-]);
+export const fieldsStyleHorizontal = style({
+  flexDirection: "row",
+});

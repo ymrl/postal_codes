@@ -1,14 +1,8 @@
 import { style, styleVariants } from "@vanilla-extract/css";
 import { colorVars, semanticVars, themeVars } from "../../App.css";
+import { inputStyle } from "./Input.css";
 
 const labeledInputStyleBase = style({
-  padding: themeVars.spacing.small,
-  border: semanticVars.border.distinguish,
-  background: colorVars.background.primary,
-  color: colorVars.text.primary,
-  borderRadius: semanticVars.borderRadius.control,
-  height: semanticVars.ui.control,
-  width: "10rem",
   overflow: "hidden",
   display: "inline-flex",
   flexDirection: "row",
@@ -22,9 +16,10 @@ const labeledInputStyleBase = style({
     },
   },
 });
+
 export const labeledInputStyle = styleVariants({
-  default: [labeledInputStyleBase],
-  full: [labeledInputStyleBase, { width: "100%" }],
+  default: [inputStyle.default, labeledInputStyleBase],
+  full: [inputStyle.full, labeledInputStyleBase],
 });
 
 export const labeledInputInputStyle = style({

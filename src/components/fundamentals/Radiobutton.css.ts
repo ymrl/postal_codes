@@ -6,40 +6,30 @@ export const radioButtonContainerStyle = style([checkBoxContainerStyle]);
 
 export const radioButtonVisualStyle = style({
   flexShrink: 0,
-  display: "inline-block",
   width: semanticVars.ui.check,
-  height: semanticVars.ui.check,
+  minHeight: semanticVars.ui.check,
   borderRadius: "50%",
   position: "relative",
   left: 0,
-  top: `calc(0.5 * ${semanticVars.ui.check} - 0.4 * 1em)`,
-  outlineOffset: "-2px",
+  top: 0,
+  display: "inline-block",
   selectors: {
     "&::before": {
       content: '""',
       position: "absolute",
-      top: "50%",
-      left: "50%",
-      transform: "translate(-50%, -50%)",
+      margin: "auto",
+      width: `calc(${semanticVars.ui.check} * 0.5)`,
+      height: `calc(${semanticVars.ui.check} * 0.5)`,
+      left: 0,
+      right: 0,
+      top: `calc((${semanticVars.ui.check} - ${semanticVars.font.normal}) * 0.6)`,
       border: `2px solid ${colorVars.ui.distinguish}`,
       background: colorVars.background.primary,
-      width: "50%",
-      height: "50%",
       borderRadius: "50%",
-    },
-    "&::after": {
-      content: '""',
-      position: "absolute",
-      top: "50%",
-      left: "50%",
-      transform: "translate(-50%, -50%)",
-      width: "40%",
-      height: "40%",
-      borderRadius: "50%",
-      background: colorVars.accent.primary,
-      opacity: 0,
+      boxShadow: `inset 0 0 0 0.125rem ${colorVars.background.primary}`,
       transitionProperty: "opacity, border-color",
       transitionDuration: themeVars.transition.duration,
+      outlineOffset: "0.0625rem",
     },
   },
 });
@@ -47,19 +37,13 @@ export const radioButtonVisualStyle = style({
 globalStyle(
   `${radioButtonContainerStyle} input:checked + ${radioButtonVisualStyle}::before`,
   {
+    background: colorVars.accent.primary,
     borderColor: colorVars.accent.primary,
   },
 );
 
 globalStyle(
-  `${radioButtonContainerStyle} input:checked + ${radioButtonVisualStyle}::after`,
-  {
-    opacity: 1,
-  },
-);
-
-globalStyle(
-  `${radioButtonContainerStyle} input:focus-visible + ${radioButtonVisualStyle}`,
+  `${radioButtonContainerStyle} input:focus-visible + ${radioButtonVisualStyle}::before`,
   {
     outline: semanticVars.focus.outline,
   },
