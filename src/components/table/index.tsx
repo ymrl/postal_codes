@@ -13,7 +13,7 @@ import {
 
 export const Table = () => {
   const { filteredKenAll } = React.useContext(KenAllContext);
-  const { disableVirtualScroll, tableOverscanScreens } = React.useContext(
+  const { disableVirtualScroll, tableOverscan } = React.useContext(
     DeveloperSettingsContext,
   );
   const parentRef = React.useRef<HTMLDivElement>(null);
@@ -23,13 +23,7 @@ export const Table = () => {
     count: filteredKenAll.length,
     getScrollElement: () => parentRef.current,
     estimateSize: () => (window.outerWidth >= 640 ? 48 : 72),
-    overscan: Math.min(
-      1000,
-      Math.floor(
-        tableOverscanScreens *
-          (window.outerHeight / (window.outerWidth >= 640 ? 40 : 52)),
-      ),
-    ),
+    overscan: tableOverscan,
   });
   const id = React.useId();
 

@@ -26,7 +26,7 @@ export const DeveloperSettingDialogRenderer: React.ForwardRefRenderFunction<
     disableVirtualScroll,
     tableElement,
     tableRole,
-    tableOverscanScreens,
+    tableOverscan,
     noAriaColCount,
     noAriaColIndex,
     noAriaRowCount,
@@ -106,17 +106,14 @@ export const DeveloperSettingDialogRenderer: React.ForwardRefRenderFunction<
           </Fields>
         </Fieldset>
         <Fieldset legend="仮想スクロールの設定">
-          <Field
-            labelText="オーバースキャンの画面数"
-            htmlFor={`${id}-tableOverscanScreens`}
-          >
+          <Field labelText="オーバースキャン" htmlFor={`${id}-tableOverscan`}>
             <Input
-              id={`${id}-tableOverscanScreens`}
+              id={`${id}-tableOverscan`}
               type="number"
-              value={tableOverscanScreens}
+              value={tableOverscan}
               onChange={(e) =>
                 updateDeveloperSettings({
-                  tableOverscanScreens: Number(e.target.value),
+                  tableOverscan: Number(e.target.value),
                 })
               }
             />

@@ -7,7 +7,7 @@ type DeveloperSettingsT = {
   disableVirtualScroll: boolean;
   tableElement: "div" | "table";
   tableRole: "table" | "grid" | undefined;
-  tableOverscanScreens: number;
+  tableOverscan: number;
   noAriaColIndex: boolean;
   noAriaRowIndex: boolean;
   noAriaColCount: boolean;
@@ -26,7 +26,7 @@ export const DeveloperSettingsContext = React.createContext<
   disableVirtualScroll: false,
   tableElement: "div",
   tableRole: "table",
-  tableOverscanScreens: 1,
+  tableOverscan: 10,
   noAriaColIndex: false,
   noAriaRowIndex: false,
   noAriaColCount: false,
@@ -47,7 +47,7 @@ export const DeveloperSettingsProvider = ({
     disableVirtualScroll: false,
     tableElement: "div",
     tableRole: "table",
-    tableOverscanScreens: 1,
+    tableOverscan: 10,
     noAriaColIndex: false,
     noAriaRowIndex: false,
     noAriaColCount: false,
