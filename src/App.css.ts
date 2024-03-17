@@ -101,6 +101,7 @@ export const themeVars = createGlobalTheme(":root", {
   },
   breakpoint: {
     small: smallBreakpoint,
+    medium: mediumBreakpoint,
   },
 });
 

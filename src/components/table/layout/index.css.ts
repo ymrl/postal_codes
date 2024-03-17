@@ -25,7 +25,7 @@ export const tablePlayerDisplayTableStyle = style([
   {
     display: "table",
     width: "100%",
-    minWidth: "30rem",
+    minWidth: "40rem",
   },
 ]);
 
