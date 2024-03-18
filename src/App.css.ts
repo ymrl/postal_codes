@@ -4,10 +4,8 @@ import {
   createGlobalTheme,
   createThemeContract,
 } from "@vanilla-extract/css";
-import { lightColors, darkColors, colorVars } from "./styles";
+import { lightColors, darkColors, colorVars, queries } from "./styles";
 
-const mediumBreakpoint = "48rem";
-const smallBreakpoint = "30rem";
 export const themeVars = createGlobalTheme(":root", {
   spacing: {
     xSmall: "0.125rem",
@@ -38,10 +36,6 @@ export const themeVars = createGlobalTheme(":root", {
   },
   transition: {
     duration: "0.3s",
-  },
-  breakpoint: {
-    small: smallBreakpoint,
-    medium: mediumBreakpoint,
   },
 });
 
@@ -130,12 +124,6 @@ export const smallSemanticVars: typeof largeSemanticVars = {
 
 export const semanticVars = createThemeContract(largeSemanticVars);
 
-export const mediaQueries = {
-  medium: `screen and (max-width: ${mediumBreakpoint})`,
-  small: `screen and (max-width: ${smallBreakpoint})`,
-  dark: "(prefers-color-scheme: dark)",
-};
-
 globalStyle("body", {
   margin: 0,
   padding: 0,
@@ -156,7 +144,7 @@ globalStyle("*", {
 globalStyle(":root", {
   vars: assignVars(colorVars, lightColors),
   "@media": {
-    [mediaQueries.dark]: {
+    [queries.dark]: {
       vars: assignVars(colorVars, darkColors),
     },
   },

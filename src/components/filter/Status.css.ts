@@ -1,13 +1,13 @@
 import { style } from "@vanilla-extract/css";
-import { colorVars } from "../../styles";
-import { mediaQueries, semanticVars, themeVars } from "../../App.css";
+import { colorVars, queries } from "../../styles";
+import { semanticVars, themeVars } from "../../App.css";
 
 export const statusStyle = style({
   flexShrink: 1,
   color: colorVars.text.secondary,
   fontSize: themeVars.font.smallSize,
   "@media": {
-    [mediaQueries.small]: {
+    [queries.small]: {
       position: "absolute",
       top: semanticVars.spacing.areaPadding,
       right: semanticVars.spacing.areaPadding,

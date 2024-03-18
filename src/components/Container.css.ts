@@ -1,12 +1,11 @@
 import { style, assignVars, globalStyle } from "@vanilla-extract/css";
 import {
-  mediaQueries,
   largeSemanticVars,
   smallSemanticVars,
   semanticVars,
   mediumSemanticVars,
 } from "../App.css";
-import { lightColors, darkColors, colorVars } from "../styles";
+import { lightColors, darkColors, colorVars, queries } from "../styles";
 
 export const containerStyle = style({
   display: "flex",
@@ -16,10 +15,10 @@ export const containerStyle = style({
   height: "100dvh",
   vars: assignVars(semanticVars, largeSemanticVars),
   "@media": {
-    [mediaQueries.medium]: {
+    [queries.medium]: {
       vars: assignVars(semanticVars, mediumSemanticVars),
     },
-    [mediaQueries.small]: {
+    [queries.small]: {
       vars: assignVars(semanticVars, smallSemanticVars),
     },
   },
@@ -46,7 +45,7 @@ export const headerAreaStyle = style({
   alignItems: "center",
   gap: semanticVars.spacing.areaInner,
   "@media": {
-    [mediaQueries.small]: {
+    [queries.small]: {
       flexDirection: "column",
       alignItems: "stretch",
     },

@@ -1,6 +1,6 @@
 import { style, styleVariants, ComplexStyleRule } from "@vanilla-extract/css";
-import { colorVars } from "../../../styles";
-import { mediaQueries, semanticVars } from "../../../App.css";
+import { colorVars, queries } from "../../../styles";
+import { semanticVars } from "../../../App.css";
 import { ColumnType } from "../types";
 
 export const scrollableStyle = style({
@@ -50,10 +50,10 @@ const rowStyleBase = style({
   width: "100%",
   borderBottom: semanticVars.border.decoration,
   "@media": {
-    [mediaQueries.medium]: {
+    [queries.medium]: {
       gridTemplateColumns: "5rem 4.5rem 6rem 1fr 5rem",
     },
-    [mediaQueries.small]: {
+    [queries.small]: {
       gridTemplateColumns: "5rem 4.5rem 1fr 5rem",
     },
   },
@@ -70,7 +70,7 @@ export const rowStyle = styleVariants({
     {
       minHeight: "3rem",
       "@media": {
-        [mediaQueries.small]: {
+        [queries.small]: {
           minHeight: "4.5rem",
         },
       },
@@ -92,7 +92,7 @@ export const rowDisplayTableRowStyle = styleVariants({
       height: "3rem",
       padding: 0,
       "@media": {
-        [mediaQueries.small]: {
+        [queries.small]: {
           height: "4.5rem",
         },
       },
@@ -140,7 +140,7 @@ export const cellStyle = styleVariants<{
     base,
     {
       "@media": {
-        [mediaQueries.small]: {
+        [queries.small]: {
           gridRowStart: 1,
           gridRowEnd: 2,
           gridColumnStart: 3,
@@ -153,7 +153,7 @@ export const cellStyle = styleVariants<{
     base,
     {
       "@media": {
-        [mediaQueries.small]: {
+        [queries.small]: {
           gridRowStart: 2,
           gridRowEnd: 3,
           gridColumnStart: 1,
@@ -168,7 +168,7 @@ export const cellStyle = styleVariants<{
       justifyContent: "flex-end",
       alignItems: "flex-end",
       "@media": {
-        [mediaQueries.small]: {
+        [queries.small]: {
           gridRowStart: 1,
           gridRowEnd: 3,
           gridColumnStart: 4,
@@ -188,7 +188,7 @@ export const cellDisplayTableCellStyle = styleVariants({
       width: `calc(6rem + ${semanticVars.spacing.inlinePadding})`,
       paddingLeft: `calc(${semanticVars.spacing.inlinePadding} * 2)`,
       "@media": {
-        [mediaQueries.small]: {
+        [queries.small]: {
           width: `calc(5rem + ${semanticVars.spacing.inlinePadding})`,
         },
       },
@@ -201,7 +201,7 @@ export const cellDisplayTableCellStyle = styleVariants({
       verticalAlign: "middle",
       width: "5rem",
       "@media": {
-        [mediaQueries.small]: {
+        [queries.small]: {
           width: "4.5rem",
         },
       },
@@ -214,7 +214,7 @@ export const cellDisplayTableCellStyle = styleVariants({
       verticalAlign: "middle",
       width: "8rem",
       "@media": {
-        [mediaQueries.small]: {
+        [queries.small]: {
           width: "4.5rem",
         },
       },
@@ -236,7 +236,7 @@ export const cellDisplayTableCellStyle = styleVariants({
       width: `calc(8rem + ${semanticVars.spacing.inlinePadding})`,
       paddingRight: `calc(${semanticVars.spacing.inlinePadding} * 2)`,
       "@media": {
-        [mediaQueries.small]: {
+        [queries.small]: {
           width: "4rem",
         },
       },

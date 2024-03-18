@@ -1,6 +1,6 @@
 import { style, styleVariants } from "@vanilla-extract/css";
-import { colorVars } from "../../styles";
-import { semanticVars, themeVars, mediaQueries } from "../../App.css";
+import { colorVars, queries } from "../../styles";
+import { semanticVars, themeVars } from "../../App.css";
 
 const inputStyleBase = style({
   padding: semanticVars.spacing.inlinePadding,
@@ -26,7 +26,7 @@ export const inputStyle = styleVariants({
     {
       width: "10rem",
       "@media": {
-        [mediaQueries.medium]: {
+        [queries.medium]: {
           width: "8rem",
         },
       },
