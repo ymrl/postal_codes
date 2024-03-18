@@ -1,5 +1,6 @@
 import { style } from "@vanilla-extract/css";
-import { colorVars, themeVars } from "../../App.css";
+import { colorVars } from "../../styles";
+import { themeVars } from "../../App.css";
 
 export const badgeStyle = style({
   backgroundColor: colorVars.accent.primary,

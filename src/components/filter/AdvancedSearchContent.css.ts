@@ -1,5 +1,6 @@
 import { style } from "@vanilla-extract/css";
-import { themeVars, colorVars, semanticVars } from "../../App.css";
+import { colorVars } from "../../styles";
+import { themeVars, semanticVars } from "../../App.css";
 
 export const advancedSearchContentStyle = style({
   position: "absolute",

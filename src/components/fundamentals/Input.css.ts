@@ -1,10 +1,6 @@
 import { style, styleVariants } from "@vanilla-extract/css";
-import {
-  colorVars,
-  semanticVars,
-  themeVars,
-  mediaQueries,
-} from "../../App.css";
+import { colorVars } from "../../styles";
+import { semanticVars, themeVars, mediaQueries } from "../../App.css";
 
 const inputStyleBase = style({
   padding: semanticVars.spacing.inlinePadding,

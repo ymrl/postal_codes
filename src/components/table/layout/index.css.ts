@@ -1,5 +1,6 @@
 import { style, styleVariants, ComplexStyleRule } from "@vanilla-extract/css";
-import { colorVars, mediaQueries, semanticVars } from "../../../App.css";
+import { colorVars } from "../../../styles";
+import { mediaQueries, semanticVars } from "../../../App.css";
 import { ColumnType } from "../types";
 
 export const scrollableStyle = style({

@@ -1,5 +1,6 @@
 import { style, globalStyle } from "@vanilla-extract/css";
-import { colorVars, semanticVars, themeVars } from "../../App.css";
+import { colorVars } from "../../styles";
+import { semanticVars, themeVars } from "../../App.css";
 
 export const checkBoxContainerStyle = style({
   display: "flex",

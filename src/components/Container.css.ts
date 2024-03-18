@@ -1,14 +1,12 @@
 import { style, assignVars, globalStyle } from "@vanilla-extract/css";
 import {
-  colorVars,
-  lightColors,
-  darkColors,
   mediaQueries,
   largeSemanticVars,
   smallSemanticVars,
   semanticVars,
   mediumSemanticVars,
 } from "../App.css";
+import { lightColors, darkColors, colorVars } from "../styles";
 
 export const containerStyle = style({
   display: "flex",

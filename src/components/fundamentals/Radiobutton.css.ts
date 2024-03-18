@@ -1,6 +1,7 @@
 import { globalStyle, style } from "@vanilla-extract/css";
+import { colorVars } from "../../styles";
 import { checkBoxContainerStyle } from "./Checkbox.css";
-import { colorVars, semanticVars, themeVars } from "../../App.css";
+import { semanticVars, themeVars } from "../../App.css";
 
 export const radioButtonContainerStyle = style([checkBoxContainerStyle]);
 

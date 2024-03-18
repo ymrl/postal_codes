@@ -1,5 +1,5 @@
 import { style } from "@vanilla-extract/css";
-import { colorVars } from "../../App.css";
+import { colorVars } from "../../styles";
 
 export const linkStyle = style({
   selectors: {

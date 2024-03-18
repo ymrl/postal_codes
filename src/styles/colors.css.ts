@@ -1,6 +1,34 @@
 import { createThemeContract } from "@vanilla-extract/css";
 
-export const lightColors = {
+type ColorScheme = {
+  readonly background: {
+    readonly primary: string;
+    readonly secondary: string;
+    readonly primaryHover: string;
+    readonly secondaryHover: string;
+  };
+  readonly text: {
+    readonly primary: string;
+    readonly secondary: string;
+    readonly dangerous: string;
+    readonly link: string;
+    readonly linkHover: string;
+    readonly linkVisited: string;
+    readonly linkVisitedHover: string;
+  };
+  readonly accent: {
+    readonly primary: string;
+    readonly textOnPrimary: string;
+    readonly primaryTranslucent: string;
+  };
+  readonly ui: {
+    readonly distinguish: string;
+    readonly decoration: string;
+    readonly backdrop: string;
+  };
+};
+
+export const lightColors: ColorScheme = {
   background: {
     primary: "#fff",
     secondary: "#f0f0f0",
@@ -28,7 +56,7 @@ export const lightColors = {
   },
 };
 
-export const darkColors: typeof lightColors = {
+export const darkColors: ColorScheme = {
   ...lightColors,
   background: {
     ...lightColors.background,

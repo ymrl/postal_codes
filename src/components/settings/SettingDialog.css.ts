@@ -1,5 +1,6 @@
 import { style } from "@vanilla-extract/css";
-import { colorVars, themeVars, semanticVars } from "../../App.css";
+import { colorVars } from "../../styles";
+import { themeVars, semanticVars } from "../../App.css";
 
 export const dialogContentStyle = style({
   display: "flex",

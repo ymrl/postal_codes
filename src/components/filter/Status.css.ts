@@ -1,10 +1,6 @@
 import { style } from "@vanilla-extract/css";
-import {
-  colorVars,
-  mediaQueries,
-  semanticVars,
-  themeVars,
-} from "../../App.css";
+import { colorVars } from "../../styles";
+import { mediaQueries, semanticVars, themeVars } from "../../App.css";
 
 export const statusStyle = style({
   flexShrink: 1,
