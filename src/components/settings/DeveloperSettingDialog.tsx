@@ -31,6 +31,7 @@ export const DeveloperSettingDialogRenderer: React.ForwardRefRenderFunction<
     noAriaColIndex,
     noAriaRowCount,
     noAriaRowIndex,
+    noAriaDescribedby,
     cssDisplayMode,
   } = React.useContext(DeveloperSettingsContext);
   const id = React.useId();
@@ -152,6 +153,14 @@ export const DeveloperSettingDialogRenderer: React.ForwardRefRenderFunction<
               }
             >
               aria-rowcount を使用しない
+            </Checkbox>
+            <Checkbox
+              checked={noAriaDescribedby}
+              onChange={(e) =>
+                updateDeveloperSettings({ noAriaDescribedby: e.target.checked })
+              }
+            >
+              aria-describedby を使用しない
             </Checkbox>
           </Fields>
         </Fieldset>

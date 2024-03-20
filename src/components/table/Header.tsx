@@ -11,6 +11,8 @@ export const Header = ({ columns }: { columns: Column[] }) => {
             colIndex={i + 1}
             header
             key={column.id}
+            column={column}
+            id={column.id}
           >
             <div className={headerContentStyle[column.type]}>
               {column.label}

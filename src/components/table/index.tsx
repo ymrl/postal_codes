@@ -11,6 +11,7 @@ import {
 } from "./layout";
 import { screenWidths, sizeRemToPx } from "../../styles";
 import { rowHeight, smallRowHeight } from "./layout/index.css";
+import { Column } from "./types";
 
 export const Table = () => {
   const { filteredKenAll } = React.useContext(KenAllContext);
@@ -29,6 +30,13 @@ export const Table = () => {
 
   const items = rowVirtualizer.getVirtualItems();
   const totalSize = rowVirtualizer.getTotalSize();
+  const columns: Column[] = [
+    { type: "number", label: "郵便番号", id: `${id}__postalCode` },
+    { type: "pref", label: "都道府県", id: `${id}__prefecture` },
+    { type: "city", label: "市区町村", id: `${id}__city` },
+    { type: "town", label: "町域", id: `${id}__town` },
+    { type: "others", label: "その他の情報", id: `${id}__others` },
+  ];
 
   return (
     <TableLayout
@@ -37,18 +45,16 @@ export const Table = () => {
       ariaColCount={5}
       ariaRowCount={filteredKenAll.length + 1}
     >
-      <Header
-        columns={[
-          { type: "number", label: "郵便番号", id: `${id}__postalCode` },
-          { type: "pref", label: "都道府県", id: `${id}__prefecture` },
-          { type: "city", label: "市区町村", id: `${id}__city` },
-          { type: "town", label: "町域", id: `${id}__town` },
-          { type: "others", label: "その他の情報", id: `${id}__others` },
-        ]}
-      />
+      <Header columns={columns} />
       {disableVirtualScroll ? (
         filteredKenAll.map((row, i) => (
-          <BodyRow rowIndex={i + 2} row={row} key={i} />
+          <BodyRow
+            rowIndex={i + 2}
+            row={row}
+            key={i}
+            columns={columns}
+            id={`${id}__${i}`}
+          />
         ))
       ) : (
         <ScrollableInner height={totalSize}>
@@ -58,6 +64,8 @@ export const Table = () => {
               rowIndex={virtualItem.index + 1}
               row={filteredKenAll[virtualItem.index]}
               key={virtualItem.key}
+              columns={columns}
+              id={`${id}__${virtualItem.index}`}
             />
           ))}
           <ContentBottom

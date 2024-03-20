@@ -12,7 +12,7 @@ import {
   tableLayoutDisplayTableStyle,
   tableLayoutStyle,
 } from "./index.css";
-import { ColumnType } from "../types";
+import { Column, ColumnType } from "../types";
 
 export const TableLayout = ({
   children,
@@ -131,10 +131,12 @@ export const Row = ({
   children,
   rowIndex,
   type = "body",
+  id,
 }: {
   children: React.ReactNode;
   rowIndex: number;
   type?: "header" | "body";
+  id?: string;
 }) => {
   const { tableElement, tableRole, noAriaRowIndex, cssDisplayMode } =
     React.useContext(DeveloperSettingsContext);
@@ -142,6 +144,7 @@ export const Row = ({
   const role = tableRole ? "row" : undefined;
   return (
     <TagName
+      id={id}
       role={role}
       aria-rowindex={noAriaRowIndex ? undefined : rowIndex}
       className={
@@ -197,15 +200,26 @@ export const Cell = ({
   colIndex,
   columnType,
   header,
+  column,
+  id,
+  rowHeaderId,
 }: {
   children: React.ReactNode;
   colIndex: number;
   columnType: ColumnType;
   header?: boolean;
+  column: Column;
+  id?: string;
+  rowHeaderId?: string;
 }) => {
   const { tableKeyboardControl } = React.useContext(SettingsContext);
-  const { tableElement, tableRole, noAriaColIndex, cssDisplayMode } =
-    React.useContext(DeveloperSettingsContext);
+  const {
+    tableElement,
+    tableRole,
+    noAriaColIndex,
+    noAriaDescribedby,
+    cssDisplayMode,
+  } = React.useContext(DeveloperSettingsContext);
   const TagName = tableElement === "table" ? (header ? "th" : "td") : "div";
   const role =
     tableRole && header
@@ -224,6 +238,10 @@ export const Cell = ({
       }
       role={role}
       aria-colindex={noAriaColIndex ? undefined : colIndex}
+      aria-describedby={
+        noAriaDescribedby ? undefined : `${column?.id} ${rowHeaderId || ""}`
+      }
+      id={id}
       className={
         cssDisplayMode === "table"
           ? cellDisplayTableCellStyle[columnType]
