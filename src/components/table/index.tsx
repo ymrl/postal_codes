@@ -61,7 +61,7 @@ export const Table = () => {
           <ContentTop height={items[0]?.start ?? 0} />
           {items.map((virtualItem) => (
             <BodyRow
-              rowIndex={virtualItem.index + 1}
+              rowIndex={virtualItem.index + 2}
               row={filteredKenAll[virtualItem.index]}
               key={virtualItem.key}
               columns={columns}
