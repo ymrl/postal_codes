@@ -1,8 +1,8 @@
 import { style } from "@vanilla-extract/css";
-import { themeVars, semanticVars } from "../App.css";
+import { semanticTokens } from "../styles";
 
 export const titleStyle = style({
-  fontSize: semanticVars.font.title,
-  fontWeight: themeVars.font.strongWeight,
+  font: semanticTokens.font.title,
+  color: semanticTokens.font.color.primary,
   margin: 0,
 });

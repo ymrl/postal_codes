@@ -1,6 +1,5 @@
 import { style, styleVariants } from "@vanilla-extract/css";
-import { colorVars } from "../../styles";
-import { semanticVars, themeVars } from "../../App.css";
+import { colorVars, semanticTokens } from "../../styles";
 import { inputStyle } from "./Input.css";
 
 const labeledInputStyleBase = style({
@@ -10,10 +9,10 @@ const labeledInputStyleBase = style({
   alignItems: "stretch",
   justifyContent: "stretch",
   flexWrap: "nowrap",
-  gap: themeVars.spacing.small,
+  gap: semanticTokens.spacing.inlineInner,
   selectors: {
     "&:focus-within": {
-      outline: semanticVars.focus.outline,
+      outline: semanticTokens.focus.outline,
     },
   },
 });
@@ -24,7 +23,7 @@ export const labeledInputStyle = styleVariants({
 });
 
 export const labeledInputInputStyle = style({
-  fontSize: themeVars.font.normalSize,
+  fontSize: semanticTokens.ui.input.font,
   background: colorVars.background.primary,
   color: colorVars.text.primary,
   padding: 0,
@@ -41,7 +40,7 @@ export const labeledInputInputStyle = style({
 });
 
 export const labeledInputLabelStyle = style({
-  fontSize: themeVars.font.xSmallSize,
+  font: semanticTokens.font.caption,
   display: "flex",
   flexDirection: "row",
   alignItems: "center",

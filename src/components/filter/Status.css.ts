@@ -1,16 +1,15 @@
 import { style } from "@vanilla-extract/css";
-import { colorVars, queries } from "../../styles";
-import { semanticVars, themeVars } from "../../App.css";
+import { queries, semanticTokens } from "../../styles";
 
 export const statusStyle = style({
   flexShrink: 1,
-  color: colorVars.text.secondary,
-  fontSize: themeVars.font.smallSize,
+  font: semanticTokens.font.caption,
+  color: semanticTokens.font.color.secondary,
   "@media": {
     [queries.small]: {
       position: "absolute",
-      top: semanticVars.spacing.areaPadding,
-      right: semanticVars.spacing.areaPadding,
+      top: semanticTokens.spacing.blockPadding,
+      right: semanticTokens.spacing.blockPadding,
     },
   },
 });

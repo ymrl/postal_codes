@@ -1,10 +1,10 @@
 import { style } from "@vanilla-extract/css";
-import { themeVars } from "../../App.css";
+import { semanticTokens } from "../../styles";
 
 export const iconLabeledInputLabelStyle = style({
   flexGrow: 0,
   flexShrink: 0,
-  fontSize: themeVars.font.xSmallSize,
+  font: semanticTokens.font.caption,
   display: "flex",
   flexDirection: "row",
   alignItems: "center",
@@ -14,7 +14,7 @@ export const iconLabeledInputLabelTextStyle = style({
   display: "inline-flex",
   maxWidth: "100%",
   transitionProperty: "opacity",
-  transitionDuration: themeVars.transition.duration,
+  transitionDuration: semanticTokens.transition.duration,
   opacity: 1,
   whiteSpace: "nowrap",
 });

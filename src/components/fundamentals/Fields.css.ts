@@ -1,5 +1,5 @@
 import { style, styleVariants } from "@vanilla-extract/css";
-import { semanticVars } from "../../App.css";
+import { semanticTokens } from "../../styles";
 
 const fieldsStyleBase = style({
   display: "flex",
@@ -13,13 +13,13 @@ export const fieldsStyle = styleVariants({
   normal: [
     fieldsStyleBase,
     {
-      gap: semanticVars.spacing.areaInner,
+      gap: semanticTokens.spacing.blockInner,
     },
   ],
   small: [
     fieldsStyleBase,
     {
-      gap: semanticVars.spacing.inlineInner,
+      gap: semanticTokens.spacing.inlineInner,
     },
   ],
   none: [fieldsStyleBase, { gap: 0 }],

@@ -1,9 +1,8 @@
 import { style } from "@vanilla-extract/css";
-import { themeVars, semanticVars } from "../../../App.css";
+import { semanticTokens } from "../../../styles";
 
 const cellContentBase = style({
-  fontSize: semanticVars.font.data,
-  fontWeight: themeVars.font.normalWeight,
+  font: semanticTokens.ui.table.font.body,
   display: "flex",
   justifyContent: "flex-start",
   alignItems: "center",
@@ -11,7 +10,7 @@ const cellContentBase = style({
 export const numberCellContentStyle = style([
   cellContentBase,
   {
-    fontWeight: themeVars.font.strongWeight,
+    font: semanticTokens.ui.table.font.rowHeader,
   },
 ]);
 

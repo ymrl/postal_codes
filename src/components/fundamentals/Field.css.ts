@@ -1,18 +1,18 @@
 import { style } from "@vanilla-extract/css";
-import { semanticVars, themeVars } from "../../App.css";
+import { semanticTokens } from "../../styles";
 
 export const fieldStyle = style({
   display: "flex",
   flexDirection: "row",
   alignItems: "flex-start",
   justifyContent: "space-between",
-  minHeight: semanticVars.ui.control,
-  gap: semanticVars.spacing.inlineInner,
+  minHeight: semanticTokens.ui.control.size,
+  gap: semanticTokens.spacing.inlineInner,
   padding: 0,
   margin: 0,
 });
 export const fieldLabelTextStyle = style({
   display: "inline-flex",
-  fontSize: semanticVars.font.normal,
-  paddingTop: `calc((${semanticVars.ui.control} - ${themeVars.font.lineHeight} * ${semanticVars.font.normal}) / 2)`,
+  font: semanticTokens.font.normal,
+  paddingTop: `calc((${semanticTokens.ui.control.size} - ${semanticTokens.font.lineHeight} * ${semanticTokens.font.size.normal}) / 2)`,
 });

@@ -1,15 +1,15 @@
 import { style } from "@vanilla-extract/css";
-import { semanticVars, themeVars } from "../../App.css";
+import { semanticTokens } from "../../styles";
 
 export const searchStyle = style({
   display: "flex",
-  gap: themeVars.spacing.normal,
+  gap: semanticTokens.spacing.inlineInner,
   alignItems: "center",
   flexShrink: 1,
 });
 
 export const searchFormStyle = style({
   display: "flex",
-  gap: semanticVars.spacing.inlineInner,
+  gap: semanticTokens.spacing.inlineInner,
   alignItems: "center",
 });

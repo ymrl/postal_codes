@@ -1,16 +1,14 @@
 import { style } from "@vanilla-extract/css";
-import { colorVars } from "../../styles";
-import { semanticVars, themeVars } from "../../App.css";
+import { colorVars, semanticTokens } from "../../styles";
 
 export const dialogStyle = style({
   display: "none",
-  border: semanticVars.border.decoration,
-  borderRadius: semanticVars.borderRadius.dialog,
+  border: semanticTokens.border.decoration,
+  borderRadius: semanticTokens.ui.dialog.borderRadius,
   backgroundColor: colorVars.background.primary,
-  color: colorVars.text.primary,
   padding: 0,
   width: "30rem",
-  maxWidth: `calc(100vw - ${semanticVars.spacing.containerPadding} * 2)`,
+  maxWidth: `calc(100vw - ${semanticTokens.spacing.containerPadding} * 2)`,
   position: "relative",
   flexDirection: "column",
   gap: 0,
@@ -36,7 +34,7 @@ export const backdropCSSVarStyle = style({
 });
 
 export const dialogHeaderStyle = style({
-  padding: `${semanticVars.spacing.containerPadding} ${semanticVars.spacing.containerPadding} ${semanticVars.spacing.containerInner}`,
+  padding: `${semanticTokens.spacing.containerPadding} ${semanticTokens.spacing.containerPadding} ${semanticTokens.spacing.blockPadding}`,
   backgroundColor: colorVars.background.secondary,
   display: "flex",
   justifyContent: "space-between",
@@ -45,34 +43,33 @@ export const dialogHeaderStyle = style({
 export const dialogBodyStyle = style({
   flexShrink: 1,
   overflow: "auto",
-  padding: `${semanticVars.spacing.containerInner} ${semanticVars.spacing.containerPadding} ${semanticVars.spacing.containerPadding}`,
+  padding: `${semanticTokens.spacing.blockPadding} ${semanticTokens.spacing.containerPadding} ${semanticTokens.spacing.containerPadding}`,
 });
 
 export const dialogTitleStyle = style({
   margin: 0,
   padding: 0,
-  fontSize: semanticVars.font.subTitle,
-  fontWeight: themeVars.font.strongWeight,
+  font: semanticTokens.font.subTitle,
 });
 
 export const dialogCloseButtonStyle = style({
-  width: themeVars.controls.normal,
-  height: themeVars.controls.normal,
+  width: semanticTokens.ui.control.size,
+  height: semanticTokens.ui.control.size,
   borderRadius: "50%",
   border: 0,
   padding: 0,
   backgroundColor: "transparent",
   color: colorVars.ui.distinguish,
-  fontSize: themeVars.font.normalSize,
+  font: semanticTokens.font.normal,
   cursor: "pointer",
-  transitionDuration: themeVars.transition.duration,
+  transitionDuration: semanticTokens.transition.duration,
   transitionProperty: "background-color",
   selectors: {
     "&:hover": {
       backgroundColor: colorVars.background.secondaryHover,
     },
     "&:focus-visible": {
-      outline: semanticVars.focus.outline,
+      outline: semanticTokens.focus.outline,
     },
   },
 });

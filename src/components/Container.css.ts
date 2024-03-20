@@ -1,11 +1,14 @@
 import { style, assignVars, globalStyle } from "@vanilla-extract/css";
 import {
-  largeSemanticVars,
-  smallSemanticVars,
-  semanticVars,
-  mediumSemanticVars,
-} from "../App.css";
-import { lightColors, darkColors, colorVars, queries } from "../styles";
+  lightColors,
+  darkColors,
+  colorVars,
+  queries,
+  semanticTokens,
+  semanticTokensLarge,
+  semanticTokensMedium,
+  semanticTokensSmall,
+} from "../styles";
 
 export const containerStyle = style({
   display: "flex",
@@ -13,13 +16,14 @@ export const containerStyle = style({
   justifyContent: "flex-start",
   width: "100dvw",
   height: "100dvh",
-  vars: assignVars(semanticVars, largeSemanticVars),
+
+  vars: assignVars(semanticTokens, semanticTokensLarge),
   "@media": {
     [queries.medium]: {
-      vars: assignVars(semanticVars, mediumSemanticVars),
+      vars: assignVars(semanticTokens, semanticTokensMedium),
     },
     [queries.small]: {
-      vars: assignVars(semanticVars, smallSemanticVars),
+      vars: assignVars(semanticTokens, semanticTokensSmall),
     },
   },
 });
@@ -38,12 +42,12 @@ export const containerStyleDark = style({
 });
 
 export const headerAreaStyle = style({
-  padding: semanticVars.spacing.areaPadding,
+  padding: semanticTokens.spacing.blockPadding,
   display: "flex",
   flexDirection: "row",
   justifyContent: "flex-start",
   alignItems: "center",
-  gap: semanticVars.spacing.areaInner,
+  gap: semanticTokens.spacing.blockInner,
   "@media": {
     [queries.small]: {
       flexDirection: "column",
@@ -57,7 +61,7 @@ export const headerControlsStyle = style({
   justifyContent: "space-between",
   alignItems: "center",
   flexGrow: 1,
-  gap: semanticVars.spacing.inlineInner,
+  gap: semanticTokens.spacing.inlineInner,
 });
 
 export const mainAreaStyle = style({

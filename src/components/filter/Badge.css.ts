@@ -1,19 +1,18 @@
 import { style } from "@vanilla-extract/css";
-import { colorVars } from "../../styles";
-import { themeVars } from "../../App.css";
+import { semanticTokens } from "../../styles";
 
 export const badgeStyle = style({
-  backgroundColor: colorVars.accent.primary,
-  color: colorVars.accent.textOnPrimary,
-  fontSize: themeVars.font.xSmallSize,
-  fontWeight: themeVars.font.strongWeight,
+  background: semanticTokens.ui.badge.background,
+  color: semanticTokens.ui.badge.color,
+  font: semanticTokens.ui.badge.font,
   display: "inline-flex",
   alignItems: "center",
   justifyContent: "center",
-  padding: `${themeVars.spacing.xSmall} ${themeVars.spacing.xSmall}`,
-  borderRadius: themeVars.borderRadius.large,
-  width: "1.25rem",
+  padding: semanticTokens.ui.badge.padding,
+  borderRadius: `calc(0.5 * ${semanticTokens.ui.badge.size})`,
+  width: semanticTokens.ui.badge.size,
+  height: semanticTokens.ui.badge.size,
   position: "absolute",
-  right: "-0.5rem",
-  top: "-0.5rem",
+  right: `calc(-0.25 * ${semanticTokens.ui.badge.size})`,
+  top: `calc(-0.25 * ${semanticTokens.ui.badge.size})`,
 });

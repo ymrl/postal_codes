@@ -1,6 +1,5 @@
 import { style } from "@vanilla-extract/css";
-import { colorVars } from "../../styles";
-import { themeVars } from "../../App.css";
+import { semanticTokens } from "../../styles";
 
 export const fieldsetStyle = style({
   border: "0",
@@ -8,7 +7,6 @@ export const fieldsetStyle = style({
 });
 
 export const legendStyle = style({
-  fontSize: themeVars.font.normalSize,
-  fontWeight: "bold",
-  color: colorVars.text.primary,
+  font: semanticTokens.ui.legend.font,
+  color: semanticTokens.font.color.primary,
 });

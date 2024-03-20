@@ -1,12 +1,11 @@
 import { style } from "@vanilla-extract/css";
-import { colorVars } from "../../styles";
-import { semanticVars, themeVars } from "../../App.css";
+import { semanticTokens } from "../../styles";
 
 export const othersStyle = style({
   listStyle: "none",
   display: "flex",
   flexDirection: "row",
-  gap: themeVars.spacing.small,
+  gap: semanticTokens.spacing.inlineInner,
   flexWrap: "wrap",
   justifyContent: "flex-end",
   alignItems: "flex-end",
@@ -15,6 +14,6 @@ export const othersStyle = style({
 });
 
 export const othersItemStyle = style({
-  fontSize: semanticVars.font.aside,
-  color: colorVars.text.secondary,
+  font: semanticTokens.ui.table.font.aside,
+  color: semanticTokens.font.color.secondary,
 });

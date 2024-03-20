@@ -1,17 +1,16 @@
 import { style } from "@vanilla-extract/css";
-import { colorVars } from "../../styles";
-import { themeVars, semanticVars } from "../../App.css";
+import { semanticTokens } from "../../styles";
 
 export const dialogContentStyle = style({
   display: "flex",
   alignItems: "flex-start",
   justifyContent: "flex-start",
   flexDirection: "column",
-  gap: semanticVars.spacing.areaInner,
+  gap: semanticTokens.spacing.blockInner,
 });
 
 export const disclaimerStyle = style({
-  fontSize: themeVars.font.smallSize,
-  color: colorVars.text.secondary,
+  font: semanticTokens.font.caption,
+  color: semanticTokens.font.color.secondary,
   textAlign: "left",
 });

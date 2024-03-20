@@ -1,10 +1,10 @@
 import { style } from "@vanilla-extract/css";
-import { semanticVars } from "../../App.css";
+import { semanticTokens } from "../../styles";
 
 export const settingStyle = style({
   display: "flex",
   flexDirection: "row",
   justifyContent: "flex-end",
   alignItems: "center",
-  gap: semanticVars.spacing.inlineInner,
+  gap: semanticTokens.spacing.inlineInner,
 });

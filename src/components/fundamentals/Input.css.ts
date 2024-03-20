@@ -1,18 +1,17 @@
 import { style, styleVariants } from "@vanilla-extract/css";
-import { colorVars, queries } from "../../styles";
-import { semanticVars, themeVars } from "../../App.css";
+import { colorVars, queries, semanticTokens } from "../../styles";
 
 const inputStyleBase = style({
-  padding: semanticVars.spacing.inlinePadding,
-  border: semanticVars.border.distinguish,
+  padding: semanticTokens.spacing.inlinePadding,
+  border: semanticTokens.border.distinguish,
   background: colorVars.background.primary,
-  color: colorVars.text.primary,
-  fontSize: themeVars.font.normalSize,
-  borderRadius: semanticVars.borderRadius.control,
-  height: semanticVars.ui.control,
+  color: semanticTokens.font.color.primary,
+  fontSize: semanticTokens.ui.input.font,
+  borderRadius: semanticTokens.ui.control.borderRadius,
+  height: semanticTokens.ui.control.size,
   selectors: {
     "&:focus-visible": {
-      outline: semanticVars.focus.outline,
+      outline: semanticTokens.focus.outline,
     },
     "&[type=number]": {
       textAlign: "right",

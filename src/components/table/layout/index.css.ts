@@ -1,6 +1,5 @@
 import { style, styleVariants, ComplexStyleRule } from "@vanilla-extract/css";
-import { colorVars, queries } from "../../../styles";
-import { semanticVars } from "../../../App.css";
+import { colorVars, queries, semanticTokens } from "../../../styles";
 import { ColumnType } from "../types";
 
 export const scrollableStyle = style({
@@ -9,8 +8,8 @@ export const scrollableStyle = style({
   flexGrow: 1,
   selectors: {
     "&:focus-visible": {
-      outline: semanticVars.focus.outline,
-      outlineOffset: `calc(-1 * ${semanticVars.focus.outlineWidth})`,
+      outline: semanticTokens.focus.outline,
+      outlineOffset: `calc(-1 * ${semanticTokens.focus.outlineWidth})`,
     },
   },
 });
@@ -46,9 +45,9 @@ export const scorllableInnerDisplayTableStyle = style([
 const rowStyleBase = style({
   display: "grid",
   gridTemplateColumns: "6rem 5rem 8rem 1fr 8rem",
-  padding: `0 ${semanticVars.spacing.inlinePadding}`,
+  padding: `0 ${semanticTokens.spacing.inlinePadding}`,
   width: "100%",
-  borderBottom: semanticVars.border.decoration,
+  borderBottom: semanticTokens.border.decoration,
   "@media": {
     [queries.medium]: {
       gridTemplateColumns: "5rem 4.5rem 6rem 1fr 5rem",
@@ -101,7 +100,7 @@ export const rowDisplayTableRowStyle = styleVariants({
 });
 
 const base = style({
-  padding: semanticVars.spacing.inlinePadding,
+  padding: semanticTokens.spacing.inlinePadding,
   flex: "0 0 auto",
   overflow: "hidden",
   textOverflow: "ellipsis",
@@ -111,8 +110,8 @@ const base = style({
   minWidth: "2.75rem",
   selectors: {
     "&:focus-visible": {
-      outline: semanticVars.focus.outline,
-      outlineOffset: `calc(-1 * ${semanticVars.focus.outlineWidth})`,
+      outline: semanticTokens.focus.outline,
+      outlineOffset: `calc(-1 * ${semanticTokens.focus.outlineWidth})`,
     },
   },
 });
@@ -185,11 +184,11 @@ export const cellDisplayTableCellStyle = styleVariants({
     {
       display: "table-cell",
       verticalAlign: "middle",
-      width: `calc(6rem + ${semanticVars.spacing.inlinePadding})`,
-      paddingLeft: `calc(${semanticVars.spacing.inlinePadding} * 2)`,
+      width: `calc(6rem + ${semanticTokens.spacing.inlinePadding})`,
+      paddingLeft: `calc(${semanticTokens.spacing.inlinePadding} * 2)`,
       "@media": {
         [queries.small]: {
-          width: `calc(5rem + ${semanticVars.spacing.inlinePadding})`,
+          width: `calc(5rem + ${semanticTokens.spacing.inlinePadding})`,
         },
       },
     },
@@ -233,8 +232,8 @@ export const cellDisplayTableCellStyle = styleVariants({
     {
       display: "table-cell",
       verticalAlign: "bottom",
-      width: `calc(8rem + ${semanticVars.spacing.inlinePadding})`,
-      paddingRight: `calc(${semanticVars.spacing.inlinePadding} * 2)`,
+      width: `calc(8rem + ${semanticTokens.spacing.inlinePadding})`,
+      paddingRight: `calc(${semanticTokens.spacing.inlinePadding} * 2)`,
       "@media": {
         [queries.small]: {
           width: "4rem",

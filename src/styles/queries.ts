@@ -1,7 +1,7 @@
-const mediumBreakpoint = "48rem";
-const smallBreakpoint = "30rem";
+import { screenWidths } from "./screeinSizes";
+
 export const queries = {
-  medium: `(max-width: ${mediumBreakpoint})`,
-  small: `(max-width: ${smallBreakpoint})`,
+  medium: `(max-width: ${screenWidths.medium.max})`,
+  small: `(max-width: ${screenWidths.small.max})`,
   dark: "(prefers-color-scheme: dark)",
 } as const;

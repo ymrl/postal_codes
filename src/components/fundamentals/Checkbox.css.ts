@@ -1,19 +1,18 @@
 import { style, globalStyle } from "@vanilla-extract/css";
-import { colorVars } from "../../styles";
-import { semanticVars, themeVars } from "../../App.css";
+import { colorVars, semanticTokens } from "../../styles";
 
 export const checkBoxContainerStyle = style({
   display: "flex",
   flexDirection: "row",
   alignItems: "stretch",
-  fontSize: semanticVars.font.normal,
+  font: semanticTokens.font.normal,
 });
 
 export const checkBoxVisualStyle = style({
   flexShrink: 0,
-  width: semanticVars.ui.check,
-  minHeight: semanticVars.ui.check,
-  borderRadius: themeVars.borderRadius.small,
+  width: semanticTokens.ui.check.size,
+  minHeight: semanticTokens.ui.check.size,
+  borderRadius: semanticTokens.ui.check.borderRadius,
   position: "relative",
   left: 0,
   top: 0,
@@ -22,28 +21,28 @@ export const checkBoxVisualStyle = style({
       content: '""',
       position: "absolute",
       margin: "auto",
-      width: `calc(${semanticVars.ui.check} * 0.5)`,
-      height: `calc(${semanticVars.ui.check} * 0.5)`,
+      width: `calc(${semanticTokens.ui.check.size} * 0.5)`,
+      height: `calc(${semanticTokens.ui.check.size} * 0.5)`,
       left: 0,
       right: 0,
-      top: `calc((${semanticVars.ui.check} - ${semanticVars.font.normal}) * 0.6)`,
+      top: `calc((${semanticTokens.ui.check.size} - ${semanticTokens.font.size.normal}) * 0.5)`,
       border: `2px solid ${colorVars.ui.distinguish}`,
       background: colorVars.background.primary,
-      borderRadius: themeVars.borderRadius.small,
+      borderRadius: semanticTokens.ui.check.borderRadius,
       transitionProperty: "background-color",
-      transitionDuration: themeVars.transition.duration,
+      transitionDuration: semanticTokens.transition.duration,
       outlineOffset: "0.125rem",
     },
     "&::after": {
       content: '""',
       position: "absolute",
       margin: "auto",
-      top: `calc((${semanticVars.ui.check} - ${semanticVars.font.normal}) * 0.6 + 0.125rem)`,
+      top: `calc((${semanticTokens.ui.check.size} - ${semanticTokens.font.size.normal}) * 0.5 + ${semanticTokens.ui.check.size} * 0.125)`,
       left: 0,
       right: 0,
       transform: "rotate(-50deg)",
-      width: `calc(${semanticVars.ui.check} * 0.4)`,
-      height: `calc(${semanticVars.ui.check} * 0.2)`,
+      width: `calc(${semanticTokens.ui.check.size} * 0.4)`,
+      height: `calc(${semanticTokens.ui.check.size} * 0.2)`,
       borderLeft: `2px solid ${colorVars.background.primary}`,
       borderBottom: `2px solid ${colorVars.background.primary}`,
     },
@@ -61,6 +60,6 @@ globalStyle(
 globalStyle(
   `${checkBoxContainerStyle} input:focus-visible + ${checkBoxVisualStyle}::before`,
   {
-    outline: semanticVars.focus.outline,
+    outline: semanticTokens.focus.outline,
   },
 );

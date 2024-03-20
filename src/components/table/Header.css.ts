@@ -1,10 +1,9 @@
 import { ComplexStyleRule, styleVariants, style } from "@vanilla-extract/css";
-import { semanticVars, themeVars } from "../../App.css";
 import { ColumnType } from "./types";
+import { semanticTokens } from "../../styles";
 
 const headerContentStyleBase = style({
-  fontSize: semanticVars.font.dataHeading,
-  fontWeight: themeVars.font.normalWeight,
+  font: semanticTokens.ui.table.font.colHeader,
   display: "flex",
   justifyContent: "flex-start",
   alignItems: "center",

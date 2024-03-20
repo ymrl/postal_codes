@@ -1,29 +1,27 @@
 import { style } from "@vanilla-extract/css";
-import { colorVars } from "../../styles";
-import { themeVars, semanticVars } from "../../App.css";
+import { colorVars, semanticTokens } from "../../styles";
 
 export const buttonStyle = style({
   cursor: "pointer",
-  padding: `${themeVars.spacing.small} ${themeVars.spacing.small}`,
-  borderRadius: semanticVars.borderRadius.control,
-  border: semanticVars.border.decoration,
-  height: semanticVars.ui.control,
-  minWidth: semanticVars.ui.control,
+  padding: semanticTokens.ui.control.padding,
+  borderRadius: semanticTokens.ui.control.borderRadius,
+  border: semanticTokens.border.decoration,
+  height: semanticTokens.ui.control.size,
+  minWidth: semanticTokens.ui.control.size,
   display: "inline-flex",
   alignItems: "center",
   justifyContent: "center",
   backgroundColor: colorVars.background.secondary,
-  color: colorVars.text.primary,
-  fontSize: semanticVars.font.button,
-  lineHeight: themeVars.font.lineHeight,
-  transitionDuration: themeVars.transition.duration,
+  color: semanticTokens.font.color.primary,
+  font: semanticTokens.ui.button.font,
+  transitionDuration: semanticTokens.transition.duration,
   transitionProperty: "background-color",
   selectors: {
     "&:hover": {
       backgroundColor: colorVars.background.secondaryHover,
     },
     "&:focus-visible": {
-      outline: semanticVars.focus.outline,
+      outline: semanticTokens.focus.outline,
     },
   },
 });
