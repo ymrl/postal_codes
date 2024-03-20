@@ -39,7 +39,7 @@ export const headerAreaStyle = style({
   position: "sticky",
   top: 0,
   background: colorVars.background.primary,
-  zIndex: 1,
+  zIndex: 2,
   padding: semanticTokens.spacing.blockPadding,
   display: "flex",
   flexDirection: "row",

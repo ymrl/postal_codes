@@ -7,7 +7,6 @@ export const advancedSearchContentStyle = style({
   left: 0,
   backgroundColor: colorVars.background.primary,
   border: `1px solid ${colorVars.ui.decoration}`,
-  zIndex: 2,
   padding: semanticTokens.spacing.blockPadding,
   borderRadius: semanticTokens.ui.popup.borderRadius,
   width: "19rem",
