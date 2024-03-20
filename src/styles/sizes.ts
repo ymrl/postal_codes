@@ -21,3 +21,10 @@ export const Size0960 = "60rem";
 export const size1280 = "80rem";
 export const size1440 = "90rem";
 export const size1920 = "120rem";
+
+export const sizeRemToPx = (size: string): number => {
+  return (
+    parseFloat(size) *
+    (parseInt(window.getComputedStyle(document.documentElement).fontSize) || 16)
+  );
+};

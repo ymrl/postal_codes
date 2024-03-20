@@ -5,7 +5,6 @@ import {
   containerStyleLight,
   headerAreaStyle,
   headerControlsStyle,
-  mainAreaStyle,
 } from "./Container.css";
 import { DeveloperSettingsContext, SettingsContext } from "./../contexts";
 
@@ -43,5 +42,5 @@ export const HeaderControls = ({ children }: { children: React.ReactNode }) => (
 );
 
 export const MainArea = ({ children }: { children: React.ReactNode }) => (
-  <main className={mainAreaStyle}>{children}</main>
+  <main>{children}</main>
 );

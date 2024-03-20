@@ -2,7 +2,6 @@ import React from "react";
 import { DeveloperSettingsContext, SettingsContext } from "../../../contexts";
 import {
   scrollableInnerStyle,
-  scrollableStyle,
   rowStyle,
   cellStyle,
   headerRowGroupStyle,
@@ -10,21 +9,23 @@ import {
   rowDisplayTableRowStyle,
   headerRowGroupDisplayTableStyle,
   cellDisplayTableCellStyle,
-  tablePlayerDisplayTableStyle,
-  tablePlayerStyle,
+  tableLayoutDisplayTableStyle,
+  tableLayoutStyle,
 } from "./index.css";
 import { ColumnType } from "../types";
 
-const TablePlayer = ({
+export const TableLayout = ({
   children,
   ariaLabel,
   ariaColCount,
   ariaRowCount,
+  id,
 }: {
   children: React.ReactNode;
   ariaLabel: string;
   ariaRowCount: number;
   ariaColCount: number;
+  id?: string;
 }) => {
   const {
     tableElement,
@@ -39,51 +40,19 @@ const TablePlayer = ({
     <TagName
       className={
         cssDisplayMode === "table"
-          ? tablePlayerDisplayTableStyle
-          : tablePlayerStyle
+          ? tableLayoutDisplayTableStyle
+          : tableLayoutStyle
       }
       role={role}
       aria-label={ariaLabel}
       aria-colcount={noAriaColCount ? undefined : ariaColCount}
       aria-rowcount={noAriaRowCount ? undefined : ariaRowCount}
+      id={id}
     >
       {children}
     </TagName>
   );
 };
-
-const ScrollableRenderer = (
-  {
-    children,
-    ariaLabel,
-    ariaColCount,
-    ariaRowCount,
-  }: {
-    children: React.ReactNode;
-    ariaLabel: string;
-    ariaRowCount: number;
-    ariaColCount: number;
-  },
-  ref: React.Ref<HTMLDivElement>,
-) => {
-  const { tableKeyboardControl } = React.useContext(SettingsContext);
-  return (
-    <div
-      className={scrollableStyle}
-      tabIndex={tableKeyboardControl ? undefined : 0}
-      ref={ref}
-    >
-      <TablePlayer
-        ariaLabel={ariaLabel}
-        ariaColCount={ariaColCount}
-        ariaRowCount={ariaRowCount}
-      >
-        {children}
-      </TablePlayer>
-    </div>
-  );
-};
-export const Scrollable = React.forwardRef(ScrollableRenderer);
 
 export const ScrollableInner = ({
   children,
@@ -192,6 +161,22 @@ export const HeaderRowGroup = ({ children }: { children: React.ReactNode }) => {
   );
   const TagName = tableElement === "table" ? "thead" : "div";
   const role = tableRole === "table" ? "rowgroup" : undefined;
+  const ref = React.useRef<HTMLTableSectionElement>(null);
+  React.useLayoutEffect(() => {
+    const adjustPosition = () => {
+      if (ref.current) {
+        const parent = ref.current.parentElement;
+        if (!parent) return;
+        const box = parent.getBoundingClientRect();
+        ref.current.style.top = `${window.scrollY + box.top}px`;
+      }
+    };
+    adjustPosition();
+    window.addEventListener("resize", adjustPosition);
+    return () => {
+      window.removeEventListener("resize", adjustPosition);
+    };
+  }, []);
   return (
     <TagName
       role={role}
@@ -200,6 +185,7 @@ export const HeaderRowGroup = ({ children }: { children: React.ReactNode }) => {
           ? headerRowGroupDisplayTableStyle
           : headerRowGroupStyle
       }
+      ref={ref}
     >
       {children}
     </TagName>

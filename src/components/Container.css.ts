@@ -11,12 +11,6 @@ import {
 } from "../styles";
 
 export const containerStyle = style({
-  display: "flex",
-  flexDirection: "column",
-  justifyContent: "flex-start",
-  width: "100dvw",
-  height: "100dvh",
-
   vars: assignVars(semanticTokens, semanticTokensLarge),
   "@media": {
     [queries.medium]: {
@@ -42,6 +36,10 @@ export const containerStyleDark = style({
 });
 
 export const headerAreaStyle = style({
+  position: "sticky",
+  top: 0,
+  background: colorVars.background.primary,
+  zIndex: 1,
   padding: semanticTokens.spacing.blockPadding,
   display: "flex",
   flexDirection: "row",
@@ -49,6 +47,9 @@ export const headerAreaStyle = style({
   alignItems: "center",
   gap: semanticTokens.spacing.blockInner,
   "@media": {
+    [queries.smallHeight]: {
+      position: "relative",
+    },
     [queries.small]: {
       flexDirection: "column",
       alignItems: "stretch",
@@ -62,14 +63,6 @@ export const headerControlsStyle = style({
   alignItems: "center",
   flexGrow: 1,
   gap: semanticTokens.spacing.inlineInner,
-});
-
-export const mainAreaStyle = style({
-  position: "relative",
-  flexGrow: 1,
-  flexShrink: 1,
-  display: "flex",
-  flexDirection: "column",
 });
 
 // Safariのみ、details要素がopenでないときでも、子要素にフォーカスしようとしてしまう

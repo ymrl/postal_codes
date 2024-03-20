@@ -18,7 +18,6 @@ globalStyle("body", {
   fontWeight: 400,
   colorScheme: "light dark",
   vars: assignVars(semanticTokens, semanticTokensLarge),
-  overflow: "hidden",
 });
 
 globalStyle("*", {

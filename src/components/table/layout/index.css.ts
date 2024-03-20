@@ -2,29 +2,19 @@ import { style, styleVariants, ComplexStyleRule } from "@vanilla-extract/css";
 import { colorVars, queries, semanticTokens } from "../../../styles";
 import { ColumnType } from "../types";
 
-export const scrollableStyle = style({
-  display: "block",
-  overflow: "auto",
-  flexGrow: 1,
-  selectors: {
-    "&:focus-visible": {
-      outline: semanticTokens.focus.outline,
-      outlineOffset: `calc(-1 * ${semanticTokens.focus.outlineWidth})`,
-    },
-  },
-});
+export const rowHeight = "3rem";
+export const smallRowHeight = "4.5rem";
 
-export const tablePlayerStyle = style({
-  display: "flex",
-  flexDirection: "column",
-  tableLayout: "fixed",
-  borderCollapse: "collapse",
+export const tableLayoutStyle = style({
+  display: "block",
+  width: "100%",
 });
-export const tablePlayerDisplayTableStyle = style([
-  tablePlayerStyle,
+export const tableLayoutDisplayTableStyle = style([
+  tableLayoutStyle,
   {
+    tableLayout: "fixed",
+    borderCollapse: "collapse",
     display: "table",
-    width: "100%",
     minWidth: "40rem",
   },
 ]);
@@ -33,7 +23,6 @@ export const scrollableInnerStyle = style({
   width: "100%",
   position: "relative",
   display: "block",
-  flexGrow: 1,
 });
 export const scorllableInnerDisplayTableStyle = style([
   scrollableInnerStyle,
@@ -62,15 +51,16 @@ export const rowStyle = styleVariants({
     rowStyleBase,
     {
       height: "2rem",
+      borderTop: `0.125rem solid ${colorVars.accent.primary}`,
     },
   ],
   body: [
     rowStyleBase,
     {
-      minHeight: "3rem",
+      minHeight: rowHeight,
       "@media": {
         [queries.small]: {
-          minHeight: "4.5rem",
+          minHeight: smallRowHeight,
         },
       },
     },
@@ -88,11 +78,11 @@ export const rowDisplayTableRowStyle = styleVariants({
     rowStyle.body,
     {
       display: "table-row",
-      height: "3rem",
+      height: rowHeight,
       padding: 0,
       "@media": {
         [queries.small]: {
-          height: "4.5rem",
+          height: smallRowHeight,
         },
       },
     },
@@ -101,7 +91,6 @@ export const rowDisplayTableRowStyle = styleVariants({
 
 const base = style({
   padding: semanticTokens.spacing.inlinePadding,
-  flex: "0 0 auto",
   overflow: "hidden",
   textOverflow: "ellipsis",
   display: "flex",
@@ -122,6 +111,11 @@ export const headerRowGroupStyle = style({
   position: "sticky",
   top: 0,
   zIndex: 1,
+  "@media": {
+    [queries.smallHeight]: {
+      position: "static",
+    },
+  },
 });
 export const headerRowGroupDisplayTableStyle = style([
   headerRowGroupStyle,
