@@ -250,28 +250,85 @@ export const Cell = ({
       tabIndex={tableKeyboardControl && !header ? 0 : undefined}
       data-colindex={colIndex}
       onKeyDown={(e) => {
-        const next = e.currentTarget.nextElementSibling;
-        const prev = e.currentTarget.previousElementSibling;
-        const nextRowCell =
-          e.currentTarget.parentElement?.nextElementSibling?.querySelector(
-            `[data-colindex="${colIndex}"]`,
-          );
-        const prevRowCell =
-          e.currentTarget.parentElement?.previousElementSibling?.querySelector(
-            `[data-colindex="${colIndex}"]`,
-          );
-        if (e.key === "ArrowRight" && next) {
-          e.preventDefault();
-          (next as HTMLElement).focus();
-        } else if (e.key === "ArrowLeft" && prev) {
-          e.preventDefault();
-          (prev as HTMLElement).focus();
-        } else if (e.key === "ArrowDown" && nextRowCell) {
-          e.preventDefault();
-          (nextRowCell as HTMLElement).focus();
-        } else if (e.key === "ArrowUp" && prevRowCell) {
-          e.preventDefault();
-          (prevRowCell as HTMLElement).focus();
+        if (!tableKeyboardControl) return;
+        switch (e.key) {
+          case "ArrowRight": {
+            const target =
+              e.metaKey || e.ctrlKey
+                ? e.currentTarget.parentElement?.lastElementChild
+                : e.currentTarget.nextElementSibling;
+            if (target) {
+              e.preventDefault();
+              (target as HTMLElement).focus();
+            }
+            break;
+          }
+          case "ArrowLeft": {
+            const target =
+              e.metaKey || e.ctrlKey
+                ? e.currentTarget.parentElement?.firstElementChild
+                : e.currentTarget.previousElementSibling;
+            if (target) {
+              e.preventDefault();
+              (target as HTMLElement).focus();
+            }
+            break;
+          }
+          case "ArrowDown": {
+            if (e.metaKey || e.ctrlKey) {
+              e.preventDefault();
+              window.scroll(0, document.body.scrollHeight);
+              const tbody = e.currentTarget.parentElement?.parentElement;
+              setTimeout(() => {
+                const lastRow = tbody?.lastElementChild;
+                const lastRowCell = lastRow?.querySelector(
+                  `[data-colindex="${colIndex}"]`,
+                );
+                if (lastRowCell) {
+                  (lastRowCell as HTMLElement).focus();
+                }
+              }, 100);
+              break;
+            } else {
+              const target =
+                e.currentTarget.parentElement?.nextElementSibling?.querySelector(
+                  `[data-colindex="${colIndex}"]`,
+                );
+              if (target) {
+                e.preventDefault();
+                (target as HTMLElement).focus();
+              }
+              break;
+            }
+          }
+          case "ArrowUp": {
+            if (e.metaKey || e.ctrlKey) {
+              e.preventDefault();
+              window.scroll(0, 0);
+              const tbody = e.currentTarget.parentElement?.parentElement;
+              setTimeout(() => {
+                const hiddenRow = tbody?.firstElementChild;
+                const firstRow = hiddenRow?.nextElementSibling;
+                const firstRowCell = firstRow?.querySelector(
+                  `[data-colindex="${colIndex}"]`,
+                );
+                if (firstRowCell) {
+                  (firstRowCell as HTMLElement).focus();
+                }
+              }, 100);
+              break;
+            } else {
+              const target =
+                e.currentTarget.parentElement?.previousElementSibling?.querySelector(
+                  `[data-colindex="${colIndex}"]`,
+                );
+              if (target) {
+                e.preventDefault();
+                (target as HTMLElement).focus();
+              }
+              break;
+            }
+          }
         }
       }}
     >

@@ -47,15 +47,18 @@ export const Table = () => {
     >
       <Header columns={columns} />
       {disableVirtualScroll ? (
-        filteredKenAll.map((row, i) => (
-          <BodyRow
-            rowIndex={i + 2}
-            row={row}
-            key={i}
-            columns={columns}
-            id={`${id}__${i}`}
-          />
-        ))
+        <>
+          <ContentTop height={0} />
+          {filteredKenAll.map((row, i) => (
+            <BodyRow
+              rowIndex={i + 2}
+              row={row}
+              key={i}
+              columns={columns}
+              id={`${id}__${i}`}
+            />
+          ))}
+        </>
       ) : (
         <ScrollableInner height={totalSize}>
           <ContentTop height={items[0]?.start ?? 0} />
