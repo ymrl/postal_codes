@@ -247,7 +247,7 @@ export const semanticTokensSmall: SemanticTokens = {
     containerPadding: Size0008,
     containerInner: Size0004,
     blockPadding: Size0004,
-    blockInner: Size0004,
+    blockInner: Size0008,
     inlinePadding: Size0002,
     inlineInner: Size0004,
   },

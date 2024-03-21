@@ -62,7 +62,7 @@ export const headerControlsStyle = style({
   justifyContent: "space-between",
   alignItems: "center",
   flexGrow: 1,
-  gap: semanticTokens.spacing.inlineInner,
+  gap: semanticTokens.spacing.blockInner,
 });
 
 // Safariのみ、details要素がopenでないときでも、子要素にフォーカスしようとしてしまう

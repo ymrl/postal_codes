@@ -16,6 +16,7 @@ export const buttonStyle = style({
   font: semanticTokens.ui.button.font,
   transitionDuration: semanticTokens.transition.duration,
   transitionProperty: "background-color",
+  flexShrink: 0,
   selectors: {
     "&:hover": {
       backgroundColor: colorVars.background.secondaryHover,

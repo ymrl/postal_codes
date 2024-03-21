@@ -1,15 +1,24 @@
 import { style } from "@vanilla-extract/css";
-import { semanticTokens } from "../../styles";
+import { queries, semanticTokens } from "../../styles";
 
 export const searchStyle = style({
-  display: "flex",
-  gap: semanticTokens.spacing.inlineInner,
-  alignItems: "center",
-  flexShrink: 1,
+  "@media": {
+    [queries.medium]: {
+      flexShrink: 1,
+      flexGrow: 1,
+    },
+  },
 });
 
 export const searchFormStyle = style({
   display: "flex",
   gap: semanticTokens.spacing.inlineInner,
   alignItems: "center",
+
+  "@media": {
+    [queries.medium]: {
+      flexShrink: 1,
+      flexGrow: 1,
+    },
+  },
 });

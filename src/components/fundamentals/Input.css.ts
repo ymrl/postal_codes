@@ -9,6 +9,9 @@ const inputStyleBase = style({
   fontSize: semanticTokens.ui.input.font,
   borderRadius: semanticTokens.ui.control.borderRadius,
   height: semanticTokens.ui.control.size,
+  minWidth: `calc(${semanticTokens.ui.control.size} * 2)`,
+  flexShrink: 1,
+  flexGrow: 1,
   selectors: {
     "&:focus-visible": {
       outline: semanticTokens.focus.outline,
@@ -26,7 +29,8 @@ export const inputStyle = styleVariants({
       width: "10rem",
       "@media": {
         [queries.medium]: {
-          width: "8rem",
+          width: "auto",
+          maxWidth: "8rem",
         },
       },
     },
