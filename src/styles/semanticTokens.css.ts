@@ -86,6 +86,17 @@ type SemanticTokens = {
     readonly button: {
       readonly font: string;
     };
+    readonly link: {
+      readonly borderRadius: string;
+      readonly color: {
+        readonly link: string;
+        readonly visited: string;
+      };
+      readonly hover: {
+        readonly link: string;
+        readonly visited: string;
+      };
+    };
   };
   readonly border: {
     readonly distinguish: string;
@@ -157,7 +168,7 @@ export const semanticTokensLarge: SemanticTokens = {
       borderRadius: Size0008,
     },
     legend: {
-      font: normalFont(Size0016),
+      font: strongFont(Size0016),
     },
     badge: {
       font: strongFont(Size0012),
@@ -172,6 +183,17 @@ export const semanticTokensLarge: SemanticTokens = {
     input: {
       font: normalFont(Size0016),
     },
+    link: {
+      borderRadius: Size0004,
+      color: {
+        link: colorVars.text.link,
+        visited: colorVars.text.linkVisited,
+      },
+      hover: {
+        link: colorVars.text.linkHover,
+        visited: colorVars.text.linkVisitedHover,
+      },
+    },
   },
   border: {
     distinguish: `${Size0001} solid ${colorVars.ui.distinguish}`,
@@ -179,8 +201,8 @@ export const semanticTokensLarge: SemanticTokens = {
     accent: `${Size0002} solid ${colorVars.accent.primary}`,
   },
   spacing: {
-    containerPadding: Size0016,
-    containerInner: Size0016,
+    containerPadding: Size0012,
+    containerInner: Size0012,
     blockPadding: Size0008,
     blockInner: Size0016,
     inlinePadding: Size0002,
@@ -245,7 +267,7 @@ export const semanticTokensSmall: SemanticTokens = {
   spacing: {
     ...semanticTokensLarge.spacing,
     containerPadding: Size0008,
-    containerInner: Size0004,
+    containerInner: Size0008,
     blockPadding: Size0004,
     blockInner: Size0008,
     inlinePadding: Size0002,

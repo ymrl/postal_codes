@@ -34,7 +34,7 @@ export const backdropCSSVarStyle = style({
 });
 
 export const dialogHeaderStyle = style({
-  padding: `${semanticTokens.spacing.containerPadding} ${semanticTokens.spacing.containerPadding} ${semanticTokens.spacing.blockPadding}`,
+  padding: semanticTokens.spacing.containerPadding,
   backgroundColor: colorVars.background.secondary,
   display: "flex",
   justifyContent: "space-between",
@@ -43,7 +43,7 @@ export const dialogHeaderStyle = style({
 export const dialogBodyStyle = style({
   flexShrink: 1,
   overflow: "auto",
-  padding: `${semanticTokens.spacing.blockPadding} ${semanticTokens.spacing.containerPadding} ${semanticTokens.spacing.containerPadding}`,
+  padding: semanticTokens.spacing.containerPadding,
 });
 
 export const dialogTitleStyle = style({
@@ -55,6 +55,9 @@ export const dialogTitleStyle = style({
 export const dialogCloseButtonStyle = style({
   width: semanticTokens.ui.control.size,
   height: semanticTokens.ui.control.size,
+  display: "inline-flex",
+  justifyContent: "center",
+  alignItems: "center",
   borderRadius: "50%",
   border: 0,
   padding: 0,

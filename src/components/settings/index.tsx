@@ -3,14 +3,13 @@ import { Button, TextWithIcon } from "../fundamentals";
 import { SlSettings, SlWrench } from "react-icons/sl";
 import { SettingDialog } from "./SettingDialog";
 import { DeveloperSettingDialog } from "./DeveloperSettingDialog";
-import { settingStyle } from "./index.css";
 
 export const Settings = () => {
   const [settingDialogOpen, setSettingDialogOpen] = React.useState(false);
   const [developperSettingDialogOpen, setDeveloperSettingDialogOpen] =
     React.useState(false);
   return (
-    <div className={settingStyle}>
+    <>
       <Button
         onClick={() => {
           setSettingDialogOpen(true);
@@ -41,6 +40,6 @@ export const Settings = () => {
           setDeveloperSettingDialogOpen(false);
         }}
       />
-    </div>
+    </>
   );
 };

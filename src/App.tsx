@@ -10,6 +10,8 @@ import { Title } from "./components/Title";
 import { Filter } from "./components/filter";
 import { Settings } from "./components/settings";
 import { Provider } from "./contexts";
+import { Help } from "./components/help";
+import { Stack } from "./components/fundamentals";
 
 function App() {
   return (
@@ -19,7 +21,10 @@ function App() {
           <Title>日本の郵便番号</Title>
           <HeaderControls>
             <Filter />
-            <Settings />
+            <Stack>
+              <Help />
+              <Settings />
+            </Stack>
           </HeaderControls>
         </HeaderArea>
         <MainArea>

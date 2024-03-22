@@ -1,13 +1,12 @@
-import React, { useContext } from "react";
-import { dialogContentStyle, disclaimerStyle } from "./SettingDialog.css";
-import { KenAllContext, SettingsContext } from "../../contexts";
+import React from "react";
+import { SettingsContext } from "../../contexts";
 import {
   Checkbox,
   Dialog,
   Fields,
   Fieldset,
-  Link,
   Radiobutton,
+  Stack,
 } from "../fundamentals";
 
 type Props = Pick<
@@ -23,14 +22,13 @@ export const SettingDialog = ({ isOpen, onRequestClose }: Props) => {
     tableKeyboardControl,
     updateSettings,
   } = React.useContext(SettingsContext);
-  const downloadedAt = useContext(KenAllContext).downloadedAt;
   return (
     <Dialog
       dialogTitle="表示設定"
       isOpen={isOpen}
       onRequestClose={onRequestClose}
     >
-      <div className={dialogContentStyle}>
+      <Stack size="block" direction="column">
         <Fields>
           <Checkbox
             checked={showRuby}
@@ -81,23 +79,7 @@ export const SettingDialog = ({ isOpen, onRequestClose }: Props) => {
             </Radiobutton>
           </Fields>
         </Fieldset>
-        <div className={disclaimerStyle}>
-          <p>
-            このページの情報は
-            {downloadedAt
-              ? `${downloadedAt.getFullYear()}年${downloadedAt.getMonth() + 1}月${downloadedAt.getDate()}日にダウンロードした、`
-              : ""}
-            日本郵便株式会社の
-            <Link href="https://www.post.japanpost.jp/zipcode/dl/utf-zip.html">
-              住所の郵便番号（1レコード1行、UTF-8形式）（CSV形式）
-            </Link>
-            を元にしています。
-          </p>
-          <p>
-            当ページ製作者は、ページの利用やデータの正確性に関して一切の責任を負いかねます。
-          </p>
-        </div>
-      </div>
+      </Stack>
     </Dialog>
   );
 };
