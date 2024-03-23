@@ -48,7 +48,7 @@ export const Table = () => {
       <Header columns={columns} />
       {disableVirtualScroll ? (
         <>
-          <ContentTop height={0} />
+          <ContentTop firstRowTop={0} />
           {filteredKenAll.map((row, i) => (
             <BodyRow
               rowIndex={i + 2}
@@ -61,7 +61,7 @@ export const Table = () => {
         </>
       ) : (
         <ScrollableInner height={totalSize}>
-          <ContentTop height={items[0]?.start ?? 0} />
+          <ContentTop firstRowTop={items[0]?.start ?? 0} />
           {items.map((virtualItem) => (
             <BodyRow
               rowIndex={virtualItem.index + 2}

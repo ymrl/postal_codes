@@ -9,7 +9,17 @@ import {
 } from "../fundamentals";
 import React from "react";
 import { KenAllContext } from "../../contexts";
-import { helpSectionTitleStyle, helpULStyle } from "./index.css";
+import {
+  helpDDStyle,
+  helpDLStyle,
+  helpDTStyle,
+  helpKbdStyle,
+  helpSectionTitleStyle,
+} from "./index.css";
+
+const K = ({ children }: { children: React.ReactNode }) => (
+  <kbd className={helpKbdStyle}>{children}</kbd>
+);
 
 export const Help = () => {
   const [isOpen, setIsOpen] = React.useState(false);
@@ -50,24 +60,46 @@ export const Help = () => {
           <Paragraph>
             以下のキーボードショートカットが利用できます。キーボードショートカットは設定でオフにすることができます。
           </Paragraph>
-          <ul className={helpULStyle}>
-            <li>
-              <kbd>Ctrl</kbd>/<kbd>Command</kbd> + <kbd>F</kbd>
-              ：検索フィールドにフォーカス
-            </li>
-            <li>
-              <kbd>↑</kbd>, <kbd>↓</kbd>, <kbd>←</kbd>, <kbd>→</kbd>
-              ：テーブル内のセルを1つずつ移動
-            </li>
-            <li>
-              <kbd>Ctrl</kbd>/<kbd>Command</kbd> + <kbd>←</kbd>, <kbd>→</kbd>
-              ：テーブルの行の先頭・末尾のセルへ移動
-            </li>
-            <li>
-              <kbd>Ctrl</kbd>/<kbd>Command</kbd> + <kbd>↑</kbd>, <kbd>↓</kbd>
-              ：テーブル内の一番上・一番下へ移動
-            </li>
-          </ul>
+          <dl className={helpDLStyle}>
+            <dt className={helpDTStyle}>検索フィールドにフォーカス</dt>
+            <dd className={helpDDStyle}>
+              <K>Ctrl</K>+<K>F</K>
+            </dd>
+            <dd className={helpDDStyle}>
+              <K>Command</K>+<K>F</K>
+            </dd>
+            <dt className={helpDTStyle}>テーブル内で、セルを1つずつ移動</dt>
+            <dd className={helpDDStyle}>
+              <K>↑</K>, <K>↓</K>, <K>←</K>, <K>→</K>
+            </dd>
+            <dd className={helpDDStyle}>
+              <K>K</K>, <K>J</K>, <K>H</K>, <K>L</K>
+            </dd>
+            <dt className={helpDTStyle}>
+              テーブル内で、行の先頭・末尾のセルに移動
+            </dt>
+            <dd className={helpDDStyle}>
+              <K>Ctrl</K>+<K>←</K>, <K>→</K>
+            </dd>
+            <dd className={helpDDStyle}>
+              <K>Command</K>+<K>←</K>, <K>→</K>
+            </dd>
+            <dd className={helpDDStyle}>
+              <K>^</K>, <K>$</K>
+            </dd>
+            <dt className={helpDTStyle}>
+              テーブル内で、テーブルの一番上・一番下に移動
+            </dt>
+            <dd className={helpDDStyle}>
+              <K>Ctrl</K>+<K>↑</K>, <K>↓</K>
+            </dd>
+            <dd className={helpDDStyle}>
+              <K>Command</K>+<K>↑</K>, <K>↓</K>
+            </dd>
+            <dd className={helpDDStyle}>
+              <K>gg</K>（<K>g</K>を2回押す）, <K>Shift</K>+<K>G</K>
+            </dd>
+          </dl>
         </Stack>
       </Dialog>
     </>

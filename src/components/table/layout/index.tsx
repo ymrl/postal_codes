@@ -13,6 +13,7 @@ import {
   tableLayoutStyle,
 } from "./index.css";
 import { Column, ColumnType } from "../types";
+import { useKeyNavigation } from "./useKeyNavigation";
 
 export const TableLayout = ({
   children,
@@ -81,17 +82,17 @@ export const ScrollableInner = ({
   );
 };
 
-export const ContentTop = ({ height }: { height: number }) => {
+export const ContentTop = ({ firstRowTop }: { firstRowTop: number }) => {
   const { tableElement, tableRole, cssDisplayMode } = React.useContext(
     DeveloperSettingsContext,
   );
   const TagName = tableElement === "table" ? "tr" : "div";
-  const role = tableRole ? "presentation" : undefined;
+  const role = tableRole ? "row" : undefined;
 
   return (
     <TagName
       style={{
-        height,
+        height: firstRowTop,
         display: cssDisplayMode === "table" ? "table-row" : "block",
       }}
       role={role}
@@ -231,6 +232,10 @@ export const Cell = ({
           : tableRole === "grid"
             ? "gridcell"
             : undefined;
+  const { cellProps, onKeyDown } = useKeyNavigation({
+    colIndex,
+    tableKeyboardControl,
+  });
   return (
     <TagName
       scope={
@@ -248,89 +253,91 @@ export const Cell = ({
           : cellStyle[columnType]
       }
       tabIndex={tableKeyboardControl && !header ? 0 : undefined}
-      data-colindex={colIndex}
-      onKeyDown={(e) => {
-        if (!tableKeyboardControl) return;
-        switch (e.key) {
-          case "ArrowRight": {
-            const target =
-              e.metaKey || e.ctrlKey
-                ? e.currentTarget.parentElement?.lastElementChild
-                : e.currentTarget.nextElementSibling;
-            if (target) {
-              e.preventDefault();
-              (target as HTMLElement).focus();
-            }
-            break;
-          }
-          case "ArrowLeft": {
-            const target =
-              e.metaKey || e.ctrlKey
-                ? e.currentTarget.parentElement?.firstElementChild
-                : e.currentTarget.previousElementSibling;
-            if (target) {
-              e.preventDefault();
-              (target as HTMLElement).focus();
-            }
-            break;
-          }
-          case "ArrowDown": {
-            if (e.metaKey || e.ctrlKey) {
-              e.preventDefault();
-              window.scroll(0, document.body.scrollHeight);
-              const tbody = e.currentTarget.parentElement?.parentElement;
-              setTimeout(() => {
-                const lastRow = tbody?.lastElementChild;
-                const lastRowCell = lastRow?.querySelector(
-                  `[data-colindex="${colIndex}"]`,
-                );
-                if (lastRowCell) {
-                  (lastRowCell as HTMLElement).focus();
-                }
-              }, 100);
-              break;
-            } else {
-              const target =
-                e.currentTarget.parentElement?.nextElementSibling?.querySelector(
-                  `[data-colindex="${colIndex}"]`,
-                );
-              if (target) {
-                e.preventDefault();
-                (target as HTMLElement).focus();
-              }
-              break;
-            }
-          }
-          case "ArrowUp": {
-            if (e.metaKey || e.ctrlKey) {
-              e.preventDefault();
-              window.scroll(0, 0);
-              const tbody = e.currentTarget.parentElement?.parentElement;
-              setTimeout(() => {
-                const hiddenRow = tbody?.firstElementChild;
-                const firstRow = hiddenRow?.nextElementSibling;
-                const firstRowCell = firstRow?.querySelector(
-                  `[data-colindex="${colIndex}"]`,
-                );
-                if (firstRowCell) {
-                  (firstRowCell as HTMLElement).focus();
-                }
-              }, 100);
-              break;
-            } else {
-              const target =
-                e.currentTarget.parentElement?.previousElementSibling?.querySelector(
-                  `[data-colindex="${colIndex}"]`,
-                );
-              if (target) {
-                e.preventDefault();
-                (target as HTMLElement).focus();
-              }
-              break;
-            }
-          }
-        }
-      }}
+      {...cellProps}
+      onKeyDown={header ? undefined : onKeyDown}
+      // data-colindex={colIndex}
+      // onKeyDown={(e) => {
+      //   if (!tableKeyboardControl) return;
+      //   switch (e.key) {
+      //     case "ArrowRight": {
+      //       const target =
+      //         e.metaKey || e.ctrlKey
+      //           ? e.currentTarget.parentElement?.lastElementChild
+      //           : e.currentTarget.nextElementSibling;
+      //       if (target) {
+      //         e.preventDefault();
+      //         (target as HTMLElement).focus();
+      //       }
+      //       break;
+      //     }
+      //     case "ArrowLeft": {
+      //       const target =
+      //         e.metaKey || e.ctrlKey
+      //           ? e.currentTarget.parentElement?.firstElementChild
+      //           : e.currentTarget.previousElementSibling;
+      //       if (target) {
+      //         e.preventDefault();
+      //         (target as HTMLElement).focus();
+      //       }
+      //       break;
+      //     }
+      //     case "ArrowDown": {
+      //       if (e.metaKey || e.ctrlKey) {
+      //         e.preventDefault();
+      //         window.scroll(0, document.body.scrollHeight);
+      //         const tbody = e.currentTarget.parentElement?.parentElement;
+      //         setTimeout(() => {
+      //           const lastRow = tbody?.lastElementChild;
+      //           const lastRowCell = lastRow?.querySelector(
+      //             `[data-colindex="${colIndex}"]`,
+      //           );
+      //           if (lastRowCell) {
+      //             (lastRowCell as HTMLElement).focus();
+      //           }
+      //         }, 100);
+      //         break;
+      //       } else {
+      //         const target =
+      //           e.currentTarget.parentElement?.nextElementSibling?.querySelector(
+      //             `[data-colindex="${colIndex}"]`,
+      //           );
+      //         if (target) {
+      //           e.preventDefault();
+      //           (target as HTMLElement).focus();
+      //         }
+      //         break;
+      //       }
+      //     }
+      //     case "ArrowUp": {
+      //       if (e.metaKey || e.ctrlKey) {
+      //         e.preventDefault();
+      //         window.scroll(0, 0);
+      //         const tbody = e.currentTarget.parentElement?.parentElement;
+      //         setTimeout(() => {
+      //           const hiddenRow = tbody?.firstElementChild;
+      //           const firstRow = hiddenRow?.nextElementSibling;
+      //           const firstRowCell = firstRow?.querySelector(
+      //             `[data-colindex="${colIndex}"]`,
+      //           );
+      //           if (firstRowCell) {
+      //             (firstRowCell as HTMLElement).focus();
+      //           }
+      //         }, 100);
+      //         break;
+      //       } else {
+      //         const target =
+      //           e.currentTarget.parentElement?.previousElementSibling?.querySelector(
+      //             `[data-colindex="${colIndex}"]`,
+      //           );
+      //         if (target) {
+      //           e.preventDefault();
+      //           (target as HTMLElement).focus();
+      //         }
+      //         break;
+      //       }
+      //     }
+      //   }
+      // }}
     >
       {children}
     </TagName>
