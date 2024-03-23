@@ -308,6 +308,15 @@ export const Cell = ({
           : cellStyle[columnType]
       }
       tabIndex={tableKeyboardControl && !header ? 0 : undefined}
+      onFocus={(e) => {
+        const tbody = e.target.parentElement?.parentElement;
+        if (tbody) {
+          const cellBox = e.target.getBoundingClientRect();
+          if (cellBox.top < tbody.offsetTop) {
+            window.scrollBy(0, cellBox.top - tbody.offsetTop);
+          }
+        }
+      }}
       {...cellProps}
       onKeyDown={header ? undefined : onKeyDown}
     >
