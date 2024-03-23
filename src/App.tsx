@@ -11,7 +11,7 @@ import { Filter } from "./components/filter";
 import { Settings } from "./components/settings";
 import { Provider } from "./contexts";
 import { Help } from "./components/help";
-import { Stack } from "./components/fundamentals";
+import { Stack, VisuallyHidden } from "./components/fundamentals";
 
 function App() {
   return (
@@ -22,12 +22,18 @@ function App() {
           <HeaderControls>
             <Filter />
             <Stack>
+              <VisuallyHidden>
+                <h2>ヘルプ・設定</h2>
+              </VisuallyHidden>
               <Help />
               <Settings />
             </Stack>
           </HeaderControls>
         </HeaderArea>
         <MainArea>
+          <VisuallyHidden>
+            <h2>郵便番号一覧表</h2>
+          </VisuallyHidden>
           <Table />
         </MainArea>
       </Container>

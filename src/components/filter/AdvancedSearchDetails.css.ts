@@ -5,6 +5,7 @@ export const advancedSearchDetailsStyle = style({
   position: "relative",
   padding: 0,
   margin: 0,
+  flexShrink: 0,
 });
 
 export const advancedSearchSummaryStyle = style([

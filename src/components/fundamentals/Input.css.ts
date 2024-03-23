@@ -26,7 +26,8 @@ export const inputStyle = styleVariants({
   default: [
     inputStyleBase,
     {
-      width: "10rem",
+      flexBasis: "8rem",
+      maxWidth: "8rem",
       "@media": {
         [queries.medium]: {
           width: "auto",

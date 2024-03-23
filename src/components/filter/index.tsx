@@ -6,6 +6,7 @@ import { AdvancedSearchPopupButton } from "./AdvancedSearchPopupButton";
 import { AdvancedSearchContent } from "./AdvancedSearchContent";
 import { Status } from "./Status";
 import { DeveloperSettingsContext } from "../../contexts";
+import { VisuallyHidden } from "../fundamentals";
 
 export const Filter = () => {
   const [isMobileSafari, setIsMobileSafari] = React.useState(false);
@@ -27,6 +28,9 @@ export const Filter = () => {
   ];
   return (
     <search className={searchStyle}>
+      <VisuallyHidden>
+        <h2>検索・フィルター</h2>
+      </VisuallyHidden>
       <form
         className={searchFormStyle}
         id={id}
