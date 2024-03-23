@@ -5,6 +5,7 @@ type DeveloperSettingsT = {
   useDetailsPopupForMobileSafari: boolean;
   displayDetailsChildrenClosed: boolean;
   disableVirtualScroll: boolean;
+  virutalPositioning: "translate" | "dummy-element";
   tableElement: "div" | "table";
   tableRole: "table" | "grid" | undefined;
   tableOverscan: number;
@@ -25,6 +26,7 @@ export const DeveloperSettingsContext = React.createContext<
   useDetailsPopupForMobileSafari: false,
   displayDetailsChildrenClosed: false,
   disableVirtualScroll: false,
+  virutalPositioning: "translate",
   tableElement: "div",
   tableRole: "grid",
   tableOverscan: 10,
@@ -47,6 +49,7 @@ export const DeveloperSettingsProvider = ({
     useDetailsPopupForMobileSafari: false,
     displayDetailsChildrenClosed: false,
     disableVirtualScroll: false,
+    virutalPositioning: "translate",
     tableElement: "div",
     tableRole: "grid",
     tableOverscan: 10,

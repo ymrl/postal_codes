@@ -44,11 +44,12 @@ export const Table = () => {
       ariaLabel="日本の郵便番号"
       ariaColCount={5}
       ariaRowCount={filteredKenAll.length + 1}
+      virtualHeight={totalSize}
     >
       <Header columns={columns} />
       {disableVirtualScroll ? (
         <>
-          <ContentTop firstRowTop={0} />
+          <ContentTop firstRowTop={0} colCount={5} />
           {filteredKenAll.map((row, i) => (
             <BodyRow
               rowIndex={i + 2}
@@ -60,8 +61,8 @@ export const Table = () => {
           ))}
         </>
       ) : (
-        <ScrollableInner height={totalSize}>
-          <ContentTop firstRowTop={items[0]?.start ?? 0} />
+        <ScrollableInner height={totalSize} firstItemTop={items[0]?.start ?? 0}>
+          <ContentTop firstRowTop={items[0]?.start ?? 0} colCount={5} />
           {items.map((virtualItem) => (
             <BodyRow
               rowIndex={virtualItem.index + 2}
@@ -72,6 +73,7 @@ export const Table = () => {
             />
           ))}
           <ContentBottom
+            colCount={5}
             totalHeight={rowVirtualizer.getTotalSize()}
             endPosition={items[items.length - 1]?.end ?? 0}
           />

@@ -2,6 +2,7 @@ import { style, styleVariants, ComplexStyleRule } from "@vanilla-extract/css";
 import { colorVars, queries, semanticTokens } from "../../../styles";
 import { ColumnType } from "../types";
 
+export const headerRowHeight = "2rem";
 export const rowHeight = "3rem";
 export const smallRowHeight = "4.5rem";
 
@@ -21,7 +22,6 @@ export const tableLayoutDisplayTableStyle = style([
 
 export const scrollableInnerStyle = style({
   width: "100%",
-  position: "relative",
   display: "block",
 });
 export const scorllableInnerDisplayTableStyle = style([
@@ -50,7 +50,7 @@ export const rowStyle = styleVariants({
   header: [
     rowStyleBase,
     {
-      height: "2rem",
+      height: headerRowHeight,
       borderTop: `0.125rem solid ${colorVars.accent.primary}`,
     },
   ],

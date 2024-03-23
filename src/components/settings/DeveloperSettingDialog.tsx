@@ -24,6 +24,7 @@ export const DeveloperSettingDialogRenderer: React.ForwardRefRenderFunction<
     useDetailsPopupForMobileSafari,
     displayDetailsChildrenClosed,
     disableVirtualScroll,
+    virutalPositioning,
     tableElement,
     tableRole,
     tableOverscan,
@@ -119,6 +120,32 @@ export const DeveloperSettingDialogRenderer: React.ForwardRefRenderFunction<
               }
             />
           </Field>
+        </Fieldset>
+        <Fieldset legend="仮想スクロールの位置指定">
+          <Fields gap="small">
+            <Radiobutton
+              name="virtualPositioning"
+              checked={virutalPositioning === "translate"}
+              onChange={() =>
+                updateDeveloperSettings({
+                  virutalPositioning: "translate",
+                })
+              }
+            >
+              translateで指定
+            </Radiobutton>
+            <Radiobutton
+              name="virtualPositioning"
+              checked={virutalPositioning === "dummy-element"}
+              onChange={() =>
+                updateDeveloperSettings({
+                  virutalPositioning: "dummy-element",
+                })
+              }
+            >
+              ダミー要素で指定
+            </Radiobutton>
+          </Fields>
         </Fieldset>
         <Fieldset legend="WAI-ARIA属性の設定">
           <Fields gap="small">

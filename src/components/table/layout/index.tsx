@@ -11,6 +11,7 @@ import {
   cellDisplayTableCellStyle,
   tableLayoutDisplayTableStyle,
   tableLayoutStyle,
+  headerRowHeight,
 } from "./index.css";
 import { Column, ColumnType } from "../types";
 import { useKeyNavigation } from "./useKeyNavigation";
@@ -21,11 +22,13 @@ export const TableLayout = ({
   ariaColCount,
   ariaRowCount,
   id,
+  virtualHeight,
 }: {
   children: React.ReactNode;
   ariaLabel: string;
   ariaRowCount: number;
   ariaColCount: number;
+  virtualHeight: number;
   id?: string;
 }) => {
   const {
@@ -49,6 +52,7 @@ export const TableLayout = ({
       aria-colcount={noAriaColCount ? undefined : ariaColCount}
       aria-rowcount={noAriaRowCount ? undefined : ariaRowCount}
       id={id}
+      style={{ minHeight: `calc(${virtualHeight}px + ${headerRowHeight})` }}
     >
       {children}
     </TagName>
@@ -58,13 +62,14 @@ export const TableLayout = ({
 export const ScrollableInner = ({
   children,
   height,
+  firstItemTop,
 }: {
   children: React.ReactNode;
   height: number;
+  firstItemTop: number;
 }) => {
-  const { tableElement, tableRole, cssDisplayMode } = React.useContext(
-    DeveloperSettingsContext,
-  );
+  const { tableElement, tableRole, cssDisplayMode, virutalPositioning } =
+    React.useContext(DeveloperSettingsContext);
   const TagName = tableElement === "table" ? "tbody" : "div";
   const role = tableRole === "table" ? "rowgroup" : undefined;
   return (
@@ -75,44 +80,86 @@ export const ScrollableInner = ({
           : scrollableInnerStyle
       }
       role={role}
-      style={{ height: `${height}px` }}
+      style={{
+        height:
+          virutalPositioning === "dummy-element" ? `${height}px` : undefined,
+        translate:
+          virutalPositioning === "translate"
+            ? `0 ${firstItemTop}px`
+            : undefined,
+      }}
     >
       {children}
     </TagName>
   );
 };
 
-export const ContentTop = ({ firstRowTop }: { firstRowTop: number }) => {
-  const { tableElement, tableRole, cssDisplayMode } = React.useContext(
-    DeveloperSettingsContext,
-  );
+export const ContentTop = ({
+  firstRowTop,
+  colCount,
+}: {
+  firstRowTop: number;
+  colCount: number;
+}) => {
+  const { tableElement, tableRole, cssDisplayMode, virutalPositioning } =
+    React.useContext(DeveloperSettingsContext);
+  if (virutalPositioning === "translate" && cssDisplayMode === "row-grid") {
+    return null;
+  }
   const TagName = tableElement === "table" ? "tr" : "div";
   const role = tableRole ? "row" : undefined;
 
+  const CellTagName = tableElement === "table" ? "td" : "div";
+  const cellRole =
+    tableRole === "grid"
+      ? "gridcell"
+      : tableRole === "table"
+        ? "cell"
+        : undefined;
   return (
     <TagName
       style={{
-        height: firstRowTop,
+        height: virutalPositioning === "translate" ? 0 : firstRowTop,
         display: cssDisplayMode === "table" ? "table-row" : "block",
+        border: 0,
       }}
       role={role}
       aria-hidden="true"
-    ></TagName>
+    >
+      <CellTagName
+        style={{ border: 0, padding: 0 }}
+        role={cellRole}
+        aria-hidden="true"
+        colSpan={CellTagName === "td" ? colCount : undefined}
+        aria-colspan={CellTagName !== "td" ? colCount : undefined}
+      />
+    </TagName>
   );
 };
 export const ContentBottom = ({
   totalHeight,
   endPosition,
+  colCount,
 }: {
   totalHeight: number;
   endPosition: number;
+  colCount: number;
 }) => {
-  const { tableElement, tableRole, cssDisplayMode } = React.useContext(
-    DeveloperSettingsContext,
-  );
+  const { tableElement, tableRole, cssDisplayMode, virutalPositioning } =
+    React.useContext(DeveloperSettingsContext);
+  if (virutalPositioning === "translate" && cssDisplayMode === "row-grid") {
+    return null;
+  }
   if (cssDisplayMode === "table") {
     const TagName = tableElement === "table" ? "tr" : "div";
     const role = tableRole ? "presentation" : undefined;
+    const CellTagName = tableElement === "table" ? "td" : "div";
+    const cellRole =
+      tableRole === "grid"
+        ? "gridcell"
+        : tableRole === "table"
+          ? "cell"
+          : undefined;
     return (
       <TagName
         style={{
@@ -121,7 +168,15 @@ export const ContentBottom = ({
         }}
         role={role}
         aria-hidden="true"
-      ></TagName>
+      >
+        <CellTagName
+          style={{ border: 0, padding: 0 }}
+          role={cellRole}
+          aria-hidden="true"
+          colSpan={CellTagName === "td" ? colCount : undefined}
+          aria-colspan={CellTagName !== "td" ? colCount : undefined}
+        />
+      </TagName>
     );
   } else {
     return null;
