@@ -71,7 +71,7 @@ export const ScrollableInner = ({
   const { tableElement, tableRole, cssDisplayMode, virutalPositioning } =
     React.useContext(DeveloperSettingsContext);
   const TagName = tableElement === "table" ? "tbody" : "div";
-  const role = tableRole === "table" ? "rowgroup" : undefined;
+  const role = tableRole ? "rowgroup" : undefined;
   return (
     <TagName
       className={
@@ -219,7 +219,7 @@ export const HeaderRowGroup = ({ children }: { children: React.ReactNode }) => {
     DeveloperSettingsContext,
   );
   const TagName = tableElement === "table" ? "thead" : "div";
-  const role = tableRole === "table" ? "rowgroup" : undefined;
+  const role = tableRole ? "rowgroup" : undefined;
   const ref = React.useRef<HTMLTableSectionElement>(null);
   React.useLayoutEffect(() => {
     const adjustPosition = () => {
