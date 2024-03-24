@@ -9,5 +9,6 @@ export const visuallyHiddenStyleRule: StyleRule = {
   padding: 0,
   position: "absolute",
   width: "1px",
+  whiteSpace: "nowrap",
 };
 export const visuallyHiddenStyle = style(visuallyHiddenStyleRule);
