@@ -299,7 +299,11 @@ export const Cell = ({
       role={role}
       aria-colindex={noAriaColIndex ? undefined : colIndex}
       aria-describedby={
-        noAriaDescribedby ? undefined : `${column?.id} ${rowHeaderId || ""}`
+        noAriaDescribedby
+          ? undefined
+          : [id !== column?.id ? column.id : "", rowHeaderId || ""]
+              .filter(Boolean)
+              .join(" ") || undefined
       }
       id={id}
       className={
