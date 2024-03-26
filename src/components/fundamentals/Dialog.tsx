@@ -3,13 +3,13 @@ import { DeveloperSettingsContext } from "../../contexts";
 import {
   backdropCSSVarStyle,
   dialogBodyStyle,
-  dialogCloseButtonStyle,
   dialogHeaderStyle,
   dialogStyle,
   dialogTitleStyle,
 } from "./Dialog.css";
 import { IconFont } from "./IconFont";
 import { SlClose } from "react-icons/sl";
+import { Button, Stack } from ".";
 
 type DialogProps = {
   children: React.ReactNode;
@@ -49,15 +49,20 @@ export const Dialog = ({
       ref={ref}
     >
       <div className={dialogHeaderStyle}>
-        <h2 className={dialogTitleStyle} tabIndex={-1}>
-          {dialogTitle}
-        </h2>
-        <button
-          className={dialogCloseButtonStyle}
-          onClick={() => onRequestClose?.()}
+        <Stack
+          size="container"
+          justifyContent="spaceBetween"
+          alignItems="center"
+          direction="row"
+          padding
         >
-          <IconFont Icon={SlClose} alt="閉じる" />
-        </button>
+          <h2 className={dialogTitleStyle} tabIndex={-1}>
+            {dialogTitle}
+          </h2>
+          <Button onClick={() => onRequestClose?.()} aria-label="閉じる">
+            <IconFont Icon={SlClose} />
+          </Button>
+        </Stack>
       </div>
       <div className={dialogBodyStyle}>{children}</div>
     </dialog>

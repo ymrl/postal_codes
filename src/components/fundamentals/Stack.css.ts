@@ -28,3 +28,19 @@ export const stackJustifyContentStyle = styleVariants({
   end: [style({ justifyContent: "flex-end" })],
   spaceBetween: [style({ justifyContent: "space-between" })],
 });
+
+export const stackAlignItemsStyle = styleVariants({
+  start: [style({ alignItems: "flex-start" })],
+  center: [style({ alignItems: "center" })],
+  end: [style({ alignItems: "flex-end" })],
+});
+
+export const stackShrinkStyle = styleVariants({
+  shrink: [style({ flexShrink: 1 })],
+  noShrink: [style({ flexShrink: 0 })],
+});
+
+export const stackGrowStyle = styleVariants({
+  grow: [style({ flexGrow: 1 })],
+  noGrow: [style({ flexGrow: 0 })],
+});

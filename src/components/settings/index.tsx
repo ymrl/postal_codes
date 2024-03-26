@@ -1,13 +1,10 @@
 import React from "react";
 import { Button, TextWithIcon } from "../fundamentals";
-import { SlSettings, SlWrench } from "react-icons/sl";
+import { SlSettings } from "react-icons/sl";
 import { SettingDialog } from "./SettingDialog";
-import { DeveloperSettingDialog } from "./DeveloperSettingDialog";
 
 export const Settings = () => {
   const [settingDialogOpen, setSettingDialogOpen] = React.useState(false);
-  const [developperSettingDialogOpen, setDeveloperSettingDialogOpen] =
-    React.useState(false);
   return (
     <>
       <Button
@@ -19,25 +16,10 @@ export const Settings = () => {
           設定
         </TextWithIcon>
       </Button>
-      <Button
-        onClick={() => {
-          setDeveloperSettingDialogOpen(true);
-        }}
-      >
-        <TextWithIcon Icon={SlWrench} hideText="medium">
-          開発者設定
-        </TextWithIcon>
-      </Button>
       <SettingDialog
         isOpen={settingDialogOpen}
         onRequestClose={() => {
           setSettingDialogOpen(false);
-        }}
-      />
-      <DeveloperSettingDialog
-        isOpen={developperSettingDialogOpen}
-        onRequestClose={() => {
-          setDeveloperSettingDialogOpen(false);
         }}
       />
     </>

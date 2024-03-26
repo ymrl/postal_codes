@@ -1,17 +1,11 @@
 import { Table } from "./components/table";
 import "./App.css";
-import {
-  Container,
-  HeaderArea,
-  HeaderControls,
-  MainArea,
-} from "./components/Container";
+import { Container, HeaderArea, MainArea } from "./components/Container";
 import { Title } from "./components/Title";
 import { Filter } from "./components/filter";
-import { Settings } from "./components/settings";
 import { Provider } from "./contexts";
-import { Help } from "./components/help";
 import { Stack, VisuallyHidden } from "./components/fundamentals";
+import { HelpAndSettings } from "./components/HelpAndSettings";
 
 function App() {
   return (
@@ -19,16 +13,16 @@ function App() {
       <Container>
         <HeaderArea>
           <Title>日本の郵便番号</Title>
-          <HeaderControls>
+          <Stack
+            size="block"
+            justifyContent="spaceBetween"
+            alignItems="center"
+            direction="row"
+            grow
+          >
             <Filter />
-            <Stack>
-              <VisuallyHidden>
-                <h2>ヘルプ・設定</h2>
-              </VisuallyHidden>
-              <Help />
-              <Settings />
-            </Stack>
-          </HeaderControls>
+            <HelpAndSettings />
+          </Stack>
         </HeaderArea>
         <MainArea>
           <VisuallyHidden>

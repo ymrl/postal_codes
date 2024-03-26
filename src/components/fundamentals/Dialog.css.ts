@@ -34,10 +34,7 @@ export const backdropCSSVarStyle = style({
 });
 
 export const dialogHeaderStyle = style({
-  padding: semanticTokens.spacing.containerPadding,
-  backgroundColor: colorVars.background.secondary,
-  display: "flex",
-  justifyContent: "space-between",
+  borderBottom: semanticTokens.border.accent,
 });
 
 export const dialogBodyStyle = style({
@@ -50,29 +47,4 @@ export const dialogTitleStyle = style({
   margin: 0,
   padding: 0,
   font: semanticTokens.font.subTitle,
-});
-
-export const dialogCloseButtonStyle = style({
-  width: semanticTokens.ui.control.size,
-  height: semanticTokens.ui.control.size,
-  display: "inline-flex",
-  justifyContent: "center",
-  alignItems: "center",
-  borderRadius: "50%",
-  border: 0,
-  padding: 0,
-  backgroundColor: "transparent",
-  color: colorVars.ui.distinguish,
-  font: semanticTokens.font.normal,
-  cursor: "pointer",
-  transitionDuration: semanticTokens.transition.duration,
-  transitionProperty: "background-color",
-  selectors: {
-    "&:hover": {
-      backgroundColor: colorVars.background.secondaryHover,
-    },
-    "&:focus-visible": {
-      outline: semanticTokens.focus.outline,
-    },
-  },
 });

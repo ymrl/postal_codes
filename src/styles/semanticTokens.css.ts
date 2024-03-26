@@ -122,7 +122,7 @@ type SemanticTokens = {
 
 export const semanticTokensLarge: SemanticTokens = {
   font: {
-    title: strongFont(Size0024),
+    title: strongFont(Size0020),
     subTitle: strongFont(Size0020),
     normal: normalFont(Size0016),
     caption: normalFont(Size0012),
@@ -154,7 +154,7 @@ export const semanticTokensLarge: SemanticTokens = {
     },
     control: {
       size: Size0032,
-      padding: Size0004,
+      padding: `${Size0004} ${Size0008}`,
       borderRadius: Size0008,
     },
     check: {

@@ -1,8 +1,5 @@
-import { IconFont } from ".";
-import {
-  textWithIconStyle,
-  visuallyHidableTextStyle,
-} from "./TextWithIcon.css";
+import { IconFont, ResponsiveText } from ".";
+import { textWithIconStyle } from "./TextWithIcon.css";
 
 export const TextWithIcon = ({
   Icon,
@@ -15,6 +12,6 @@ export const TextWithIcon = ({
 }) => (
   <span className={textWithIconStyle}>
     <IconFont Icon={Icon} />
-    <span className={visuallyHidableTextStyle[hideText]}>{children}</span>
+    <ResponsiveText hideText={hideText}>{children}</ResponsiveText>
   </span>
 );

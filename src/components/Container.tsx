@@ -4,9 +4,9 @@ import {
   containerStyleDark,
   containerStyleLight,
   headerAreaStyle,
-  headerControlsStyle,
 } from "./Container.css";
 import { DeveloperSettingsContext, SettingsContext } from "./../contexts";
+import { Stack } from "./fundamentals";
 
 export const Container = ({ children }: { children: React.ReactNode }) => {
   const { colorScheme } = React.useContext(SettingsContext);
@@ -34,11 +34,17 @@ export const Container = ({ children }: { children: React.ReactNode }) => {
 };
 
 export const HeaderArea = ({ children }: { children: React.ReactNode }) => (
-  <header className={headerAreaStyle}>{children}</header>
-);
-
-export const HeaderControls = ({ children }: { children: React.ReactNode }) => (
-  <div className={headerControlsStyle}>{children}</div>
+  <header className={headerAreaStyle}>
+    <Stack
+      size="block"
+      justifyContent="start"
+      alignItems="center"
+      direction="row"
+      padding
+    >
+      {children}
+    </Stack>
+  </header>
 );
 
 export const MainArea = ({ children }: { children: React.ReactNode }) => (

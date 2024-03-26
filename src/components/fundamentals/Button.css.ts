@@ -4,14 +4,14 @@ import { colorVars, semanticTokens } from "../../styles";
 export const buttonStyle = style({
   cursor: "pointer",
   padding: semanticTokens.ui.control.padding,
-  borderRadius: semanticTokens.ui.control.borderRadius,
-  border: semanticTokens.border.decoration,
+  borderRadius: `calc(${semanticTokens.ui.control.size} * 0.5)`,
+  border: 0,
   height: semanticTokens.ui.control.size,
   minWidth: semanticTokens.ui.control.size,
   display: "inline-flex",
   alignItems: "center",
   justifyContent: "center",
-  backgroundColor: colorVars.background.secondary,
+  backgroundColor: colorVars.background.primary,
   color: semanticTokens.font.color.primary,
   font: semanticTokens.ui.button.font,
   transitionDuration: semanticTokens.transition.duration,
@@ -19,7 +19,7 @@ export const buttonStyle = style({
   flexShrink: 0,
   selectors: {
     "&:hover": {
-      backgroundColor: colorVars.background.secondaryHover,
+      backgroundColor: colorVars.background.primaryHover,
     },
     "&:focus-visible": {
       outline: semanticTokens.focus.outline,

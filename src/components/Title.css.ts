@@ -5,4 +5,5 @@ export const titleStyle = style({
   font: semanticTokens.font.title,
   color: semanticTokens.font.color.primary,
   margin: 0,
+  display: "flex",
 });
