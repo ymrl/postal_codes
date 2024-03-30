@@ -32,6 +32,7 @@ export const SearchField = ({ fieldId }: { fieldId: string }) => {
   return (
     <IconLabeledInput
       labelText="検索"
+      type="search"
       Icon={SlMagnifier}
       id={fieldId}
       value={query}

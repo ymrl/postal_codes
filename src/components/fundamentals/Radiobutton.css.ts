@@ -1,8 +1,13 @@
 import { globalStyle, style } from "@vanilla-extract/css";
 import { colorVars, semanticTokens } from "../../styles";
-import { checkBoxContainerStyle } from "./Checkbox.css";
 
-export const radioButtonContainerStyle = style([checkBoxContainerStyle]);
+export const radioButtonContainerStyle = style({
+  display: "flex",
+  flexDirection: "row",
+  alignItems: "stretch",
+  font: semanticTokens.font.normal,
+  position: "relative",
+});
 
 export const radioButtonVisualStyle = style({
   flexShrink: 0,

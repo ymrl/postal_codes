@@ -8,7 +8,7 @@ import {
   TextWithIcon,
 } from "../fundamentals";
 import React from "react";
-import { KenAllContext } from "../../contexts";
+import { KenAllContext, SettingsContext } from "../../contexts";
 import {
   helpDDStyle,
   helpDLStyle,
@@ -24,6 +24,27 @@ const K = ({ children }: { children: React.ReactNode }) => (
 export const Help = () => {
   const [isOpen, setIsOpen] = React.useState(false);
   const { downloadedAt } = React.useContext(KenAllContext);
+
+  const { shortcutKey } = React.useContext(SettingsContext);
+
+  React.useEffect(() => {
+    const listener = (e: KeyboardEvent) => {
+      if (!shortcutKey || e.key !== "?" || e.altKey || e.ctrlKey || e.metaKey)
+        return;
+      const target = e.target as HTMLElement;
+      if (target.tagName === "INPUT") {
+        const type = target.getAttribute("type");
+        if (type === "text" || type === "search" || type === null) return;
+      }
+      if (target.tagName === "TEXTAREA") return;
+      e.preventDefault();
+      setIsOpen(true);
+    };
+    window.addEventListener("keydown", listener);
+    return () => {
+      window.removeEventListener("keydown", listener);
+    };
+  }, [shortcutKey]);
 
   return (
     <>

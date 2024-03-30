@@ -1,31 +1,50 @@
-import { checkBoxContainerStyle, checkBoxVisualStyle } from "./Checkbox.css";
+import { useId } from "react";
+import {
+  checkBoxCaptionStyle,
+  checkBoxContainerStyle,
+  checkBoxLabelStyle,
+  checkBoxTextStyle,
+  checkBoxVisualStyle,
+} from "./Checkbox.css";
 import { visuallyHiddenStyle } from "./VisuallyHidden.css";
 
 export const Checkbox = ({
   children,
   checked,
-  value,
   onChange,
+  caption,
   ...rest
 }: {
   children: React.ReactNode;
   checked: boolean;
-  value?: string;
+  caption?: React.ReactNode;
   onChange: React.ChangeEventHandler<HTMLInputElement>;
 } & Omit<
   React.InputHTMLAttributes<HTMLInputElement>,
-  "onChange" | "value" | "checked"
->) => (
-  <label className={checkBoxContainerStyle}>
-    <input
-      className={visuallyHiddenStyle}
-      type="checkbox"
-      checked={checked}
-      onChange={onChange}
-      value={value}
-      {...rest}
-    />
-    <span className={checkBoxVisualStyle} aria-hidden="true" />
-    <span>{children}</span>
-  </label>
-);
+  "onChange" | "checked"
+>) => {
+  const id = useId();
+  const captionId = `${id}-caption`;
+  return (
+    <span className={checkBoxContainerStyle}>
+      {caption && (
+        <span id={captionId} className={checkBoxCaptionStyle}>
+          {caption}
+        </span>
+      )}
+      <label className={checkBoxLabelStyle} htmlFor={id}>
+        <input
+          className={visuallyHiddenStyle}
+          type="checkbox"
+          checked={checked}
+          onChange={onChange}
+          id={id}
+          aria-describedby={caption ? captionId : undefined}
+          {...rest}
+        />
+        <span className={checkBoxVisualStyle} aria-hidden="true" />
+        <span className={checkBoxTextStyle}>{children}</span>
+      </label>
+    </span>
+  );
+};

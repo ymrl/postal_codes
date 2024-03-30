@@ -39,14 +39,16 @@ export const SettingDialog = ({ isOpen, onRequestClose }: Props) => {
           <Checkbox
             checked={shortcutKey}
             onChange={(e) => updateSettings({ shortcutKey: e.target.checked })}
+            caption="Ctrl+F または Command+F で検索にフォーカス、?でヘルプを表示します"
           >
-            Ctrl+F または Command+F で検索にフォーカス
+            ページ全体でのショートカットキーを有効にする
           </Checkbox>
           <Checkbox
             checked={tableKeyboardControl}
             onChange={(e) =>
               updateSettings({ tableKeyboardControl: e.target.checked })
             }
+            caption="テーブル内で各セルがフォーカス可能になり、矢印キーやHJKLキーで移動できます"
           >
             テーブル内のキーボードで操作を有効にする
           </Checkbox>

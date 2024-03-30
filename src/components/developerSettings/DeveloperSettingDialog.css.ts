@@ -4,5 +4,5 @@ import { colorVars, semanticTokens } from "../../styles";
 export const dangerousNoticeStyle = style({
   color: colorVars.text.dangerous,
   font: semanticTokens.font.caption,
-  margin: 0,
+  fontWeight: semanticTokens.font.weight.strong,
 });

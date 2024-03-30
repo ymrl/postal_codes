@@ -200,11 +200,13 @@ export const DeveloperSettingDialogRenderer: React.ForwardRefRenderFunction<
                   useCSSVarForBackdrop: e.target.checked,
                 })
               }
+              caption={
+                <strong className={dangerousNoticeStyle}>
+                  Safariでdialog要素の::backdropが表示されなくなります
+                </strong>
+              }
             >
               dialog要素の::backdropにCSS変数を使う
-              <p className={dangerousNoticeStyle}>
-                Safariでdialog要素の::backdropが表示されなくなります
-              </p>
             </Checkbox>
             <Checkbox
               checked={useDetailsPopupForMobileSafari}
@@ -213,11 +215,13 @@ export const DeveloperSettingDialogRenderer: React.ForwardRefRenderFunction<
                   useDetailsPopupForMobileSafari: e.target.checked,
                 })
               }
+              caption={
+                <strong className={dangerousNoticeStyle}>
+                  VoiceOverの挙動が不安定になる可能性があります
+                </strong>
+              }
             >
               モバイルSafariでもポップアップにdetails要素を使う
-              <p className={dangerousNoticeStyle}>
-                VoiceOverの挙動が不安定になる可能性があります
-              </p>
             </Checkbox>
             <Checkbox
               checked={displayDetailsChildrenClosed}
@@ -226,11 +230,13 @@ export const DeveloperSettingDialogRenderer: React.ForwardRefRenderFunction<
                   displayDetailsChildrenClosed: e.target.checked,
                 })
               }
+              caption={
+                <strong className={dangerousNoticeStyle}>
+                  Safariで不可視な要素にフォーカスしてしまうようになります
+                </strong>
+              }
             >
               details要素が閉じているとき、summary以外の子要素をdisplay:noneにしない
-              <p className={dangerousNoticeStyle}>
-                Safariで不可視な要素にフォーカスしてしまうようになります
-              </p>
             </Checkbox>
             <Checkbox
               checked={disableVirtualScroll}
@@ -239,11 +245,13 @@ export const DeveloperSettingDialogRenderer: React.ForwardRefRenderFunction<
                   disableVirtualScroll: e.target.checked,
                 })
               }
+              caption={
+                <strong className={dangerousNoticeStyle}>
+                  絞り込みの件数によってはブラウザがフリーズする可能性があります
+                </strong>
+              }
             >
               仮想スクロールを無効にする
-              <p className={dangerousNoticeStyle}>
-                絞り込みの件数によってはブラウザがフリーズする可能性があります
-              </p>
             </Checkbox>
           </Fields>
         </Fieldset>

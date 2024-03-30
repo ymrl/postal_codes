@@ -2,10 +2,32 @@ import { style, globalStyle } from "@vanilla-extract/css";
 import { colorVars, semanticTokens } from "../../styles";
 
 export const checkBoxContainerStyle = style({
+  display: "grid",
+  gridTemplateColumns: `${semanticTokens.ui.check.size} 1fr`,
+  position: "relative",
+});
+
+export const checkBoxTextStyle = style({
+  font: semanticTokens.font.normal,
+});
+
+export const checkBoxLabelStyle = style({
+  gridColumnStart: 1,
+  gridColumnEnd: 3,
+  gridRowStart: 1,
+  gridRowEnd: 2,
   display: "flex",
   flexDirection: "row",
   alignItems: "stretch",
-  font: semanticTokens.font.normal,
+});
+
+export const checkBoxCaptionStyle = style({
+  font: semanticTokens.font.caption,
+  color: colorVars.text.secondary,
+  gridColumnStart: 2,
+  gridColumnEnd: 3,
+  gridRowStart: 2,
+  gridRowEnd: 3,
 });
 
 export const checkBoxVisualStyle = style({
