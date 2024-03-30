@@ -1,5 +1,10 @@
 import { style, styleVariants, ComplexStyleRule } from "@vanilla-extract/css";
-import { colorVars, queries, semanticTokens } from "../../../styles";
+import {
+  colorVars,
+  queries,
+  semanticTokens,
+  tableHeaderZIndex,
+} from "../../../styles";
 import { ColumnType } from "../types";
 
 export const headerRowHeight = "2rem";
@@ -20,12 +25,12 @@ export const tableLayoutDisplayTableStyle = style([
   },
 ]);
 
-export const scrollableInnerStyle = style({
+export const tableBodyStyle = style({
   width: "100%",
   display: "block",
 });
-export const scorllableInnerDisplayTableStyle = style([
-  scrollableInnerStyle,
+export const tableBodyDisplayTableStyle = style([
+  tableBodyStyle,
   {
     display: "table-row-group",
   },
@@ -110,7 +115,7 @@ export const headerRowGroupStyle = style({
   backgroundColor: colorVars.background.secondary,
   position: "sticky",
   top: 0,
-  zIndex: 1,
+  zIndex: tableHeaderZIndex,
   "@media": {
     [queries.smallHeight]: {
       position: "static",

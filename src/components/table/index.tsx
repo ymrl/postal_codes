@@ -3,15 +3,11 @@ import { DeveloperSettingsContext, KenAllContext } from "../../contexts";
 import { useWindowVirtualizer } from "@tanstack/react-virtual";
 import { Header } from "./Header";
 import { BodyRow } from "./BodyRow";
-import {
-  ContentBottom,
-  ContentTop,
-  ScrollableInner,
-  TableLayout,
-} from "./layout";
+import { ContentBottom, ContentTop, TableBody, TableLayout } from "./layout";
 import { screenWidths, sizeRemToPx } from "../../styles";
 import { rowHeight, smallRowHeight } from "./layout/index.css";
 import { Column } from "./types";
+import { Instruction } from "./Instruction";
 
 export const Table = () => {
   const { filteredKenAll } = React.useContext(KenAllContext);
@@ -37,48 +33,56 @@ export const Table = () => {
     { type: "town", label: "町域", id: `${id}__town` },
     { type: "others", label: "その他の情報", id: `${id}__others` },
   ];
+  const tableBodyRef = React.useRef<HTMLTableSectionElement>(null);
 
   return (
-    <TableLayout
-      id={id}
-      ariaLabel="日本の郵便番号"
-      ariaColCount={5}
-      ariaRowCount={filteredKenAll.length + 1}
-      virtualHeight={totalSize}
-    >
-      <Header columns={columns} />
-      {disableVirtualScroll ? (
-        <>
-          <ContentTop firstRowTop={0} colCount={5} />
-          {filteredKenAll.map((row, i) => (
-            <BodyRow
-              rowIndex={i + 2}
-              row={row}
-              key={i}
-              columns={columns}
-              id={`${id}__${i}`}
+    <>
+      <Instruction tableBodyRef={tableBodyRef} />
+      <TableLayout
+        id={id}
+        ariaLabel="日本の郵便番号"
+        ariaColCount={5}
+        ariaRowCount={filteredKenAll.length + 1}
+        virtualHeight={totalSize}
+      >
+        <Header columns={columns} />
+        {disableVirtualScroll ? (
+          <>
+            <ContentTop firstRowTop={0} colCount={5} />
+            {filteredKenAll.map((row, i) => (
+              <BodyRow
+                rowIndex={i + 2}
+                row={row}
+                key={i}
+                columns={columns}
+                id={`${id}__${i}`}
+              />
+            ))}
+          </>
+        ) : (
+          <TableBody
+            height={totalSize}
+            firstItemTop={items[0]?.start ?? 0}
+            ref={tableBodyRef}
+          >
+            <ContentTop firstRowTop={items[0]?.start ?? 0} colCount={5} />
+            {items.map((virtualItem) => (
+              <BodyRow
+                rowIndex={virtualItem.index + 2}
+                row={filteredKenAll[virtualItem.index]}
+                key={virtualItem.key}
+                columns={columns}
+                id={`${id}__${virtualItem.index}`}
+              />
+            ))}
+            <ContentBottom
+              colCount={5}
+              totalHeight={rowVirtualizer.getTotalSize()}
+              endPosition={items[items.length - 1]?.end ?? 0}
             />
-          ))}
-        </>
-      ) : (
-        <ScrollableInner height={totalSize} firstItemTop={items[0]?.start ?? 0}>
-          <ContentTop firstRowTop={items[0]?.start ?? 0} colCount={5} />
-          {items.map((virtualItem) => (
-            <BodyRow
-              rowIndex={virtualItem.index + 2}
-              row={filteredKenAll[virtualItem.index]}
-              key={virtualItem.key}
-              columns={columns}
-              id={`${id}__${virtualItem.index}`}
-            />
-          ))}
-          <ContentBottom
-            colCount={5}
-            totalHeight={rowVirtualizer.getTotalSize()}
-            endPosition={items[items.length - 1]?.end ?? 0}
-          />
-        </ScrollableInner>
-      )}
-    </TableLayout>
+          </TableBody>
+        )}
+      </TableLayout>
+    </>
   );
 };

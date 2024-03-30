@@ -1,11 +1,11 @@
 import React from "react";
 import { DeveloperSettingsContext, SettingsContext } from "../../../contexts";
 import {
-  scrollableInnerStyle,
+  tableBodyStyle,
   rowStyle,
   cellStyle,
   headerRowGroupStyle,
-  scorllableInnerDisplayTableStyle,
+  tableBodyDisplayTableStyle,
   rowDisplayTableRowStyle,
   headerRowGroupDisplayTableStyle,
   cellDisplayTableCellStyle,
@@ -14,7 +14,7 @@ import {
   headerRowHeight,
 } from "./index.css";
 import { Column, ColumnType } from "../types";
-import { useKeyNavigation } from "./useKeyNavigation";
+import { useKeyNavigation, useKeyNavigationRow } from "./useKeyNavigation";
 
 export const TableLayout = ({
   children,
@@ -59,15 +59,14 @@ export const TableLayout = ({
   );
 };
 
-export const ScrollableInner = ({
-  children,
-  height,
-  firstItemTop,
-}: {
-  children: React.ReactNode;
-  height: number;
-  firstItemTop: number;
-}) => {
+const TbodyRenderer: React.ForwardRefRenderFunction<
+  HTMLTableSectionElement,
+  {
+    children: React.ReactNode;
+    height: number;
+    firstItemTop: number;
+  }
+> = ({ children, height, firstItemTop }, ref) => {
   const { tableElement, tableRole, cssDisplayMode, virutalPositioning } =
     React.useContext(DeveloperSettingsContext);
   const TagName = tableElement === "table" ? "tbody" : "div";
@@ -75,9 +74,7 @@ export const ScrollableInner = ({
   return (
     <TagName
       className={
-        cssDisplayMode === "table"
-          ? scorllableInnerDisplayTableStyle
-          : scrollableInnerStyle
+        cssDisplayMode === "table" ? tableBodyDisplayTableStyle : tableBodyStyle
       }
       role={role}
       style={{
@@ -88,11 +85,13 @@ export const ScrollableInner = ({
             ? `0 ${firstItemTop}px`
             : undefined,
       }}
+      ref={ref}
     >
       {children}
     </TagName>
   );
 };
+export const TableBody = React.forwardRef(TbodyRenderer);
 
 export const ContentTop = ({
   firstRowTop,
@@ -198,6 +197,8 @@ export const Row = ({
     React.useContext(DeveloperSettingsContext);
   const TagName = tableElement === "table" ? "tr" : "div";
   const role = tableRole ? "row" : undefined;
+  const keyboardProps = useKeyNavigationRow({ rowIndex });
+
   return (
     <TagName
       id={id}
@@ -208,6 +209,7 @@ export const Row = ({
           ? rowDisplayTableRowStyle[type]
           : rowStyle[type]
       }
+      {...keyboardProps}
     >
       {children}
     </TagName>

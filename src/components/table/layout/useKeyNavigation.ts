@@ -12,7 +12,7 @@ const prevRowCell = (elm: Element, colIndex: number) =>
   elm.parentElement?.previousElementSibling?.querySelector(
     `[data-colindex="${colIndex}"]`,
   );
-const firstRowCellOfTbody = (
+export const firstRowCellOfTbody = (
   tbody: Element | null | undefined,
   colIndex: number,
 ) => {
@@ -66,6 +66,12 @@ const focusLastRowCell = (
   setTimeout(() => {
     focusCell(lastRowCellOfTbody(tbody, colIndex));
   }, 100);
+};
+
+export const useKeyNavigationRow = ({ rowIndex }: { rowIndex: number }) => {
+  return {
+    "data-rowIndex": rowIndex,
+  };
 };
 
 export const useKeyNavigation = ({

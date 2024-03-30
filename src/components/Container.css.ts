@@ -8,6 +8,7 @@ import {
   semanticTokensLarge,
   semanticTokensMedium,
   semanticTokensSmall,
+  headerZIndex,
 } from "../styles";
 
 export const containerStyle = style({
@@ -38,7 +39,7 @@ export const containerStyleDark = style({
 export const headerAreaStyle = style({
   position: "sticky",
   top: 0,
-  zIndex: 2,
+  zIndex: headerZIndex,
   background: colorVars.background.primary,
   "@media": {
     [queries.smallHeight]: {
