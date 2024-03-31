@@ -25,6 +25,5 @@ export const keyboardOnlyStyle = style({
 });
 export const instructionStyle = style({
   background: colorVars.background.primary,
-  padding: semanticTokens.spacing.blockPadding,
   border: semanticTokens.border.decoration,
 });

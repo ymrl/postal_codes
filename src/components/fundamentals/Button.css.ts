@@ -26,3 +26,8 @@ export const buttonStyle = style({
     },
   },
 });
+
+export const buttonWithBorderStyle = style([
+  buttonStyle,
+  { border: semanticTokens.border.decoration },
+]);

@@ -8,7 +8,7 @@ import {
   TextWithIcon,
 } from "../fundamentals";
 import React from "react";
-import { KenAllContext, SettingsContext } from "../../contexts";
+import { KenAllContext, SettingsContext, UIContext } from "../../contexts";
 import {
   helpDDStyle,
   helpDLStyle,
@@ -22,9 +22,8 @@ const K = ({ children }: { children: React.ReactNode }) => (
 );
 
 export const Help = () => {
-  const [isOpen, setIsOpen] = React.useState(false);
+  const { isHelpDialogOpen, dispatch } = React.useContext(UIContext);
   const { downloadedAt } = React.useContext(KenAllContext);
-
   const { shortcutKey } = React.useContext(SettingsContext);
 
   React.useEffect(() => {
@@ -38,19 +37,19 @@ export const Help = () => {
       }
       if (target.tagName === "TEXTAREA") return;
       e.preventDefault();
-      setIsOpen(true);
+      dispatch({ type: "OPEN_HELP_DIALOG" });
     };
     window.addEventListener("keydown", listener);
     return () => {
       window.removeEventListener("keydown", listener);
     };
-  }, [shortcutKey]);
+  }, [shortcutKey, dispatch]);
 
   return (
     <>
       <Button
         onClick={() => {
-          setIsOpen(true);
+          dispatch({ type: "OPEN_HELP_DIALOG" });
         }}
       >
         <TextWithIcon hideText="medium" Icon={SlQuestion}>
@@ -59,8 +58,8 @@ export const Help = () => {
       </Button>
       <Dialog
         dialogTitle="ヘルプ"
-        isOpen={isOpen}
-        onRequestClose={() => setIsOpen(false)}
+        isOpen={isHelpDialogOpen}
+        onRequestClose={() => dispatch({ type: "CLOSE_HELP_DIALOG" })}
       >
         <Stack size="block" direction="column">
           <Paragraph>

@@ -1,5 +1,5 @@
 import React from "react";
-import { buttonStyle } from "./Button.css";
+import { buttonStyle, buttonWithBorderStyle } from "./Button.css";
 
 type ButtonProps = React.DetailedHTMLProps<
   React.ButtonHTMLAttributes<HTMLButtonElement>,
@@ -9,9 +9,11 @@ const ButtonRenderer = (
   {
     children,
     onClick,
+    border = false,
     ...props
   }: {
     children: React.ReactNode;
+    border?: boolean;
     onClick: React.MouseEventHandler<HTMLButtonElement>;
   } & Omit<ButtonProps, "type" | "onClick" | "children" | "className">,
   ref: React.Ref<HTMLButtonElement>,
@@ -19,7 +21,7 @@ const ButtonRenderer = (
   <button
     type="button"
     onClick={onClick}
-    className={buttonStyle}
+    className={border ? buttonWithBorderStyle : buttonStyle}
     {...props}
     ref={ref}
   >
