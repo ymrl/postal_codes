@@ -1,0 +1,33 @@
+name: Update Ken All
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 2 1 * *'
+
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 21
+          cache: 'npm'
+      - name: Install dependencies
+        run: npm install
+      - name: Download Ken All
+        run: npm run download_ken_all
+      - name: Git config
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email '41898282+github-actions[bot]@users.noreply.github.com'
+      - name: Commit
+        run: |
+          git add public/ken_all.json
+          git commit -m 'Update ken_all.json'
+      - name: Push
+        run: git push
