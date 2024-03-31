@@ -13,6 +13,7 @@ export const Checkbox = ({
   checked,
   onChange,
   caption,
+  id,
   ...rest
 }: {
   children: React.ReactNode;
@@ -23,8 +24,8 @@ export const Checkbox = ({
   React.InputHTMLAttributes<HTMLInputElement>,
   "onChange" | "checked"
 >) => {
-  const id = useId();
-  const captionId = `${id}-caption`;
+  const uniqId = useId();
+  const captionId = `${uniqId}-caption`;
   return (
     <span className={checkBoxContainerStyle}>
       {caption && (
@@ -32,13 +33,13 @@ export const Checkbox = ({
           {caption}
         </span>
       )}
-      <label className={checkBoxLabelStyle} htmlFor={id}>
+      <label className={checkBoxLabelStyle}>
         <input
           className={visuallyHiddenStyle}
           type="checkbox"
           checked={checked}
           onChange={onChange}
-          id={id}
+          id={id || uniqId}
           aria-describedby={caption ? captionId : undefined}
           {...rest}
         />
