@@ -1,15 +1,16 @@
 import React from "react";
-import { FilterConditionContext } from "../../contexts";
+import { KenAllContext } from "../../contexts";
 import { badgeStyle } from "./Badge.css";
 import { VisuallyHidden } from "../fundamentals";
 
 export const Badge = () => {
-  const { filterCondition } = React.useContext(FilterConditionContext);
+  const { choume, koaza, partOfTown, spreadAcrossTowns } =
+    React.useContext(KenAllContext);
   const appliedConditionsCount = [
-    filterCondition.choume,
-    filterCondition.koaza,
-    filterCondition.partOfTown,
-    filterCondition.spreadAcrossTowns,
+    choume,
+    koaza,
+    partOfTown,
+    spreadAcrossTowns,
   ].filter(Boolean).length;
   return (
     appliedConditionsCount > 0 && (

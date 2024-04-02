@@ -1,13 +1,10 @@
-import React, { useEffect } from "react";
-import { FilterConditionContext, SettingsContext } from "../../contexts";
+import React, { useContext, useEffect } from "react";
+import { KenAllContext, SettingsContext } from "../../contexts";
 import { SlMagnifier } from "react-icons/sl";
 import { IconLabeledInput } from "../fundamentals";
 
 export const SearchField = ({ fieldId }: { fieldId: string }) => {
-  const { filterCondition, updateFilterCondition } = React.useContext(
-    FilterConditionContext,
-  );
-  const { query } = filterCondition;
+  const { query, dispatch } = useContext(KenAllContext);
   const { shortcutKey } = React.useContext(SettingsContext);
   const ref = React.useRef<HTMLInputElement>(null);
 
@@ -37,7 +34,7 @@ export const SearchField = ({ fieldId }: { fieldId: string }) => {
       id={fieldId}
       value={query}
       onChange={(e) =>
-        updateFilterCondition({ ...filterCondition, query: e.target.value })
+        dispatch({ type: "FILTER_KEN_ALL", payload: { query: e.target.value } })
       }
       ref={ref}
     />

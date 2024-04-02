@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Checkbox, Fields } from "../fundamentals";
-import { FilterCondition, FilterConditionContext } from "../../contexts";
+import { KenAllContext } from "../../contexts";
 import { advancedSearchContentStyle } from "./AdvancedSearchContent.css";
 
 const labels = {
@@ -11,9 +11,9 @@ const labels = {
 } as const;
 
 export const AdvancedSearchContent = ({ ids }: { ids: string[] }) => {
-  const { filterCondition, updateFilterCondition } = React.useContext(
-    FilterConditionContext,
-  );
+  const { dispatch, spreadAcrossTowns, partOfTown, koaza, choume } =
+    useContext(KenAllContext);
+  const filterCondition = { spreadAcrossTowns, partOfTown, koaza, choume };
   const ref = React.useRef<HTMLDivElement>(null);
   const adjustPosition = () => {
     if (!ref.current) {
@@ -43,11 +43,11 @@ export const AdvancedSearchContent = ({ ids }: { ids: string[] }) => {
             id={ids[i]}
             key={key}
             value={key}
-            checked={!!filterCondition[key as keyof FilterCondition]}
+            checked={!!filterCondition[key]}
             onChange={(e) =>
-              updateFilterCondition({
-                ...filterCondition,
-                [key]: e.target.checked,
+              dispatch({
+                type: "FILTER_KEN_ALL",
+                payload: { [key]: e.target.checked },
               })
             }
           >
