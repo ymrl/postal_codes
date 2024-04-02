@@ -11,13 +11,12 @@ import {
 import { DeveloperSettingsContext } from "../../contexts";
 import { dangerousNoticeStyle } from "./DeveloperSettingDialog.css";
 
-export const DeveloperSettingDialogRenderer: React.ForwardRefRenderFunction<
-  HTMLDialogElement,
-  Pick<
+export const DeveloperSettingDialog = (
+  props: Pick<
     React.ComponentPropsWithoutRef<typeof Dialog>,
     "onRequestClose" | "isOpen"
-  >
-> = (props) => {
+  >,
+) => {
   const {
     updateDeveloperSettings,
     useCSSVarForBackdrop,
@@ -259,7 +258,3 @@ export const DeveloperSettingDialogRenderer: React.ForwardRefRenderFunction<
     </Dialog>
   );
 };
-
-export const DeveloperSettingDialog = React.forwardRef(
-  DeveloperSettingDialogRenderer,
-);

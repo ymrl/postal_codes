@@ -70,7 +70,7 @@ const focusLastRowCell = (
 
 export const useKeyNavigationRow = ({ rowIndex }: { rowIndex: number }) => {
   return {
-    "data-rowIndex": rowIndex,
+    "data-rowindex": rowIndex,
   };
 };
 
