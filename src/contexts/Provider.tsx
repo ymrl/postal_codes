@@ -1,5 +1,5 @@
 import { DeveloperSettingsProvider } from "./DeveloperSettingsContext";
-import { KenAllProvider } from "./KenAllContext";
+import { KenAllProvider } from "./KenAll";
 import { SettingsProvider } from "./SettingsContext";
 import { UIProvider } from "./UIContext";
 

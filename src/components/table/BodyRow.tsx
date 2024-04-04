@@ -7,19 +7,21 @@ import {
   TownCellContent,
 } from "./content";
 import { Column } from "./types";
+import { useKenAllNumber } from "../../contexts/KenAll/useKenAllNumber";
 
 export const BodyRow = ({
-  row,
   rowIndex,
   columns,
+  number,
   id,
 }: {
-  row: string[];
+  number: string;
   rowIndex: number;
   columns: Column[];
   id: string;
 }) => {
-  const rowHeaderId = `${id}__${row[2]}`;
+  const rowHeaderId = `${id}__${number}`;
+  const { town, city } = useKenAllNumber(number);
   return (
     <Row rowIndex={rowIndex} type="body" id={id}>
       {/*
@@ -47,7 +49,7 @@ export const BodyRow = ({
         id={rowHeaderId}
       >
         <NumberCellContent>
-          {row[2].slice(0, 3)}-{row[2].slice(3)}
+          {number.slice(0, 3)}-{number.slice(3)}
         </NumberCellContent>
       </Cell>
       {/* 都道府県名 */}
@@ -57,7 +59,7 @@ export const BodyRow = ({
         column={columns?.[1]}
         rowHeaderId={rowHeaderId}
       >
-        <PrefCellContent kanji={row[6]} kana={row[3]} />
+        <PrefCellContent kanji={city?.pref || ""} kana={city?.prefKana || ""} />
       </Cell>
       {/* 市区町村名 */}
       <Cell
@@ -66,7 +68,7 @@ export const BodyRow = ({
         column={columns?.[2]}
         rowHeaderId={rowHeaderId}
       >
-        <CityCellContent kanji={row[7]} kana={row[4]} />
+        <CityCellContent kanji={city?.city || ""} kana={city?.cityKana || ""} />
       </Cell>
       {/* 町域名 */}
       <Cell
@@ -75,7 +77,7 @@ export const BodyRow = ({
         column={columns?.[3]}
         rowHeaderId={rowHeaderId}
       >
-        <TownCellContent kanji={row[8]} kana={row[5]} />
+        <TownCellContent kanji={town?.town || ""} kana={town?.townKana || ""} />
       </Cell>
       <Cell
         columnType="others"
@@ -86,13 +88,13 @@ export const BodyRow = ({
         <Others
           list={[
             /* 一町域が二以上の郵便番号で表される場合の表示 */
-            row[9] === "1" && "町域の一部",
+            town?.part ? "町域の一部" : false,
             /* 小字毎に番地が起番されている町域の表示 */
-            row[10] === "1" && "小字",
+            town?.koaza ? "小字" : false,
             /* 丁目を有する町域の場合の表示 */
-            row[11] === "1" && "丁目",
+            town?.chome ? "丁目" : false,
             /* 一つの郵便番号で二以上の町域を表す場合の表示 */
-            row[12] === "1" && "複数の町域",
+            town?.spread ? "複数の町域" : false,
           ]}
         />
       </Cell>

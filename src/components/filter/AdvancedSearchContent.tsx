@@ -1,7 +1,7 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Checkbox, Fields } from "../fundamentals";
-import { KenAllContext } from "../../contexts";
 import { advancedSearchContentStyle } from "./AdvancedSearchContent.css";
+import { useFilter } from "../../contexts/KenAll/useFilter";
 
 const labels = {
   partOfTown: "町域の一部を示す郵便番号",
@@ -11,8 +11,7 @@ const labels = {
 } as const;
 
 export const AdvancedSearchContent = ({ ids }: { ids: string[] }) => {
-  const { dispatch, spreadAcrossTowns, partOfTown, koaza, choume } =
-    useContext(KenAllContext);
+  const { filter, spreadAcrossTowns, partOfTown, koaza, choume } = useFilter();
   const filterCondition = { spreadAcrossTowns, partOfTown, koaza, choume };
   const ref = React.useRef<HTMLDivElement>(null);
   const adjustPosition = () => {
@@ -44,12 +43,7 @@ export const AdvancedSearchContent = ({ ids }: { ids: string[] }) => {
             key={key}
             value={key}
             checked={!!filterCondition[key]}
-            onChange={(e) =>
-              dispatch({
-                type: "FILTER_KEN_ALL",
-                payload: { [key]: e.target.checked },
-              })
-            }
+            onChange={(e) => filter({ [key]: e.target.checked })}
           >
             {labels[key]}
           </Checkbox>

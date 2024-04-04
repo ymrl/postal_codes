@@ -1,12 +1,24 @@
-import React, { useContext, useEffect } from "react";
-import { KenAllContext, SettingsContext } from "../../contexts";
+import React, { useEffect } from "react";
+import { SettingsContext } from "../../contexts";
 import { SlMagnifier } from "react-icons/sl";
 import { IconLabeledInput } from "../fundamentals";
+import { useFilter } from "../../contexts/KenAll/useFilter";
 
 export const SearchField = ({ fieldId }: { fieldId: string }) => {
-  const { query, dispatch } = useContext(KenAllContext);
   const { shortcutKey } = React.useContext(SettingsContext);
   const ref = React.useRef<HTMLInputElement>(null);
+  const { query, filter } = useFilter();
+
+  React.useEffect(() => {
+    const parsedSearch = new URLSearchParams(location.search);
+    const q = parsedSearch.get("q");
+    if (q) {
+      filter({
+        query: q,
+      });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     const listener = (e: KeyboardEvent) => {
@@ -33,9 +45,7 @@ export const SearchField = ({ fieldId }: { fieldId: string }) => {
       Icon={SlMagnifier}
       id={fieldId}
       value={query}
-      onChange={(e) =>
-        dispatch({ type: "FILTER_KEN_ALL", payload: { query: e.target.value } })
-      }
+      onChange={(e) => filter({ query: e.target.value })}
       ref={ref}
     />
   );

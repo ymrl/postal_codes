@@ -21,13 +21,15 @@ jobs:
         run: npm install
       - name: Download Ken All
         run: npm run download_ken_all
+      - name: Create Index JSON
+        run: npm run create_index
       - name: Git config
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email '41898282+github-actions[bot]@users.noreply.github.com'
       - name: Commit
         run: |
-          git add public/ken_all.json
+          git add public/data
           git commit -m 'Update ken_all.json'
       - name: Push
         run: git push

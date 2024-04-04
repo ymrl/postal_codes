@@ -23,7 +23,7 @@ const K = ({ children }: { children: React.ReactNode }) => (
 
 export const Help = () => {
   const { isHelpDialogOpen, dispatch } = React.useContext(UIContext);
-  const { downloadedAt } = React.useContext(KenAllContext);
+  const { timestamp } = React.useContext(KenAllContext);
   const { shortcutKey } = React.useContext(SettingsContext);
 
   React.useEffect(() => {
@@ -64,8 +64,8 @@ export const Help = () => {
         <Stack size="block" direction="column">
           <Paragraph>
             このページは
-            {downloadedAt
-              ? `${downloadedAt.getFullYear()}年${downloadedAt.getMonth() + 1}月${downloadedAt.getDate()}日にダウンロードした、`
+            {timestamp
+              ? `${timestamp.getFullYear()}年${timestamp.getMonth() + 1}月${timestamp.getDate()}日にダウンロードした、`
               : ""}
             日本郵便株式会社の
             <Link href="https://www.post.japanpost.jp/zipcode/dl/utf-zip.html">

@@ -3,8 +3,8 @@ import { KenAllContext } from "../../contexts";
 import { statusStyle } from "./Status.css";
 
 export const Status = ({ ids }: { ids: string[] }) => {
-  const { filteredKenAll } = React.useContext(KenAllContext);
-  const count = filteredKenAll.length;
+  const { filteredNumbers } = React.useContext(KenAllContext);
+  const count = filteredNumbers.length;
   return (
     <output
       className={statusStyle}

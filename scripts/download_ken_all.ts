@@ -8,8 +8,11 @@ execSync(
 );
 execSync("unzip utf_ken_all.zip");
 const csv = readFileSync("utf_ken_all.csv", "utf-8");
+
+const directory = "./public/data";
+execSync(`mkdir -p ${directory}`);
 writeFileSync(
-  "./public/ken_all.json",
-  JSON.stringify({ kenAll: parse(csv), downloadedAt: now.toISOString() }),
+  `${directory}/ken_all.json`,
+  JSON.stringify({ kenAll: parse(csv), timestamp: now.toISOString() }),
 );
 execSync("rm utf_ken_all.zip utf_ken_all.csv");

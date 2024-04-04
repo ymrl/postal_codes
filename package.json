@@ -10,6 +10,7 @@
     "format": "prettier src scripts --write",
     "preview": "vite preview",
     "download_ken_all": "tsx scripts/download_ken_all.ts",
+    "create_index": "tsx scripts/create_index.ts",
     "prepare": "husky"
   },
   "dependencies": {

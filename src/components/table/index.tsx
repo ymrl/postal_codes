@@ -10,12 +10,12 @@ import { Column } from "./types";
 import { Instruction } from "./Instruction";
 
 export const Table = () => {
-  const { filteredKenAll } = React.useContext(KenAllContext);
+  const { filteredNumbers } = React.useContext(KenAllContext);
   const { disableVirtualScroll, tableOverscan } = React.useContext(
     DeveloperSettingsContext,
   );
   const rowVirtualizer = useWindowVirtualizer({
-    count: filteredKenAll.length,
+    count: filteredNumbers.length,
     estimateSize: () =>
       window.outerWidth <= sizeRemToPx(screenWidths.small.max)
         ? sizeRemToPx(smallRowHeight)
@@ -42,17 +42,17 @@ export const Table = () => {
         id={id}
         ariaLabel="日本の郵便番号"
         ariaColCount={5}
-        ariaRowCount={filteredKenAll.length + 1}
+        ariaRowCount={filteredNumbers.length + 1}
         virtualHeight={totalSize}
       >
         <Header columns={columns} />
         {disableVirtualScroll ? (
           <>
             <ContentTop firstRowTop={0} colCount={5} />
-            {filteredKenAll.map((row, i) => (
+            {filteredNumbers.map((number, i) => (
               <BodyRow
                 rowIndex={i + 2}
-                row={row}
+                number={number}
                 key={i}
                 columns={columns}
                 id={`${id}__${i}`}
@@ -69,7 +69,7 @@ export const Table = () => {
             {items.map((virtualItem) => (
               <BodyRow
                 rowIndex={virtualItem.index + 2}
-                row={filteredKenAll[virtualItem.index]}
+                number={filteredNumbers[virtualItem.index]}
                 key={virtualItem.key}
                 columns={columns}
                 id={`${id}__${virtualItem.index}`}
